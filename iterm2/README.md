@@ -10,7 +10,7 @@ Personal iterm2 configuration file.
   - [JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
   - [MesloLGS NF](https://github.com/romkatv/powerlevel10k) -- which is Recommended font for Powerlevel10k.
 - import json file
-  - [iterm2.json](https://github.com/asang24/dotfiles/blob/master/iterm2/iterm2.json)
+  - [iterm2.json](https://github.com/asang24/dotfiles/blob/main/iterm2/iterm2.json)
   - personal theme [gruvbox-material-iterm2](https://github.com/AmmarCodes/gruvbox-material-iterm2)
 - other useful settings
   - Appearance -> General -> Theme:Minimal & Tab bar:Bottom & Status bar:Top
