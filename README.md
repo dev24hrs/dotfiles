@@ -122,7 +122,7 @@ refer to [Keybindings_zh](https://github.com/jesseduffield/lazygit/blob/master/d
 ##### [tmux](https://github.com/tmux/tmux) -- a terminal multiplexer
 
 Full screenshot
-<img src="https://github.com/asang24/dotfiles/blob/main/tmux-powerline/Screenshot.png" alt="screenshot" style="zoom:100%;" />
+![](https://github.com/asang24/dotfiles/blob/main/tmux-powerline/Screenshot.png")
 
 Custom keybindings
 
@@ -136,17 +136,14 @@ other keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 |   `prefix`   |    q    |        kill window        |
 |   `prefix`   |    j    |  split window vertically  |
 |   `prefix`   |    k    | split window horizontally |
-|   `Shift`    |  Left   |      previous window      |
-|   `Shift`    |  Right  |        next window        |
-|   `Option`   |  Left   |      select pane -L       |
-|   `Option`   |  Right  |      select pane -R       |
-|   `Option`   |   Up    |      select pane -U       |
-|   `Option`   |  Down   |      select pane -D       |
-|   `prefix`   |    H    |     resize pane -L 5      |
-|   `prefix`   |    J    |     resize-pane -D 5      |
-|   `prefix`   |    K    |     resize-pane -U 5      |
-|   `prefix`   |    L    |     resize-pane -R 5      |
-|   `prefix`   |    m    |    zoom & unzoom panes    |
+|    `Ctrl`    |    p    |      previous window      |
+|    `Ctrl`    |    n    |        next window        |
+|    `Ctrl`    |    h    |      select pane -L       |
+|    `Ctrl`    |    l    |      select pane -R       |
+|    `Ctrl`    |    k    |      select pane -U       |
+|    `Ctrl`    |    j    |      select pane -D       |
+|   `prefix`   |    c    |   create session window   |
+|   `prefix`   |    x    |    close current pane     |
 
 - install `tmux`
 
