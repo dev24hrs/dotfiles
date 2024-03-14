@@ -122,7 +122,7 @@ refer to [Keybindings_zh](https://github.com/jesseduffield/lazygit/blob/master/d
 ##### [tmux](https://github.com/tmux/tmux) -- a terminal multiplexer
 
 Full screenshot
-![](https://github.com/asang24/dotfiles/blob/main/tmux-powerline/Screenshot.png")
+<img src="https://github.com/asang24/dotfiles/blob/main/tmux-powerline/Screenshot.png" alt="demo" />
 
 Custom keybindings
 
