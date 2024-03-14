@@ -1,7 +1,7 @@
 ## Iterm2-config
 
 Personal iterm2 configuration file.
-<img src="https://github.com/asang24/dotfiles/blob/main/iterm2/iterm2.png" alt="demo" style="zoom:20%;" />
+<img src="https://github.com/asang24/dotfiles/blob/main/iterm2/iterm2.png" alt="demo" style="zoom:10%;" />
 
 - [iterm2](https://iterm2.com/) -- install iterm2
 
@@ -26,6 +26,6 @@ Personal iterm2 configuration file.
     
     - Window -> Transparency:2 & Backgroud Image:backgroud.jpeg & Blending:5
     
-    - Keys -> Report modifiers using CSI u -> cancel 
+    - Keys -> set Report modifiers using CSI u -> not remove 
     
-        <img src ="https://github.com/asang24/dotfiles/blob/main/iterm2/iterm4tmux.png" alt="demo" style="zoom:20%;" />
+        <img src ="https://github.com/asang24/dotfiles/blob/main/iterm2/iterm4tmux.png" alt="demo" style="zoom:10%;" />
