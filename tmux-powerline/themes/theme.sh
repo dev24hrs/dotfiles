@@ -13,13 +13,14 @@ else
 	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="❯"
 fi
 
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'235'}
+# See Color formatting section below for details on what colors can be used here.
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'237'}
 TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'255'}
 
 TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR:-$TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD}
 TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR:-$TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}
 
-# See man tmux.conf for additional formatting options for the status line.
+# See `man tmux` for additional formatting options for the status line.
 # The `format regular` and `format inverse` functions are provided as conveniences
 
 if [ -z $TMUX_POWERLINE_WINDOW_STATUS_CURRENT ]; then
@@ -49,12 +50,12 @@ if [ -z $TMUX_POWERLINE_WINDOW_STATUS_FORMAT ]; then
 	)
 fi
 
-
+#   * The numbers 0-255 for the 256-color palette. Run `tmux-powerline/color-palette.sh` to see the colors.
 if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info 148 234" \
+		"tmux_session_info 143 234" \
 		#"hostname 33 0" \
-		"vcs_branch 9 255" \
+		"vcs_branch 29 88" \
 		#"vcs_compare 60 255" \
 		#"vcs_staged 64 255" \
 		"vcs_modified 9 255" \
@@ -64,11 +65,11 @@ fi
 
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		"pwd 89 211" \
-		#"battery 137 127" \
-		"date_day 235 136" \
-		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
-		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
+		#"earthquake 3 0" \
+		"pwd 237 167" \
+		"date_day 237 255" \
+		"date 237 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
+		"time 237 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}" \
 		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 	)
 fi
