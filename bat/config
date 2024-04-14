@@ -24,7 +24,6 @@
 #--map-syntax "*.ino:C++"
 #--map-syntax ".ignore:Git Ignore"
 
-# Set the theme
+--paging=never
 --theme="gruvbox-dark"
-
 --style="numbers,changes,header,snip,rule"
