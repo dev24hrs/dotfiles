@@ -76,6 +76,7 @@ Always update and keep it more usefully.
 
 - [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) - Auto-completion 
 - [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) - Snippets
+- [luasnip](https://github.com/L3MON4D3/LuaSnip) - Snippets
 - [nvim-tree.nvim](https://github.com/nvim-tree/nvim-tree.lua) - File explorer
 - [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim) - Statusline
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder
@@ -100,11 +101,22 @@ Always update and keep it more usefully.
 - [go.nvim](https://github.com/ray-x/go.nvim) - Go plugin
 - [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) - Supercharge your Rust experience
 - [crates.nvim](https://github.com/Saecki/crates.nvim) - managing crates.io dependencies
+- [Codeium](https://github.com/Exafunction/codeium.vim) - Codeium autocompletes
 
 ### Requirements
 
 - Neovim 0.9+
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [jsregexp](https://github.com/kmarius/jsregexp)
+
+- [luarocks](https://github.com/luarocks/luarocks/wiki/Installation-instructions-for-macOS)
+
+    ```bash
+    #  for luasnip
+    brew install luarocks
+    luarocks install jsregexp
+    ```
+
 - [nerdfonts](https://www.nerdfonts.com/font-downloads) prefer FiraCodeNerdFont-Retina & JetBrainsMonoNerdFont-Regulare
 
 ### Optional
@@ -132,3 +144,9 @@ Also can find in [my github](https://github.com/asang24/dotfiles)
     - Text -> Font: RecMonoCasual Nerd Font 16
     - Window -> Transparency:2 & Backgroud Image:backgroud.jpeg & Blending:5
     - Keys -> set Report modifiers using CSI u -> not remove
+  
+  - Advanced
+  
+      - set `Scroll wheel sends arrow keys when in alternate screen mode` to **Yes**
+  
+          >   no more scrolling up or down the entire screen, only in nvim/vim mode.
