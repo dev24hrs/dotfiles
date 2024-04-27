@@ -18,10 +18,10 @@ vim.opt.laststatus = 3
 -- Tabs & Indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+-- vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.softtabstop = 4
-vim.opt.smarttab = true
+-- vim.opt.smarttab = true
 
 -- Search Settings
 vim.opt.ignorecase = true
@@ -60,12 +60,12 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- folding
--- vim.wo.foldmethod = 'expr'
--- vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldlevel = 20
 
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
-
   callback = function()
     vim.highlight.on_yank()
   end,

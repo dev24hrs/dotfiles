@@ -18,6 +18,13 @@ vim.api.nvim_set_keymap(
 -- 选中后向上移动一行
 vim.api.nvim_set_keymap('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = 'move selected line up' })
 
+-- 移动光标到行首
+vim.api.nvim_set_keymap('n', 'W', '^', { noremap = true, silent = true, desc = 'move cursor to line head' })
+vim.api.nvim_set_keymap('v', 'W', '^', { noremap = true, silent = true, desc = 'move cursor to line head' })
+-- 移动光标到行尾
+vim.api.nvim_set_keymap('n', 'E', '$', { noremap = true, silent = true, desc = 'move cursor to line end' })
+vim.api.nvim_set_keymap('v', 'E', '$', { noremap = true, silent = true, desc = 'move cursor to line end' })
+
 -- Buffers
 vim.api.nvim_set_keymap('n', '<leader>bd', ':bdelete<cr>', { noremap = true, silent = true, desc = 'Close buffer' })
 vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<cr>', { noremap = true, silent = true, desc = 'Next buffer' })
