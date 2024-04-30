@@ -6,11 +6,11 @@ This repo hosts my Nvim configuration for macOS, `init.lua` is the config entry 
 It's a simple but satisfying configuration for me, with `lua bash json yaml sql markdown golang rust` yet.  
 Always update and keep it more usefully.
 
-<img src="https://cdn.jsdelivr.net/gh/asang24/blog-img/go/202404151334838.png" alt="dashboard" />
+<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151334838.png" alt="dashboard" />
 
-<img src="https://cdn.jsdelivr.net/gh/asang24/blog-img/go/202404151335169.png" alt="telescope" />
+<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151335169.png" alt="telescope" />
 
-<img src="https://cdn.jsdelivr.net/gh/asang24/blog-img/go/202404151337040.png" alt="outline" />
+<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151337040.png" alt="outline" />
 
 
 
@@ -123,7 +123,7 @@ Always update and keep it more usefully.
 
 iterm2 config
 
-Also can find in [my github](https://github.com/asang24/dotfiles/tree/main/iterm2)
+Also can find in [my github](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
 
 - [iterm2](https://iterm2.com/) - install iterm2
 - [color schemes](https://github.com/mbadolato/iTerm2-Color-Schemes) - install color schemes
@@ -132,7 +132,7 @@ Also can find in [my github](https://github.com/asang24/dotfiles/tree/main/iterm
   - [JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
   - [Recursive](https://www.recursive.design/) - prefer fonts, installed from [nerdfonts](https://www.nerdfonts.com/font-downloads)
 - import json file
-  - [iterm2.json](https://github.com/asang24/dotfiles/blob/main/iterm2/iterm2.json)
+  - [iterm2.json](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
   - personal theme [gruvbox-material-iterm2](https://github.com/AmmarCodes/gruvbox-material-iterm2)
 - other useful settings
 
