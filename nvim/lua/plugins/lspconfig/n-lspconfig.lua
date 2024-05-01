@@ -120,10 +120,7 @@ return {
 
       keymap('gp', '<cmd>Lspsaga peek_definition<CR>', '[P]eek [D]efinition')
       keymap('gd', '<cmd>Lspsaga goto_definition<CR>', '[G]oto [D]efinition')
-      keymap('gi', '<cmd>Telescope lsp_implementations<CR>', '[G]oto [I]mplementation')
-      keymap('<leader>gd', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
       keymap('K', '<cmd>Lspsaga hover_doc<CR>', '[H]over [D]ocumentation')
-      -- keymap('<leader>r', '<cmd>Lspsaga rename<CR>', '[R]eName')
       keymap('<leader>o', '<cmd>Lspsaga outline<CR>', '[O]utline')
       keymap(']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', 'Diagnostic [J]ump [N]ext')
       keymap('[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'Diagnostic [J]ump] [P]rev')
@@ -134,8 +131,8 @@ return {
       end, 'Diagnostic jump prev')
       keymap('<leader>sw', '<cmd>Lspsaga show_workspace_diagnostics ++float<CR>', '[S]how [W]orkspace diagnostics')
       keymap('<leader>sd', '<cmd>Lspsaga show_buf_diagnostics ++float<CR>', '[S]how [B]uffer diagnostics')
-      keymap('<leader>ci', '<cmd>Lspsaga incoming_calls<CR>', 'Show [C]allhierarchy [I]ncoming_calls')
-      keymap('<leader>co', '<cmd>Lspsaga outgoing_calls<CR>', 'Show [C]allhierarchy [O]utgoing_calls')
+      keymap('hi', '<cmd>Lspsaga incoming_calls<CR>', 'Show [C]allhierarchy [I]ncoming_calls')
+      keymap('ho', '<cmd>Lspsaga outgoing_calls<CR>', 'Show [C]allhierarchy [O]utgoing_calls')
 
       keymap('<leader>,', '<cmd>Lspsaga code_action<CR>', '[C]ode [A]ction')
     end
@@ -182,6 +179,7 @@ return {
     --   },
     -- })
     -- configure golang lsp
+    -- refer to https://github.com/golang/tools/blob/master/gopls/doc/settings.md
     nvim_lsp.gopls.setup({
       on_attach = on_attach,
       capabilities = capabilities,
@@ -189,33 +187,34 @@ return {
       settings = {
         gopls = {
           gofumpt = true,
+          semanticTokens = true,
+          staticcheck = true,
           usePlaceholders = true,
-          completeUnimported = true,
-          experimentalPostfixCompletions = true,
           analyses = {
-            unusedparams = true,
+            unusedvariable = true,
+            unusedwrite = true,
             shadow = true,
           },
-          codelenses = {
-            generate = true, -- show the `go generate` lens.
-            gc_details = true, -- Show a code lens toggling the display of gc's choices.
-            test = true,
-            tidy = true,
-            vendor = true,
-            regenerate_cgo = true,
-            upgrade_dependency = true,
-          },
-          hints = {
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            constantValues = true,
-            functionTypeParameters = true,
-            parameterNames = true,
-            rangeVariableTypes = true,
-          },
-          staticcheck = true,
         },
+        --[[   gopls = {
+          formatting = {
+            gofumpt = true,
+          },
+          ui = {
+            semanticTokens = true,
+            completion = {
+              usePlaceholders = true,
+            },
+          },
+          diagnostic = {
+            analyses = {
+              unusedvariable = true,
+              unusedwrite = true,
+              shadow = true,
+            },
+          },
+        },
+      }, ]]
       },
     })
 

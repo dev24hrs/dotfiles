@@ -10,7 +10,7 @@ return {
     -- replace selected text in visual mode
     vim.api.nvim_set_keymap('v', '<leader>rp', '<CMD>SearchReplaceSingleBufferVisualSelection<CR>', opts)
     -- replace text in normal mode
-    vim.api.nvim_set_keymap('n', '<leader>ro', '<CMD>SearchReplaceSingleBufferOpen<CR>', opts)
+    vim.api.nvim_set_keymap('n', '<leader>rs', '<CMD>SearchReplaceSingleBufferOpen<CR>', opts)
     -- replace word under cursor
     vim.api.nvim_set_keymap('n', '<leader>rw', '<CMD>SearchReplaceSingleBufferCWORD<CR>', opts)
     -- replace file under cursor
