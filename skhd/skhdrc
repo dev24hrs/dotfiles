@@ -2,10 +2,11 @@
 # alt is option in mac
 
 # change window focus
-ctrl - j : yabai -m window --focus south
-ctrl - k : yabai -m window --focus north
-ctrl - h : yabai -m window --focus west
-ctrl - l : yabai -m window --focus east
+# if use ctrl-h/j/k/l, it will conflict with neovim by my config
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
 
 # swap windows
 ctrl + shift - j : yabai -m window --swap south
