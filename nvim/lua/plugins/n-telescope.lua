@@ -49,13 +49,14 @@ return {
     })
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[F]ind [B]uffers' })
     vim.keymap.set('n', '<leader>fc', builtin.current_buffer_fuzzy_find, { desc = '[F]ind in [C]urrent buffer' })
     vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
     vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
     require('telescope').load_extension('fzf')
     require('telescope').load_extension('file_browser')
     -- require('telescope').load_extension('dap')
-    vim.keymap.set('n', '<leader>fb', function()
+    vim.keymap.set('n', '<leader>/', function()
       require('telescope').extensions.file_browser.file_browser({
         path = '%:p:h',
         cwd = telescope_buffer_dir(),

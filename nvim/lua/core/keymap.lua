@@ -26,15 +26,15 @@ vim.keymap.set({ 'n', 'v' }, 'H', '^', { noremap = true, silent = true, desc = '
 -- 移动光标到行尾
 vim.keymap.set({ 'n', 'v' }, 'L', '$', { noremap = true, silent = true, desc = 'move cursor to line end' })
 
--- Buffers.  use harpoon instead of
--- vim.api.nvim_set_keymap('n', '<leader>bd', ':bdelete<cr>', { noremap = true, silent = true, desc = 'Close buffer' })
--- vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<cr>', { noremap = true, silent = true, desc = 'Next buffer' })
--- vim.api.nvim_set_keymap(
---   'n',
---   '<leader>bp',
---   ':bprevious<cr>',
---   { noremap = true, silent = true, desc = 'Previous buffer' }
--- )
+-- Buffers.
+vim.api.nvim_set_keymap('n', '<leader>bd', ':bdelete<cr>', { noremap = true, silent = true, desc = 'Close buffer' })
+vim.api.nvim_set_keymap('n', '<leader>bn', ':bnext<cr>', { noremap = true, silent = true, desc = 'Next buffer' })
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>bp',
+  ':bprevious<cr>',
+  { noremap = true, silent = true, desc = 'Previous buffer' }
+)
 
 -- Windows split screen shortcuts
 vim.api.nvim_set_keymap('n', 'sv', ':vsp<CR>', { noremap = true, silent = true, desc = 'Vertical split' })

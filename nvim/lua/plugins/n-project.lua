@@ -2,6 +2,7 @@
 return {
   {
     'LintaoAmons/cd-project.nvim',
+    event = 'VeryLazy',
     config = function()
       require('cd-project').setup({
         projects_picker = 'telescope', -- optional, you can switch to `telescope`

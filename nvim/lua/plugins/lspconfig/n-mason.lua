@@ -25,7 +25,6 @@ return {
       'lua-language-server',
       'yaml-language-server',
       'bash-language-server',
-      -- 'golangci-lint-langserver',
       'json-lsp',
       'pyright',
       'gopls',
@@ -54,14 +53,11 @@ return {
         'yamlfmt',
         'gofumpt',
         'goimports',
-        'golines',
-        'prettierd',
+        'prettier',
         'sql-formatter',
         -- lint ---
         'golangci-lint',
         'jsonlint',
-        'markdownlint', -- lint & format
-        'markdownlint-cli2', -- lint & format
         'yamllint',
         'sqlfluff',
       },
