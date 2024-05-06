@@ -1,5 +1,7 @@
 # Tmux config
 
+config refer to [dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/tmux)
+
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061729031.png" alt="tmux" />
 
 keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
@@ -20,7 +22,7 @@ keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 |    `Ctrl`    |     j      |      select pane -D       |
 |   `prefix`   |     c      |        new window         |
 
-> config refer to [dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/tmux)
+
 
 - install `tmux`
 
