@@ -13,7 +13,12 @@ return {
           },
         },
       })
-      vim.api.nvim_set_keymap('n', '<leader>p', ':CdProject<CR>', { noremap = true, silent = true, desc = 'CdProject' })
+      vim.api.nvim_set_keymap(
+        'n',
+        '<leader>cp',
+        ':CdProject<CR>',
+        { noremap = true, silent = true, desc = '[C]d [P]roject' }
+      )
     end,
   },
 }

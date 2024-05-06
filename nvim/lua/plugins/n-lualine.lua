@@ -56,7 +56,7 @@ return {
               end
               return msg
             end,
-            icon = '',
+            -- icon = '',
           },
         },
         lualine_y = {

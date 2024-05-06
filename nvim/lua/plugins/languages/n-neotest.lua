@@ -14,14 +14,14 @@ return {
         vim.cmd([[Neotest run]])
         -- require('neotest').run.run(vim.fn.expand('%'))
       end,
-      desc = 'Neotest toggle',
+      desc = '[N]eotest [T]oggle',
     },
     {
       '<leader>np',
       function()
         require('neotest').output_panel.toggle()
       end,
-      desc = 'Neotest output_panel toggle',
+      desc = '[N]eotest output_[P]anel toggle',
     },
   },
   config = function()
@@ -38,7 +38,6 @@ return {
       -- your neotest config here
       adapters = {
         require('neotest-go'),
-        require('rustaceanvim.neotest'),
       },
     })
   end,

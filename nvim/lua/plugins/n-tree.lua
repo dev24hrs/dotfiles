@@ -6,7 +6,7 @@ return {
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
     local api = require('nvim-tree.api')
-    vim.keymap.set('n', '<leader>e', api.tree.toggle)
+    vim.keymap.set('n', '<leader>e', api.tree.toggle, { desc = 'Toggle nvimTree' })
     local function my_on_attach(bufnr)
       local function opts(desc)
         return {
@@ -20,7 +20,7 @@ return {
       -- default mappings
       api.config.mappings.default_on_attach(bufnr)
       -- custom mappings
-      vim.keymap.set('n', '<leader>e', api.tree.toggle, opts('Toggle'))
+      vim.keymap.set('n', '<leader>e', api.tree.toggle, opts('Toggle nvimTree'))
       -- vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
     end
     require('nvim-tree').setup({

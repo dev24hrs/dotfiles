@@ -31,7 +31,6 @@ return {
       'gopls',
       'rust-analyzer',
       'sqlls',
-      'taplo', -- toml
     }
     local mason_registry = require('mason-registry')
     local ensure_installed = function()
@@ -52,6 +51,7 @@ return {
       ensure_installed = {
         --- formatter ---
         'stylua',
+        'yamlfmt',
         'gofumpt',
         'goimports',
         'golines',

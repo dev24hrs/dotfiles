@@ -15,22 +15,10 @@ return {
           ['vim.lsp.util.stylize_markdown'] = true,
           ['cmp.entry.get_documentation'] = true,
         },
-
-        -- set blew to fix conficts with other plugins like lsp-saga/ls-signatuer-help,
-        signature = {
-          enabled = false,
-        },
-        hover = {
-          enabled = false,
-        },
       },
-      -- set for use Classic cmdline
-      -- cmdline = {
-      --   view = 'cmdline',
-      --   format = {
-      --     cmdline = false,
-      --   },
-      -- },
+      presets = {
+        lsp_doc_border = true,
+      },
       routes = {
         {
           filter = {

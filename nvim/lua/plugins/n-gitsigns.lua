@@ -15,9 +15,23 @@ return {
       current_line_blame_formatter_opts = { relative_time = true },
       current_line_blame_formatter = '      <author>, <author_time:%Y-%m-%d> - <summary>',
     })
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set({ 'n', 'v' }, '[h', '<cmd>Gitsigns next_hunk<CR>', opts)
-    vim.keymap.set({ 'n', 'v' }, ']h', '<cmd>Gitsigns prev_hunk<CR>', opts)
-    vim.keymap.set({ 'n', 'v' }, '<leader>hd', '<cmd>Gitsigns diffthis<CR>', opts)
+    vim.keymap.set(
+      { 'n', 'v' },
+      '[h',
+      '<cmd>Gitsigns next_hunk<CR>',
+      { noremap = true, silent = true, desc = '[N]ext [H]unk gitsigns' }
+    )
+    vim.keymap.set(
+      { 'n', 'v' },
+      ']h',
+      '<cmd>Gitsigns prev_hunk<CR>',
+      { noremap = true, silent = true, desc = '[P]revious [H]unk gitsigns' }
+    )
+    vim.keymap.set(
+      { 'n', 'v' },
+      '<leader>gd',
+      '<cmd>Gitsigns diffthis<CR>',
+      { noremap = true, silent = true, desc = '[G]itsigns [D]iffthis' }
+    )
   end,
 }

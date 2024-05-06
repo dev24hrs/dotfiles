@@ -7,7 +7,6 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
     {
       'L3MON4D3/LuaSnip',
       version = 'v2.*',
@@ -99,9 +98,9 @@ return {
       sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'path' },
+        { name = 'buffer' },
         { name = 'luasnip', option = { show_autosnippets = true } },
-        { name = 'nvim_lsp_signature_help' },
-      }, { { name = 'buffer' } }),
+      }),
 
       -- 根据文件类型补全
       cmp.setup.filetype({ 'TelescopePrompt' }, {
@@ -109,16 +108,6 @@ return {
           { name = 'buffer' },
         }),
       }),
-      -- cmp.setup.filetype({ 'vim', 'markdown' }, {
-      --   sources = cmp.config.sources({
-      --     { name = 'buffer' },
-      --   }),
-      -- }),
-      -- cmp.setup.filetype('gitcommit', {
-      --   sources = cmp.config.sources({
-      --     { name = 'buffer' },
-      --   }),
-      -- }),
     })
     cmp.setup.cmdline('/', {
       mapping = cmp.mapping.preset.cmdline(),

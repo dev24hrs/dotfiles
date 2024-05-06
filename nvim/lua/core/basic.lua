@@ -18,35 +18,34 @@ vim.opt.laststatus = 3
 -- Tabs & Indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
--- vim.opt.softtabstop = 4
 vim.opt.expandtab = true
-vim.opt.autoindent = true
--- vim.opt.smarttab = true
+-- vim.opt.autoindent = true -- default
 
 -- Search Settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
+-- vim.opt.hlsearch = true
+-- vim.opt.incsearch = true
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
-vim.opt.backspace = 'indent,eol,start'
+-- vim.opt.backspace = 'indent,eol,start' -- default
+-- vim.opt.listchars = 'tab:> ,trail:-,nbsp:+' -- default
 vim.opt.list = false
-vim.opt.listchars = 'tab:»·,nbsp:+,extends:→,precedes:←'
 vim.opt.conceallevel = 0
 
+-- vim.opt.autoread = true -- default
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.autoread = true
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 400
 vim.opt.completeopt = 'menu,menuone,noselect,noinsert'
 
 -- utf-8
 vim.scriptencoding = 'utf-8'
-vim.opt.encoding = 'utf-8'
+-- vim.opt.encoding = 'utf-8' -- default
 vim.opt.fileencoding = 'utf-8'
 
 -- Use ripgrep as grep tool
@@ -85,6 +84,17 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     if vim.fn.line('\'"') > 0 and vim.fn.line('\'"') <= vim.fn.line('$') then
       vim.fn.setpos('.', vim.fn.getpos('\'"'))
       vim.cmd('silent! foldopen')
+    end
+  end,
+})
+
+-- nightly inlay hints
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(args.buf, true)
     end
   end,
 })

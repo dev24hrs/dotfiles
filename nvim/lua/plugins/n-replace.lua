@@ -6,7 +6,7 @@ return {
       default_replace_single_buffer_options = 'gcI',
       default_replace_multi_buffer_options = 'egcI',
     })
-    local opts = { noremap = true, silent = true, desc = 'Replace' }
+    local opts = { noremap = true, silent = true, desc = 'Search and Replace word' }
     -- replace selected text in visual mode
     vim.api.nvim_set_keymap('v', '<leader>rp', '<CMD>SearchReplaceSingleBufferVisualSelection<CR>', opts)
     -- replace text in normal mode
