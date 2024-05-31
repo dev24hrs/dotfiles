@@ -16,7 +16,6 @@ return {
           label = '',
           action = 'Telescope find_files cwd=',
         },
-        -- footer = { "\n\n岂能尽如人意，但求无愧我心。"}, -- footer
         shortcut = {
           {
             desc = '󰚰 Update',
