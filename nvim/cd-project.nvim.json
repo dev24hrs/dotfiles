@@ -1,7 +1,0 @@
-[
-  { "name": "nvim", "path": "~/.config/nvim" },
-  { "name": "dotfiles", "path": "~/Documents/dotfiles" },
-  { "name": "Project_Go", "path": "~/Documents/Code/Project_Go/src" },
-  { "name": "Project_Rust", "path": "~/Documents/Code/Project_Rust" }
-]
-
