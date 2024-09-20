@@ -98,16 +98,6 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 - [Recursive](https://www.recursive.design/) - prefer fonts, installed from [nerdfonts](https://www.nerdfonts.com/font-downloads)
 
-  ```bash
-  # https://github.com/ryanoasis/nerd-fonts#option-8-patch-your-own-font
-  # Usage
-  cd FontPatcher
-  # then
-  fontforge -script font-patcher PATH_TO_FONT
-  # e.g: fontforge -script font-patcher ~/Documents/Fonts/RecMonoCasual/RecMonoCasual-Italic-1.085.ttf --complete
-  # then u can find xxxNerdFont.ttf in current path
-  ```
-
 ## starship
 
 - install [starship](https://starship.rs/guide/)
@@ -155,6 +145,28 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
   }
   [ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
   ```
+
+## kitty
+
+config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
+
+## Yazi
+
+config refer to [yazi dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/yazi)
+
+also add some config to ==~/.zshrc==
+
+```bash
+# yazi
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+```
 
 ## Iterm2
 

@@ -111,6 +111,8 @@ Always update and keep it more usefully.
 
 - Neovim 0.10+
 
+- [yazi](https://github.com/sxyazi/yazi)
+
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 - [jsregexp](https://github.com/kmarius/jsregexp)
@@ -125,6 +127,8 @@ Always update and keep it more usefully.
 
 ### Recommended
 
-kitty config refer to [kitty config](https://github.com/mikavilpas/yazi.nvim)
+kitty config refer to [kitty config](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
 
-Iterm2 config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
+yazi config refer to [yazi config](https://github.com/dev24hrs/dotfiles/tree/main/yazi)
+
+sIterm2 config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)

@@ -11,11 +11,11 @@ return {
         week_header = { enable = true },
         packages = { enable = true }, -- show how many plugins neovim loaded
         -- limit how many projects list, action when you press key or enter it will run this action.
-        project = {
-          limit = 8,
-          label = '',
-          action = 'Telescope find_files cwd=',
-        },
+        -- project = {
+        --   limit = 6,
+        --   label = '',
+        --   action = 'Telescope find_files cwd=',
+        -- },
         shortcut = {
           {
             desc = '󰚰 Update',
