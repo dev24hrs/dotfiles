@@ -1,8 +1,6 @@
----
-description: personal prefer settings on Mac.
+<!----description: personal prefer settings on Mac.
 keywords:
-  [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust]
----
+  [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust]-->
 
 # [Mac] WorkFlow
 
@@ -154,7 +152,7 @@ config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/
 
 config refer to [yazi dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/yazi)
 
-also add some config to ==~/.zshrc==
+also add config to **~/.zshrc**
 
 ```bash
 # yazi
@@ -481,21 +479,6 @@ cht.sh --shell [LANG]
 
 - [iTerm2](https://iterm2.com/) -- Terminal app
 
-- ~~[Rectangle](https://github.com/rxhanson/Rectangle) -- window management~~
-
-  ```bash
-  # set
-  # 右半屏 Ctrl+Cmd+H
-  # 左半屏 Ctrl+Cmd+L
-  # 上半屏 Ctrl+Cmd+K
-  # 下半屏 Ctrl+Cmd+J
-  # 中半屏 Ctrl+Cmd+C
-  # 最大化 Ctrl+Cmd+M
-  # 扩大   Ctrl+cmd+=
-  # 扩大   Ctrl+cmd+-
-  # 恢复 Ctrl+Cmd+backSpace
-  ```
-
 - [Sequel Ace](https://github.com/Sequel-Ace/Sequel-Ace) -- mysql management
 
 - [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
@@ -539,4 +522,4 @@ cht.sh --shell [LANG]
   "picgo.dataPath": "$home/Library/Application Support/picgo/data.json",
   ```
 
-  If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application Support/typora-user-images`,so u need clean it.
+  If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
