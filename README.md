@@ -13,8 +13,6 @@ keywords:
 - Cloud service [flower](https://flower.yt/cart.php)
 - install & config [clash](https://help.huacloud.dev)
 
-
-
 ## Enhance terminal
 
 ```bash
@@ -25,8 +23,6 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write NSGlobalDomain KeyRepeat -int 1  # 默认值 2，设置成 1 合适，设置成 0 就太快了
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 ```
-
-
 
 ## Git Config
 
@@ -72,8 +68,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
   git config --global core.excludesfile ~/.gitignore_global
   ```
 
-
-
 ## Homebrew
 
 Use pkg to install [homebrew](https://github.com/Homebrew/brew/releases/), but need to config ~/.zshrc
@@ -93,8 +87,6 @@ brew update
 # then brew autoremove
 # brew cleanup
 ```
-
-
 
 ## Font
 
@@ -116,74 +108,65 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
   # then u can find xxxNerdFont.ttf in current path
   ```
 
-
-
 ## starship
 
 - install [starship](https://starship.rs/guide/)
 
-    ```bash
-    # brew install starship
-    vim ~/.zshrc
-    # add
-    eval "$(starship init zsh)"
-    
-    # config
-    # use prsent & restart terminal
-    starship preset nerd-font-symbols -o ~/.config/starship.toml
-    ```
+  ```bash
+  # brew install starship
+  vim ~/.zshrc
+  # add
+  eval "$(starship init zsh)"
+
+  # config
+  # use prsent & restart terminal
+  starship preset nerd-font-symbols -o ~/.config/starship.toml
+  ```
 
 - Zsh plugins
 
-    ```bash
-    # zsh-autosuggestions
-    brew install zsh-autosuggestions
-    # zsh-syntax-highlighting
-    brew install zsh-syntax-highlighting
-    # autojump
-    brew install autojump
-    # add to ~/.zshrc
-      source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-    
-    # by default zsh is case sensitive
-    # Ignore Case Sensitive
-    autoload -Uz +X compinit && compinit
-    zstyle ':completion:' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-    zstyle ':completion:' menu select
-    
-    # then source ~/.zshrc
-    ```
+  ```bash
+  # zsh-autosuggestions
+  brew install zsh-autosuggestions
+  # zsh-syntax-highlighting
+  brew install zsh-syntax-highlighting
+  # autojump
+  brew install autojump
+  # add to ~/.zshrc
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+  # by default zsh is case sensitive
+  # Ignore Case Sensitive
+  autoload -Uz +X compinit && compinit
+  zstyle ':completion:' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+  zstyle ':completion:' menu select
+  # then source ~/.zshrc
+  ```
 
 - last directory
 
-    ```bash
-    # add to ~/.zshrc
-    chpwd() {
-     # Save the current directory to a file
-     echo $PWD > ~/.last_directory
-    }
-    [ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
-    ```
-
-
+  ```bash
+  # add to ~/.zshrc
+  chpwd() {
+   # Save the current directory to a file
+   echo $PWD > ~/.last_directory
+  }
+  [ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
+  ```
 
 ## Iterm2
 
-config refer to  [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
+config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061712703.png" alt="iterm2" />
-
-
 
 ## Tmux
 
 config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/blob/main/tmux/tmux.conf)
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061729031.png" alt="tmux" />
-
-
 
 ## Neovim
 
@@ -194,8 +177,6 @@ config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/n
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151335169.png" alt="telescope" />
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151337040.png" alt="outline" width="100%" />
-
-
 
 ## vimrc
 
@@ -253,8 +234,8 @@ set termencoding=utf-8
 filetype indent on
 
 " auto tag
-inoremap ( ()<ESC>i  
-inoremap [ []<ESC>i 
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
 inoremap ' ''<ESC>i
@@ -270,8 +251,6 @@ nnoremap L $
 nnoremap $ <nop>
 nnoremap ^ <nop>
 ```
-
-
 
 ## Golang
 
@@ -304,8 +283,6 @@ go install mvdan.cc/gofumpt@latest
 - Go 语言设计与实现 https://draveness.me/golang/
 - Go 语言高级编程 https://chai2010.cn/advanced-go-programming-book/index.html
 
-
-
 ## Rust
 
 ### Setup
@@ -332,29 +309,21 @@ rustup update
 
 - Rust Cookbook 中文版 https://rustwiki.org/zh-CN/rust-cookbook/
 
-
-
 ### Awesome Rust
 
 - awesome rust https://github.com/rust-unofficial/awesome-rust
 
 - Rust 嵌入式 https://github.com/rust-embedded/awesome-embedded-rust
 
-
-
 ## VsCode
 
 config refer to [vscode dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/vscode)
-
-
 
 ## CLI Tools
 
 refer to [Modern Unix](https://github.com/ibraheemdev/modern-unix)
 
-### [bat](https://github.com/sharkdp/bat)
-
-cat clone with syntax highlighting and Git integration
+- [bat](https://github.com/sharkdp/bat) - cat clone with syntax highlighting and Git integration
 
 ```bash
 brew install bat
@@ -368,9 +337,7 @@ bat --generate-config-file
 alias cat='bat'
 ```
 
-### [delta](https://github.com/dandavison/delta) 
-
-git diff
+- [delta](https://github.com/dandavison/delta) - git diff
 
 ```bash
 # Install
@@ -391,17 +358,13 @@ brew install git-delta
 # set -ga terminal-overrides ",xterm-256color:Tc"-
 ```
 
-### [fd](https://github.com/sharkdp/fd) 
-
-a simple, fast and user-friendly alternative to 'find'
+- [fd](https://github.com/sharkdp/fd) - a simple, fast and user-friendly alternative to 'find'
 
 ```bash
 brew install fd
 ```
 
-### [fzf](https://github.com/junegunn/fzf)
-
-command-line fuzzy finder
+- [fzf](https://github.com/junegunn/fzf) - command-line fuzzy finder
 
 ```bash
 # add to ~/.zshrc
@@ -439,9 +402,7 @@ _fzf_comprun() {
 source ~/.zshrc
 ```
 
-### [fzf-git](https://github.com/junegunn/fzf-git.sh)
-
-completion selection menu with fzf
+- [fzf-git](https://github.com/junegunn/fzf-git.sh) - completion selection menu with fzf
 
 ```bash
 cd ~/.zsh
@@ -450,15 +411,13 @@ git clone git@github.com:junegunn/fzf-git.sh.git
 source ~/.zsh/fzf-git.sh/fzf-git.sh
 ```
 
-### [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ```bash
 brew install ripgrep
 ```
 
-### [bottom](https://github.com/ClementTsang/bottom) 
-
-process/system monitor
+- [bottom](https://github.com/ClementTsang/bottom) - process/system monitor
 
 ```bash
 brew install bottom
@@ -466,9 +425,7 @@ brew install bottom
 btm
 ```
 
-### [lsd](https://github.com/lsd-rs/lsd) 
-
- ls command
+- [lsd](https://github.com/lsd-rs/lsd) - ls command
 
 ```bash
 brew install lsd
@@ -479,9 +436,7 @@ alias la='ls -la'
 alias lt='ls --tree'
 ```
 
-### [cheat.sh](https://github.com/chubin/cheat.sh) 
-
-command line cheat sheet
+- [cheat.sh](https://github.com/chubin/cheat.sh) - command line cheat sheet
 
 ```bash
 mkdir -p $HOME/Documents/Tools/Cheat/bin
@@ -500,15 +455,11 @@ cht.sh go chan
 cht.sh --shell [LANG]
 ```
 
-### [httpie](https://github.com/httpie/cli) 
-
-command-line HTTP client
+- [httpie](https://github.com/httpie/cli) - command-line HTTP client
 
 ```bash
 # use  https://httpie.io/docs/cli/redirected-input
 ```
-
-
 
 ## Apps
 

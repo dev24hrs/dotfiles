@@ -58,7 +58,8 @@ Always update and keep it more usefully.
 │       ├── n-telescope.lua
 │       ├── n-theme.lua
 │       ├── n-toggleterm.lua
-│       ├── n-tree.lua
+│       ├── n-tree.lua.bak
+│       ├── n-yazi.lua
 │       └── n-treesitter.lua
 └── stylua.toml
 ```
@@ -83,7 +84,8 @@ Always update and keep it more usefully.
 -   Snippets : [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) 
 
 - Snippets : [luasnip](https://github.com/L3MON4D3/LuaSnip)
-- File explorer : [nvim-tree.nvim](https://github.com/nvim-tree/nvim-tree.lua)
+- ~~File explorer : [nvim-tree.nvim](https://github.com/nvim-tree/nvim-tree.lua)~~
+- File explorer : [yazi](https://github.com/mikavilpas/yazi.nvim)
 - Statusline : [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim)
 - Fuzzy finder : [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) 
 - Terminal : [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) 
@@ -107,7 +109,7 @@ Always update and keep it more usefully.
 
 ### Requirements
 
-- Neovim 0.9+
+- Neovim 0.10+
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 
@@ -121,8 +123,8 @@ Always update and keep it more usefully.
   luarocks install jsregexp
   ```
 
-- [Recursive](https://www.recursive.design/) - prefer fonts, installed from [nerdfonts](https://www.nerdfonts.com/font-downloads)
-
 ### Recommended
+
+kitty config refer to [kitty config](https://github.com/mikavilpas/yazi.nvim)
 
 Iterm2 config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
