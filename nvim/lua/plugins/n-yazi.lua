@@ -1,26 +1,38 @@
 return {
   'mikavilpas/yazi.nvim',
   event = 'VeryLazy',
-  keys = {
-    -- 👇 in this section, choose your own keymappings!
+  dependencies = {
+    -- check the installation instructions at
+    -- https://github.com/folke/snacks.nvim
     {
-      '<leader>fl',
+      'folke/snacks.nvim',
+      priority = 1000,
+      lazy = false,
+      config = function()
+        require('snacks').setup()
+      end,
+    },
+  },
+
+  keys = {
+    {
+      '<leader>e',
+      mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
-      desc = '[F]ile [L]ist by Yazi',
+      desc = 'Open yazi at the current file',
     },
     {
-      -- NOTE: this requires a version of yazi that includes
-      -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+      '<leader>cw',
+      '<cmd>Yazi cwd<cr>',
+      desc = "Open the file manager in nvim's working directory",
+    },
+    {
       '<c-up>',
       '<cmd>Yazi toggle<cr>',
       desc = 'Resume the last yazi session',
     },
   },
-  opts = {
-    -- if you want to open yazi instead of netrw, see below for more info
-    open_for_directories = false,
-    keymaps = {
-      show_help = '<f1>',
-    },
-  },
+  init = function()
+    vim.g.loaded_netrwPlugin = 1
+  end,
 }

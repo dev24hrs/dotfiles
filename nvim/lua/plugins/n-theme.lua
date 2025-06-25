@@ -29,18 +29,3 @@ return {
     vim.cmd('colorscheme gruvbox')
   end,
 }
-
--- return {
---   'sainnhe/everforest',
---   priority = 1000,
---   config = function()
---     vim.g.everforest_better_performance = 0
---     vim.g.everforest_transparent_background = 2
---     vim.g.everforest_enable_italic = 1
---     vim.g.everforest_diagnostic_line_highlight = 1
---     vim.g.everforest_background = 'medium'
---     vim.g.everforest_cursor = 'orange'
---
---     vim.cmd('colorscheme everforest')
---   end,
--- }

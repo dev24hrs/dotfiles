@@ -27,6 +27,6 @@ local opts = {
 
 require('lazy').setup({
   { import = 'plugins' },
-  { import = 'plugins.lspconfig' },
+  { import = 'plugins.lsp' },
   { import = 'plugins.languages' },
 }, opts)

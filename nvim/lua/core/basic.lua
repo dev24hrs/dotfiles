@@ -87,12 +87,3 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end
   end,
 })
-
--- move to n-lspsaga.lua
--- enable inlay hints
--- vim.api.nvim_create_autocmd('LspAttach', {
---   pattern = '*.go',
---   callback = function()
---     vim.cmd('autocmd! LspAttach * lua vim.lsp.inlay_hint.enable(true)')
---   end,
--- })

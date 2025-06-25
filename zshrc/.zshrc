@@ -59,6 +59,19 @@ export PATH=$PATH:$CHEAT_DIR/bin
 export GO_PATH=$HOME/Documents/Code/Path_Go
 export PATH=$PATH:$GO_PATH/bin
 
+# java home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
+export PATH=$JAVA_HOME/bin:$PATH
+
+# maven home
+export MAVEN_HOME=$HOME/Documents/Env/maven/maven-3.9.9
+export PATH=$MAVEN_HOME/bin:$PATH
+
+#gadle home 
+export GRADLE_HOME=$HOME/Documents/Env/gradle/gradle-8.12
+export PATH=$GRADLE_HOME/bin:$PATH
+
+
 # last directory
 chpwd() {
 	# Save the current directory to a file
@@ -69,15 +82,13 @@ chpwd() {
 # command tools
 alias cat='bat'
 
-# tmux 
-
 # lsd
 alias ls='lsd'
 alias la='ls -la'
 alias lt='ls --tree'
 
 # git
-alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20"
+alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20"
 
 # yazi
 function ya() {
@@ -88,3 +99,4 @@ function ya() {
 	fi
 	rm -f -- "$tmp"
 }
+

@@ -82,17 +82,23 @@ return {
         },
       },
     })
-
-    -- set keybinds
+    -- define keymap for lsp
     local keymap = vim.keymap
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-      callback = function(ev)
-        -- enabel inlay hints
-        vim.lsp.inlay_hint.enable(true)
+      group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
+      callback = function(event)
+        keymap.set('n', 'gd', function()
+          local params = vim.lsp.util.make_position_params(0, 'utf-8')
+          vim.lsp.buf_request(0, 'textDocument/definition', params, function(_, result, _, _)
+            if not result or vim.tbl_isempty(result) then
+              vim.notify('No definition found', vim.log.levels.INFO)
+            else
+              require('snacks').picker.lsp_definitions()
+            end
+          end)
+        end, { buffer = event.buf, desc = 'LSP: Goto Definition' })
 
-        local opts = { buffer = ev.buf, silent = true }
-
+        local opts = { buffer = event.buf, silent = true }
         opts.desc = '[G]show [R]eferences & definition & implementation & typeDefinition'
         keymap.set('n', 'gr', '<cmd>Lspsaga finder tyd+ref+imp+def<CR>', opts)
 
@@ -128,6 +134,50 @@ return {
 
         opts.desc = '[C]ode [A]ction'
         keymap.set('n', '<leader>,', '<cmd>Lspsaga code_action<CR>', opts)
+
+        -- folding
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.supports_method('textDocument/foldingRange') then
+          local win = vim.api.nvim_get_current_win()
+          vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        end
+
+        -- Inlay hint
+        vim.lsp.inlay_hint.enable(true)
+
+        -- Highlight words under cursor
+        if
+          client
+          and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight)
+          and vim.bo.filetype ~= 'bigfile'
+        then
+          local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+            buffer = event.buf,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.document_highlight,
+          })
+          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+            buffer = event.buf,
+            group = highlight_augroup,
+            callback = vim.lsp.buf.clear_references,
+          })
+          vim.api.nvim_create_autocmd('LspDetach', {
+            group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
+            callback = function(event2)
+              vim.lsp.buf.clear_references()
+              vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
+              -- vim.cmd 'setl foldexpr <'
+            end,
+          })
+        end
+        local api, lsp = vim.api, vim.lsp
+        api.nvim_create_user_command('LspInfo', ':checkhealth vim.lsp', { desc = 'Alias to `:checkhealth vim.lsp`' })
+        api.nvim_create_user_command('LspLog', function()
+          vim.cmd(string.format('tabnew %s', lsp.get_log_path()))
+        end, {
+          desc = 'Opens the Nvim LSP client log.',
+        })
       end,
     })
   end,

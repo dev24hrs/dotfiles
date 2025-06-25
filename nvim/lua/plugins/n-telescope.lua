@@ -11,9 +11,6 @@ return {
   },
   config = function()
     local actions = require('telescope.actions')
-    local function telescope_buffer_dir()
-      return vim.fn.expand('%:p:h')
-    end
     require('telescope').setup({
       defaults = {
         mappings = {
@@ -56,17 +53,5 @@ return {
     require('telescope').load_extension('fzf')
     require('telescope').load_extension('file_browser')
     -- require('telescope').load_extension('dap')
-    vim.keymap.set('n', '<leader>/', function()
-      require('telescope').extensions.file_browser.file_browser({
-        path = '%:p:h',
-        cwd = telescope_buffer_dir(),
-        respect_gitignore = false,
-        hidden = true,
-        grouped = true,
-        previewer = false,
-        initial_mode = 'normal',
-        layout_config = { height = 40 },
-      })
-    end, { desc = '[F]ile [B]rowser' })
   end,
 }
