@@ -4,14 +4,7 @@ return {
   dependencies = {
     -- check the installation instructions at
     -- https://github.com/folke/snacks.nvim
-    {
-      'folke/snacks.nvim',
-      priority = 1000,
-      lazy = false,
-      config = function()
-        require('snacks').setup()
-      end,
-    },
+    'folke/snacks.nvim',
   },
 
   keys = {

@@ -8,6 +8,7 @@ return {
       yaml = { 'yamllint' },
       json = { 'jsonlint' },
       sql = { 'sqlfluff' },
+      -- lua = { 'luacheck' },
       -- markdown = { 'markdownlint' },
     }
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {

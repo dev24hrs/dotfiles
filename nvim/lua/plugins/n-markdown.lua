@@ -11,6 +11,7 @@ return {
         code = { sign = false, style = 'normal' },
         pipe_table = { preset = 'round' },
         bullet = { icons = { '-', '-' } },
+        latex = { enabled = false },
       })
     end,
   },

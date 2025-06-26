@@ -9,6 +9,7 @@ return {
   },
 
   config = function()
+    require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = {
         'lua_ls',
@@ -23,11 +24,29 @@ return {
       automatic_enable = true,
     })
 
+    -- diagnostic virtual text, see `:help vim.diagnostic.config`
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = '■',
+        format = function(diagnostic)
+          return string.format('%s [%s] ', diagnostic.message, diagnostic.source)
+        end,
+        spacing = 4,
+      },
+    })
+
     -- lsp config
     vim.lsp.config('rust_analyzer', {
       -- Server-specific settings. See `:help lsp-quickstart`
       settings = {
-        ['rust-analyzer'] = {},
+        ['rust-analyzer'] = {
+          check = {
+            command = 'clippy',
+          },
+          diagnostics = {
+            enable = true,
+          },
+        },
       },
     })
     vim.lsp.config['gopls'] = {
@@ -53,6 +72,7 @@ return {
         },
       },
     }
+
     vim.lsp.config['lua_ls'] = {
       cmd = { 'lua-language-server' },
       filetypes = { 'lua' },
@@ -62,19 +82,23 @@ return {
           runtime = {
             version = 'LuaJIT',
           },
+          workspace = {
+            checkThirdParty = false,
+            library = {
+              vim.env.VIMRUNTIME,
+            },
+          },
           hint = { enable = true },
           codeLens = { enable = true },
+          completion = { callSnippet = 'Replace' },
           diagnostics = {
             globals = { 'vim' },
-          },
-          completion = { callSnippet = 'Replace' },
-          disable = {
-            'lowercase-global',
-            'undefined-global',
-            'unused-local',
-            'unused-function',
-            'unused-vararg',
-            'trailing-space',
+            disable = {
+              'lowercase-global',
+              'undefined-global',
+              'missing-parameter',
+              'param-type-mismatch',
+            },
           },
         },
       },

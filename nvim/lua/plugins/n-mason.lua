@@ -19,7 +19,6 @@ return {
         },
       },
     })
-
     require('mason-lspconfig').setup({
       automatic_installation = true,
       ensure_installed = {
@@ -48,6 +47,7 @@ return {
         'jsonlint',
         'yamllint',
         'sqlfluff',
+        'luacheck',
       },
     })
   end,
