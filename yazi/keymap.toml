@@ -120,9 +120,6 @@ keymap = [
   { on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go to the config directory" },
   { on = [ "g", "d" ],       run = "cd ~/Documents",   desc = "Go to the downloads directory" },
 
-  # compression
-  { on = "z", run = "plugin compress", desc = "Archive selected files" },
-
   # Help
   { on = "~", run = "help", desc = "Open help" },
 ]
