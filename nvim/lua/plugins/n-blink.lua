@@ -41,8 +41,23 @@ return {
       enabled = true,
     },
     sources = {
+      -- for lazydev plugin
       default = { 'lsp', 'buffer', 'snippets', 'path' },
+      providers = {
+
+        -- disable the completions when the keyword, for the first argument, is less than 3 characters.
+        cmdline = {
+          min_keyword_length = function(ctx)
+            -- when typing a command, only show when the keyword is 3 characters or longer
+            if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
+              return 3
+            end
+            return 0
+          end,
+        },
+      },
     },
+
     appearance = {
       highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
       nerd_font_variant = 'Nerd Font',
