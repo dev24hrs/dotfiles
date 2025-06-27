@@ -58,10 +58,8 @@ vim.opt.iskeyword:append('-')
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- folding
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.wo.foldlevel = 20
+-- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
+vim.opt.winborder = 'single'
 
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {

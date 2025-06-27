@@ -3,7 +3,8 @@ return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
   dependencies = {
-    'nvim-tree/nvim-web-devicons',
+    -- 'nvim-tree/nvim-web-devicons',
+    'echasnovski/mini.icons',
   },
   config = function()
     local function diff_source()

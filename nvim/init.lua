@@ -1,4 +1,5 @@
 require('core.option')
+require('core.folding')
 require('core.keymap')
 require('core.lazy')
 

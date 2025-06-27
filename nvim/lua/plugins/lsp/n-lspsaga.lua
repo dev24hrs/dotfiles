@@ -3,7 +3,9 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter', -- optional
-    'nvim-tree/nvim-web-devicons', -- optional
+    -- 'nvim-tree/nvim-web-devicons', -- optional
+
+    dependencies = { 'echasnovski/mini.icons' },
   },
   config = function()
     require('lspsaga').setup({

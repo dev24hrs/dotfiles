@@ -1,7 +1,10 @@
 return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = {
+    -- 'nvim-tree/nvim-web-devicons'
+    'echasnovski/mini.icons',
+  },
   config = function()
     local db = require('dashboard')
     db.setup({

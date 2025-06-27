@@ -18,6 +18,8 @@ return {
       [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
       { noremap = true, silent = true, desc = 'Next Search Word' }
     )
+
+    -- use n or N or * or # to jump to next or prev
     local desc = { noremap = true, silent = true, desc = 'Search Word with nvim-hlslens' }
     vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], desc)
     vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], desc)

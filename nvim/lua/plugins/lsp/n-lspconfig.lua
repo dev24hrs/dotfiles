@@ -5,7 +5,7 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
     'nvimdev/lspsaga.nvim',
-    'hrsh7th/cmp-nvim-lsp',
+    -- 'hrsh7th/cmp-nvim-lsp',
   },
 
   config = function()
