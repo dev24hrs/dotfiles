@@ -1,0 +1,134 @@
+#  refer to  https://nikitabobko.github.io/AeroSpace/guide
+#  refer to  https://blog.einverne.info/post/2025/04/aerospace-tiling-window-manager.html
+
+after-startup-command = []
+
+# 开机启动
+start-at-login = false 
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 0
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'accordion' 
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+automatically-unhide-macos-hidden-apps = false
+
+# 键盘布局
+[key-mapping]
+    preset = 'qwerty'
+
+# 平铺窗口之间留白 
+
+[gaps]
+    inner.horizontal = 5
+    inner.vertical =   5
+    outer.left =       0
+    outer.bottom =     0
+    outer.top =        0
+    outer.right =      0
+
+[mode.main.binding]
+    
+    # option-/ 切换平铺布局
+    alt-slash = 'layout tiles horizontal vertical'
+    # option-, 切换堆叠布局
+    alt-comma = 'layout accordion horizontal vertical'
+    
+    # 移动窗口焦点 
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+    
+    # 移动窗口
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    # 调整窗口大小
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    # 切换工作空间
+    alt-1 = 'workspace 1'
+    alt-2 = 'workspace 2'
+    alt-3 = 'workspace 3'
+    alt-4 = 'workspace 4'
+    alt-5 = 'workspace 5'
+   
+    # 移动当前窗口到x工作空间 
+    alt-shift-1 = 'move-node-to-workspace 1'
+    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-3 = 'move-node-to-workspace 3'
+    alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+   
+    # 在最近两个工作区切换
+    alt-tab = 'workspace-back-and-forth'
+    # 将当前窗口移动到另外显示器
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+    
+    # option-shift-; 进去serveice 模式
+    alt-shift-semicolon = 'mode service'
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    # 设置成 类似左上 1/2 左下2/1 右半屏
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']
+
+# 软件单独浮窗
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Terminal'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+if.window-title-regex-substring = '^(?!WeChat \(Chats\)|微信 \(聊天\)).*$'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.AppStore'
+if.window-title-regex-substring = 'App Store'
+if.during-aerospace-startup = false
+run = 'layout floating'
+
+#[[on-window-detected]]
+#if.app-id = 'net.kovidgoyal.kitty'
+#if.during-aerospace-startup = false
+#run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.googlecode.iterm2'
+if.during-aerospace-startup = false
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+if.during-aerospace-startup = false
+run = ['layout floating']
+
+
