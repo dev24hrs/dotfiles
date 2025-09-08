@@ -11,7 +11,7 @@ return {
       '<leader>e',
       mode = { 'n', 'v' },
       '<cmd>Yazi<cr>',
-      desc = 'Open yazi at the current file',
+      desc = 'Open [Y]azi at the current file',
     },
   },
   init = function()

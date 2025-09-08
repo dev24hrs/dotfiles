@@ -113,7 +113,7 @@ return {
         opts.desc = '[H]over [D]ocumentation'
         keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
 
-        opts.desc = '[O]utline'
+        opts.desc = 'Show [O]utline'
         keymap.set('n', '<leader>o', '<cmd>Lspsaga outline<CR>', opts)
 
         opts.desc = 'Diagnostic [J]ump [N]ext'
@@ -122,11 +122,11 @@ return {
         opts.desc = 'Diagnostic [J]ump [P]rev'
         keymap.set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
 
-        opts.desc = '[S]how [W]orkspace Diagnostics'
-        keymap.set('n', '<leader>sw', '<cmd>Lspsaga show_workspace_diagnostics ++float<CR>', opts)
+        -- opts.desc = '[S]how [W]orkspace Diagnostics'
+        -- keymap.set('n', '<leader>sw', '<cmd>Lspsaga show_workspace_diagnostics ++float<CR>', opts)
 
-        opts.desc = '[S]how Buffer [D]iagnostics'
-        keymap.set('n', '<leader>sd', '<cmd>Lspsaga show_buf_diagnostics ++float<CR>', opts)
+        -- opts.desc = '[S]how Buffer [D]iagnostics'
+        -- keymap.set('n', '<leader>sd', '<cmd>Lspsaga show_buf_diagnostics ++float<CR>', opts)
 
         opts.desc = 'Show [C]allhierarchy [I]ncoming_calls'
         keymap.set('n', 'ci', '<cmd>Lspsaga incoming_calls<CR>', opts)

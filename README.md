@@ -148,6 +148,18 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
 
+>   [!NOTE]
+>
+>   use wezterm recently
+
+
+
+## WezTerm
+
+config refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
+
+
+
 ## Yazi
 
 config refer to [yazi dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/yazi)

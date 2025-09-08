@@ -10,11 +10,11 @@ return {
   keys = {
     -- find files or words
     {
-      '<leader>ff',
+      '<leader>fl',
       function()
         require('fzf-lua').files()
       end,
-      desc = '[F]ind [F]iles in project directory',
+      desc = '[F]iles [L]ist in project directory',
     },
     {
       '<leader>fw',
