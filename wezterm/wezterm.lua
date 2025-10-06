@@ -10,7 +10,7 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices.
 
 config.font = wezterm.font('RecMonoCasual Nerd Font')
-config.font_size = 15
+config.font_size = 16
 
 config.enable_tab_bar = false 
 config.window_decorations = 'RESIZE'
@@ -26,8 +26,8 @@ config.window_close_confirmation = 'NeverPrompt'
 
 -- config.color_scheme = 'Everforest Dark Soft (Gogh)'
 -- config.color_scheme = 'Gruvbox Dark (Gogh)'
--- config.color_scheme = 'Gruvbox dark, medium (base16)'
+config.color_scheme = 'Gruvbox dark, medium (base16)'
 
-config.color_scheme = 'Gruvbox dark, soft (base16)'
+-- config.color_scheme = 'Gruvbox dark, soft (base16)'
 
 return config
