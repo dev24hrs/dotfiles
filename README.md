@@ -1,10 +1,26 @@
-<!----description: personal prefer settings on Mac.
-keywords:
-  [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust]-->
+---
+title: " Mac Dotfiles"
+author: dev24hrs
+tags:
+  - dotfiles
+  - config
+date: 2025-07-08 15:41 星期二
+---
+
+
+
+
+
 
 # [Mac] WorkFlow
 
 > This is a collection of configurations that includes all on my Mac.
+> 
+> keywords: [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust] 
+
+
+---
+
 
 ## Clash
 
@@ -84,6 +100,7 @@ brew update
 # if unistall
 # then brew autoremove
 # brew cleanup
+# brew cleanup --prune=all
 ```
 
 ## Font
@@ -95,6 +112,18 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 - [JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
 
 - [Recursive](https://www.recursive.design/) - prefer fonts, installed from [nerdfonts](https://www.nerdfonts.com/font-downloads)
+
+## System Keymap
+
+
+| keymap          | desc         |
+| --------------- | ------------ |
+| shift + cmd + L | 打开控制台        |
+| ctrl + space    | 切换输入法        |
+| cmd + space     | 打开 Spotlight |
+| ctrl + →        | 下一个space     |
+| ctrl + ←        | 上一个space     |
+| ctrl + 1-4      | 切换到1-4space  |
 
 ## starship
 
@@ -147,17 +176,98 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 ## kitty
 
 config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
-
->   [!NOTE]
->
->   use wezterm recently
-
+> [!NOTE]
+> use wezterm recently
 
 
 ## WezTerm
+refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
 
-config refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
 
+## fzf
+
+refer to [fzf](https://junegunn.github.io/fzf/getting-started/)
+
+| keys     | desc     |
+| -------- | -------- |
+| ctrl + t | 列出文件/文件夹 |
+| ctrl + r | 列出历史命令   |
+
+
+``` bash
+# add to ~/.zshrc
+# fzf
+source <(fzf --zsh)
+
+show_file_or_dir_preview="if [ -d {} ]; then tree -C {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_COMPLETION_TRIGGER='**'
+
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_DEFAULT_OPTS="--height=40% --tmux center --layout=reverse --border --info=inline --preview '$show_file_or_dir_preview'"
+# export FZF_DEFAULT_OPTS="--height 40% --tmux center --layout=reverse --border --info=inline --preview 'fzf-preview.sh {}'"
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# use fd (https://github.com/sharkdp/fd) for listing path candidates.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+# Advanced customization of fzf options via _fzf_comprun function
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+  esac
+}
+
+# https://junegunn.github.io/fzf/tips/ripgrep-integration/
+# ripgrep->fzf->nvim   query-> edit
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --delimiter : \
+      --preview 'bat --style=numbers,changes,header --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)
+
+# zoxide 
+eval "$(zoxide init zsh)"
+# with fzf
+z() {
+  local dir=$(
+    zoxide query --list --score |
+    fzf --height 40% --layout reverse --info inline \
+        --nth 2.. --tac --no-sort --query "$*" \
+        --bind 'enter:become:echo {2..}'
+  ) && cd "$dir"
+}
+```
+
+
+## Aerospace
+refer to [aerospace dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/aerospace)
 
 
 ## Yazi
@@ -202,7 +312,7 @@ config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/n
 
 ## vimrc
 
-config vim
+config vim 
 
 ```bash
 vim ~/.vimrc
@@ -392,23 +502,25 @@ brew install fd
 # add to ~/.zshrc
 
 # fzf config
-eval "$(fzf --zsh)"
-# use ~~ as the trigger sequence instead of the default **
+# fzf
+source <(fzf --zsh)
 export FZF_COMPLETION_TRIGGER='~~'
-export FZF_DEFAULT_OPTS='--height 50% --layout=reverse'
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'fzf-preview.sh {}'"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 
 show_file_or_dir_preview="if [ -d {} ]; then tree -C {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-
+# use fd (https://github.com/sharkdp/fd) for listing path candidates.
 _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
+# use fd to generate the list for directory completion
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
+# Advanced customization of fzf options via _fzf_comprun function
 _fzf_comprun() {
   local command=$1
   shift
@@ -535,3 +647,4 @@ cht.sh --shell [LANG]
   ```
 
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
+

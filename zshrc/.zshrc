@@ -17,25 +17,30 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' menu select
 
 # fzf
-eval "$(fzf --zsh)"
-# Use ~~ as the trigger sequence instead of the default **
-export FZF_COMPLETION_TRIGGER='~~'
-export FZF_DEFAULT_OPTS='--height 50% --layout=reverse'
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+source <(fzf --zsh)
 
 show_file_or_dir_preview="if [ -d {} ]; then tree -C {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_COMPLETION_TRIGGER='**'
+
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_DEFAULT_OPTS="--height=40% --tmux center --layout=reverse --border --info=inline --preview '$show_file_or_dir_preview'"
+# export FZF_DEFAULT_OPTS="--height 40% --tmux center --layout=reverse --border --info=inline --preview 'fzf-preview.sh {}'"
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
 # use fd (https://github.com/sharkdp/fd) for listing path candidates.
 _fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
+  fd --hidden --follow --exclude ".git" . "$1"
 }
+
 # use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
+  fd --type d --hidden --follow --exclude ".git" . "$1"
 }
+
 # Advanced customization of fzf options via _fzf_comprun function
 _fzf_comprun() {
   local command=$1
@@ -47,8 +52,37 @@ _fzf_comprun() {
     *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
   esac
 }
-# fzf-git
-source ~/.zsh/fzf-git.sh/fzf-git.sh
+
+# https://junegunn.github.io/fzf/tips/ripgrep-integration/
+# ripgrep->fzf->nvim   query-> edit
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --delimiter : \
+      --preview 'bat --style=numbers,changes,header --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,<80(up)' \
+      --query "$*"
+)
+
+# zoxide 
+eval "$(zoxide init zsh)"
+# with fzf
+z() {
+  local dir=$(
+    zoxide query --list --score |
+    fzf --height 40% --layout reverse --info inline \
+        --nth 2.. --tac --no-sort --query "$*" \
+        --bind 'enter:become:echo {2..}'
+  ) && cd "$dir"
+}
 
 
 # cheat.sh
@@ -64,20 +98,15 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH
 
 # maven home
-export MAVEN_HOME=$HOME/Documents/Env/maven/maven-3.9.9
+export MAVEN_HOME=$HOME/Documents/Tools/maven/maven-3.9.9
 export PATH=$MAVEN_HOME/bin:$PATH
 
-#gadle home 
-export GRADLE_HOME=$HOME/Documents/Env/gradle/gradle-8.12
+# gradle home 
+export GRADLE_HOME=$HOME/Documents/Tools/gradle/gradle-8.12
 export PATH=$GRADLE_HOME/bin:$PATH
+# local repo
+export GRADLE_USER_HOME=$HOME/Documents/Tools/gradle/gradle-repository
 
-
-# last directory
-chpwd() {
-	# Save the current directory to a file
-	echo $PWD > ~/.last_directory
-}
-[ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
 
 # command tools
 alias cat='bat'
