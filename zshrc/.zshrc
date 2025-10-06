@@ -84,6 +84,13 @@ z() {
   ) && cd "$dir"
 }
 
+# add to ~/.zshrc
+chpwd() {
+ # Save the current directory to a file
+ echo $PWD > ~/.last_directory
+}
+[ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
+
 
 # cheat.sh
 export CHEAT_DIR=$HOME/Documents/Tools/Cheat
