@@ -20,13 +20,13 @@ config.window_background_opacity = 0.95
 config.macos_window_background_blur = 30
 
 config.initial_cols = 150
-config.initial_rows = 50 
+config.initial_rows = 45 
 
 config.window_close_confirmation = 'NeverPrompt'
 
--- config.color_scheme = 'Everforest Dark Soft (Gogh)'
--- config.color_scheme = 'Gruvbox Dark (Gogh)'
-config.color_scheme = 'Gruvbox dark, medium (base16)'
+config.color_scheme = 'Gruvbox Dark (Gogh)'
+
+-- config.color_scheme = 'Gruvbox dark, medium (base16)'
 
 -- config.color_scheme = 'Gruvbox dark, soft (base16)'
 

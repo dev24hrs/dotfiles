@@ -1,109 +1,112 @@
 return {
-  'saghen/blink.cmp',
-  event = { 'BufReadPost', 'BufNewFile' },
-  version = '1.*',
-  dependencies = { 'rafamadriz/friendly-snippets' },
-  opts = {
-    completion = {
-      accept = { auto_brackets = { enabled = true } }, -- also need autopairs.nvim
-      keyword = { range = 'full' },
-      list = { selection = { preselect = false, auto_insert = true } },
-      menu = {
-        enabled = true,
-        auto_show = true,
-        scrollbar = false,
-        draw = {
-          -- nvim-cmp style menu
-          columns = { { 'label', 'label_description', gap = 1 }, { 'kind_icon', 'kind' } },
+  { 'L3MON4D3/LuaSnip', keys = {} },
+  {
+    'saghen/blink.cmp',
+    event = { 'BufReadPost', 'BufNewFile' },
+    version = '1.*',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+
+    config = function()
+      require('blink.cmp').setup({
+        snippets = { preset = 'luasnip' },
+        appearance = { nerd_font_variant = 'normal' },
+        keymap = {
+          preset = 'none',
+          -- use tab s-tab or up down to select items
+          -- enter to accept selected item
+          ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+          ['<CR>'] = { 'accept', 'fallback' }, -- 更改成'select_and_accept'会选择第一项插入
+
+          ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+          ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' }, -- 同时存在补全列表和snippet时，补全列表选择优先级更高
+          ['<Up>'] = { 'select_prev', 'fallback' },
+          ['<Down>'] = { 'select_next', 'fallback' },
         },
-      },
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 500,
-        treesitter_highlighting = true,
-      },
-      ghost_text = { enabled = true },
-    },
-    keymap = {
-      preset = 'none',
-      -- use tab s-tab or up down to select items
-      -- enter to accept selected item
-
-      ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-      ['<CR>'] = { 'accept', 'fallback' }, -- 更改成'select_and_accept'会选择第一项插入
-
-      ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-      ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' }, -- 同时存在补全列表和snippet时，补全列表选择优先级更高
-      ['<Up>'] = { 'select_prev', 'fallback' },
-      ['<Down>'] = { 'select_next', 'fallback' },
-    },
-    signature = {
-      enabled = true,
-    },
-    sources = {
-      -- for lazydev plugin
-      default = { 'lsp', 'buffer', 'snippets', 'path' },
-      providers = {
-
-        -- disable the completions when the keyword, for the first argument, is less than 3 characters.
+        completion = {
+          keyword = { range = 'full' },
+          list = { selection = { preselect = false, auto_insert = true } },
+          ghost_text = { enabled = true },
+          menu = {
+            winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpMenuSelection,Search:None',
+            scrolloff = 1,
+            scrollbar = false,
+            draw = {
+              columns = {
+                { 'kind_icon' },
+                { 'label', 'label_description', gap = 1 },
+                { 'kind' },
+                { 'source_name' },
+              },
+              treesitter = { 'lsp' },
+            },
+          },
+          documentation = {
+            window = {
+              scrollbar = false,
+              winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc',
+            },
+            auto_show = true,
+            treesitter_highlighting = true,
+          },
+        },
+        signature = { enabled = true },
+        sources = {
+          default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+          providers = {
+            lazydev = {
+              name = 'LazyDev',
+              module = 'lazydev.integrations.blink',
+              -- make lazydev completions top priority (see `:h blink.cmp`)
+              score_offset = 100,
+            },
+            cmdline = {
+              min_keyword_length = function(ctx)
+                -- when typing a command, only show when the keyword is 3 characters or longer
+                if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
+                  return 3
+                end
+                return 0
+              end,
+            },
+            buffer = {
+              opts = {
+                get_bufnrs = function()
+                  return vim.tbl_filter(function(bufnr)
+                    return vim.bo[bufnr].buftype == ''
+                  end, vim.api.nvim_list_bufs())
+                end,
+              },
+            },
+            path = {
+              opts = {
+                get_cwd = function(_)
+                  return vim.fn.getcwd()
+                end,
+              },
+            },
+          },
+        },
         cmdline = {
-          min_keyword_length = function(ctx)
-            -- when typing a command, only show when the keyword is 3 characters or longer
-            if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
-              return 3
-            end
-            return 0
-          end,
+          enabled = true,
+          completion = {
+            menu = {
+              auto_show = function()
+                return vim.fn.getcmdtype() == ':'
+              end,
+            },
+            ghost_text = { enabled = false },
+          },
+          keymap = {
+            ['<CR>'] = { 'select_and_accept', 'fallback' },
+            ['<Space>'] = { 'select_and_accept', 'fallback' },
+          },
         },
-      },
-    },
-
-    appearance = {
-      highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
-      nerd_font_variant = 'Nerd Font',
-      kind_icons = {
-        Text = '󰉿',
-        Method = '󰊕',
-        Function = '󰊕',
-        Constructor = '󰒓',
-        Field = '󰜢',
-        Variable = '󰆦',
-        Property = '󰖷',
-        Class = '󱡠',
-        Interface = '󱡠',
-        Struct = '󱡠',
-        Module = '󰅩',
-        Unit = '󰪚',
-        Value = '󰦨',
-        Enum = '󰦨',
-        EnumMember = '󰦨',
-        Keyword = '󰻾',
-        Constant = '󰏿',
-        Snippet = '󱄽',
-        Color = '󰏘',
-        File = '󰈔',
-        Reference = '󰬲',
-        Folder = '󰉋',
-        Event = '󱐋',
-        Operator = '󰪚',
-        TypeParameter = '󰬛',
-      },
-    },
-    cmdline = {
-      enabled = true,
-      completion = {
-        menu = {
-          auto_show = function()
-            return vim.fn.getcmdtype() == ':'
-          end,
+        fuzzy = {
+          sorts = { 'exact', 'score', 'sort_text' },
         },
-        ghost_text = { enabled = false },
-      },
-      keymap = {
-        ['<CR>'] = { 'select_and_accept', 'fallback' },
-        ['<Space>'] = { 'select_and_accept', 'fallback' },
-      },
-    },
+      })
+      require('luasnip.loaders.from_vscode').lazy_load()
+    end,
+    -- opts_extend = { 'sources.default' },
   },
-  opts_extend = { 'sources.default' },
 }

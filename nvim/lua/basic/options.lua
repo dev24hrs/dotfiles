@@ -1,16 +1,20 @@
 --Color
 vim.env.TERM = 'xterm-256color'
-vim.opt.termguicolors = true
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 vim.opt.signcolumn = 'yes'
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Incremental live completion
 vim.opt.inccommand = 'nosplit'
 vim.opt.ttyfast = true
 vim.opt.cursorline = true
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
 
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
@@ -20,6 +24,8 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true -- default
+vim.opt.smartindent = true
+vim.opt.breakindent = true
 
 -- Search Settings
 vim.opt.ignorecase = true
@@ -54,34 +60,10 @@ vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.mouse:append('a')
-vim.opt.iskeyword:append('-')
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.undofile = true
 
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'
-
--- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
--- 关闭新行注释
-vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  pattern = '*',
-  callback = function()
-    vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
-  end,
-})
-
--- 光标回到上次位置
-vim.api.nvim_create_autocmd('BufReadPost', {
-  pattern = '*',
-  callback = function()
-    if vim.fn.line('\'"') > 0 and vim.fn.line('\'"') <= vim.fn.line('$') then
-      vim.fn.setpos('.', vim.fn.getpos('\'"'))
-      vim.cmd('silent! foldopen')
-    end
-  end,
-})
+-- vim.opt.winborder = 'solid'

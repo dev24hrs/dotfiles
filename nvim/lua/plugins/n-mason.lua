@@ -1,54 +1,77 @@
 return {
-
-  --  如果开代理无法安装package,需关闭代理
-  --  设置npm 淘宝源 npm config set registry http://registry.npm.taobao.org/
-  --  成功之后设置成官方源 npm config set registry http://registry.npmjs.org/
   'mason-org/mason.nvim',
-  dependencies = {
-    'neovim/nvim-lspconfig', -- set lspconfig first to avoid lspconfig.util error
-    'mason-org/mason-lspconfig.nvim',
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
+  lazy = false, -- Load immediately to ensure PATH is set
+  cmd = 'Mason',
+  build = ':MasonUpdate',
+  opts = {
+    ui = {
+      icons = {
+        package_installed = '✓',
+        package_pending = '➜',
+        package_uninstalled = '✗',
+      },
+    },
+    ensure_installed = {
+      -- LSP servers (matching your vim.lsp.enable() config)
+      'lua-language-server', -- Lua LSP lua_ls
+      'gopls', -- Go LSP
+      'rust-analyzer', -- Rust LSP
+      'yaml-language-server', -- YAML LSP yamlls
+      'json-lsp', -- JSON LSP  jsonls
+      'bash-language-server', -- Bash LSP bashls
+      'sqlls', -- SQL LSP
+
+      -- Formatters (for conform.nvim and general use)
+      'stylua',
+      'goimports',
+      'gofumpt',
+      'prettier',
+      'sql-formatter',
+      'black',
+      'isort',
+      'shfmt', -- Shell formatter
+
+      -- Linters
+      'golangci-lint',
+      'luacheck', -- Lua linting
+      'shellcheck', -- Shell linter
+      'yamllint', -- YAML linting
+      'jsonlint', -- JSON linting
+      'sqlfluff', -- SQL linting
+
+      -- Debuggers--
+      'delve', -- Go debugger
+    },
   },
-  config = function()
-    require('mason').setup({
-      ui = {
-        icons = {
-          package_installed = '✓',
-          package_pending = '➜',
-          package_uninstalled = '✗',
-        },
-      },
-    })
-    require('mason-lspconfig').setup({
-      automatic_installation = true,
-      ensure_installed = {
-        --- lsp ---
-        'lua_ls',
-        'yamlls',
-        'bashls',
-        'jsonls',
-        'pyright',
-        'gopls',
-        'rust_analyzer',
-        'sqlls',
-      },
-    })
-    require('mason-tool-installer').setup({
-      ensure_installed = {
-        --- formatter ---
-        'stylua',
-        'yamlfmt',
-        'gofumpt',
-        'goimports',
-        'prettier',
-        'sql-formatter',
-        -- lint ---
-        'golangci-lint',
-        'jsonlint',
-        'yamllint',
-        'sqlfluff',
-        'luacheck',
-      },
-    })
+  config = function(_, opts)
+    require('mason').setup(opts)
+
+    -- Auto-install ensure_installed tools with better error handling
+    local mr = require('mason-registry')
+    local function ensure_installed()
+      for _, tool in ipairs(opts.ensure_installed) do
+        if mr.has_package(tool) then
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            vim.notify('Mason: Installing ' .. tool .. '...', vim.log.levels.INFO)
+            p:install():once('closed', function()
+              if p:is_installed() then
+                vim.notify('Mason: Successfully installed ' .. tool, vim.log.levels.INFO)
+              else
+                vim.notify('Mason: Failed to install ' .. tool, vim.log.levels.ERROR)
+              end
+            end)
+          end
+        else
+          vim.notify("Mason: Package '" .. tool .. "' not found", vim.log.levels.WARN)
+        end
+      end
+    end
+
+    if mr.refresh then
+      mr.refresh(ensure_installed)
+    else
+      ensure_installed()
+    end
   end,
 }

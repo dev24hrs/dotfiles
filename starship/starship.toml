@@ -7,7 +7,7 @@ add_newline = true
 success_symbol = '[➜](bold green)'
 
 [directory]
-read_only = " 󰌾"
+read_only = "  "
 
 [line_break]
 disabled = false 

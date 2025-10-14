@@ -20,13 +20,12 @@ local opts = {
     notify = false,
   },
   change_detection = {
-    enabled = false,
+    enabled = true,
     notify = false,
   },
 }
 
 require('lazy').setup({
   { import = 'plugins' },
-  { import = 'plugins.lsp' },
   { import = 'plugins.languages' },
 }, opts)

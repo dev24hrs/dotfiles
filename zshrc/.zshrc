@@ -1,9 +1,5 @@
-
 # homebrew 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# starship
-eval "$(starship init zsh)"
 
 # zsh plugins
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -97,8 +93,8 @@ export CHEAT_DIR=$HOME/Documents/Tools/Cheat
 export PATH=$PATH:$CHEAT_DIR/bin
 
 # go path
-export GO_PATH=$HOME/Documents/Code/Path_Go
-export PATH=$PATH:$GO_PATH/bin
+export GOPATH=$HOME/Documents/Tools/GoPath
+export PATH=$PATH:$GOPATH/bin
 
 # java home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
@@ -126,13 +122,12 @@ alias lt='ls --tree'
 # git
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20"
 
-# yazi
-function ya() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
+# gemini api
+export GOOGLE_CLOUD_PROJECT=gemini-api-467807
+
+# change .zcompdump path
+compinit -d ~/.cache/zsh/.zcompdump
+
+# starship
+eval "$(starship init zsh)"
 

@@ -2,8 +2,7 @@ return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
   dependencies = {
-    -- 'nvim-tree/nvim-web-devicons'
-    'echasnovski/mini.icons',
+    'nvim-tree/nvim-web-devicons',
   },
   config = function()
     local db = require('dashboard')
@@ -13,6 +12,15 @@ return {
       config = {
         week_header = { enable = true },
         packages = { enable = true }, -- show how many plugins neovim loaded
+        project = {
+          enable = true,
+          limit = 5,
+          icon = ' ',
+          label = '',
+          action = function(path)
+            Snacks.picker.files({ cwd = path })
+          end,
+        },
         shortcut = {
           { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
           {
@@ -20,13 +28,17 @@ return {
             icon_hl = '@variable',
             desc = 'Files',
             group = '@property',
-            action = 'lua require("fzf-lua").files()',
+            action = function()
+              Snacks.picker.files()
+            end,
             key = 'f',
           },
           {
             desc = ' dotfiles',
             group = 'Number',
-            action = 'lua require("fzf-lua").files({cwd = "~/.config/nvim"})',
+            action = function()
+              Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
+            end,
             key = 'd',
           },
         },

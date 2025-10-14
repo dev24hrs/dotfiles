@@ -36,6 +36,12 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1  # 默认值 2，设置成 1 合适，设置成 0 就太快了
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# mac 查应用标识id
+osascript -e 'id of app "app name"'
+# e.g
+osascript -e 'id of app "Wezterm"'
+
 ```
 
 ## Git Config
@@ -103,6 +109,157 @@ brew update
 # brew cleanup --prune=all
 ```
 
+## Rime 输入法
+- 官网下载 [Rime](https://github.com/rime/squirrel). 安装完成后需要到设置->键盘->输入法 中添加鼠须管输入法
+-  Homebrew安装. 注销用户重新登录才能在系统设置的输入法处看到鼠须管输入法
+	```bash
+	brew install --cask squirrel
+	```
+ - 安装[雾凇拼音](https://dvel.me/posts/rime-ice/)
+	 -  点击 mac右上角输入法squirrel图标,打开settings目录
+	 - 下载仓库内容,解压后全部复制到 settings目录
+	 -   再次点击squirrel图标,然后点击deploy 部署, 即可开始使用
+ -  配置雾凇拼音
+	 -  在settings目录下创建`default.custom.yaml`,添加内容
+	 ```yaml
+	 patch:
+	  schema_list:
+	  	# 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
+	  	# 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
+	    - schema: rime_ice               # 雾凇拼音（全拼）
+	    - schema: double_pinyin          # 自然码双拼
+	    - schema: double_pinyin_abc      # 智能 ABC 双拼
+	    - schema: double_pinyin_sogou    # 搜狗双拼
+		# 中西文切换
+		#
+		# good_old_caps_lock:
+		# true   切换大写
+		# false  切换中英
+		# macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
+		#
+		# 切换中英：
+		# 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
+		# commit_code  上屏原始的编码，然后切换到英文
+		# commit_text  上屏拼出的词句，然后切换到英文
+		# clear        清除未上屏内容，然后切换到英文
+		# inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
+		# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
+	  ascii_composer:
+		good_old_caps_lock: true
+		switch_key:
+		  Caps_Lock: commit_code
+		  Shift_L: clear noop
+		  Shift_R: noop
+		  Control_L: clear
+		  Control_R: noop
+	
+	 ```
+	 -  在settings目录下创建`squirrel.custom.yaml`, 添加内容
+	 ```yaml
+	patch:
+	  # 通知栏显示方式以及 ascii_mode 应用，与外观无关
+	  show_notifications_via_notification_center: true
+	  key_binder:
+	    bindings:
+	    - { when: always, accept: Release+Escape, toggle: ascii_mode }
+	  # 以下软件默认英文模式
+	  # ascii_mode: false  默认输入法模式: false 中文 true 英文
+	  # ascii_punct: true  是否设置为英文标点  
+	  app_options:
+	    com.googlecode.iterm2:
+	      ascii_mode: true
+	      vim_mode: true
+	      ascii_punct: true
+	    com.jetbrains.goland:
+	      ascii_mode: true
+	      vim_mode: true
+	      ascii_punct: true
+	    com.jetbrains.intellij:
+	      ascii_mode: true
+	      vim_mode: true
+	      ascii_punct: true      
+	    com.apple.Terminal:
+	      ascii_mode: true
+	      vim_mode: true
+	      ascii_punct: true
+	    com.github.wez.wezterm:
+	      ascii_mode: true
+	      vim_mode: true
+	      ascii_punct: true 
+	    md.obsidian:
+	      ascii_mode: false
+	      vim_mode: true
+	      ascii_punct: true          
+	
+	# 如果想要修改皮肤，直接更改 color_scheme 的值即可
+	  style:
+	    color_scheme: macos_dark 
+	    color_scheme_dark: macos_dark
+	
+	  preset_color_schemes:
+	    macos_light:
+	      font_face: "RecMonoCasualNF"
+	      font_point: 15.0
+	      label_font_face: "RecMonoCasualNF"
+	      label_font_point: 15.0
+	      comment_font_face: "RecMonoCasualNF"
+	      comment_font_point: 15.0
+	      candidate_list_layout: linear
+	      text_orientation: horizontal
+	      inline_preedit: true
+	      translucency: true
+	      color_space: display_p3
+	      corner_radius: 10.0
+	      hilited_corner_radius: 8.0
+	      border_height: -3.0
+	      border_width: -3.0
+	      line_spacing: 8.0
+	      base_offset: 6.0
+	      shadow_size: 3.0
+	      back_color: 0x4CDDDDDD
+	      candidate_text_color: 0x333333
+	      comment_text_color: 0x333333
+	      label_color: 0x5B5B5B
+	      hilited_candidate_back_color: 0x9A8150
+	      hilited_candidate_text_color: 0xFFFDFE
+	      hilited_comment_text_color: 0xFFFDFE
+	      hilited_candidate_label_color: 0xFFFFFF
+	      text_color: 0x333333
+	      hilited_text_color: 0xF7F7F7
+	
+	    macos_dark:
+	      font_face: "RecMonoCasualNF"
+	      font_point: 15.0
+	      label_font_face: "RecMonoCasualNF"
+	      label_font_point: 15.0
+	      comment_font_face: "RecMonoCasualNF"
+	      comment_font_point: 15.0
+	      candidate_list_layout: linear
+	      text_orientation: horizontal
+	      inline_preedit: true
+	      translucency: true
+	      corner_radius: 10.0
+	      hilited_corner_radius: 8.0
+	      border_height: -3.0
+	      border_width: -3.0
+	      line_spacing: 8.0
+	      base_offset: 6.0
+	      shadow_size: 3.0
+	      back_color: 0x4CDDDDDD
+	      candidate_text_color: 0x333333
+	      comment_text_color: 0x333333
+	      label_color: 0x5B5B5B
+	      hilited_candidate_back_color: 0x9A8150
+	      hilited_candidate_text_color: 0xFFFDFE
+	      hilited_comment_text_color: 0xFFFDFE
+	      hilited_candidate_label_color: 0xFFFFFF
+	      text_color: 0x333333
+	      hilited_text_color: 0xF7F7F7
+	 ```
+	-  配置完成后点击deploy即可使用.
+
+
+
 ## Font
 
 perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
@@ -117,7 +274,7 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 
 | keymap          | desc         |
-| --------------- | ------------ |
+| :--------------: | :-----------: |
 | shift + cmd + L | 打开控制台        |
 | ctrl + space    | 切换输入法        |
 | cmd + space     | 打开 Spotlight |
@@ -127,6 +284,7 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 ## starship
 
+refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starship)
 - install [starship](https://starship.rs/guide/)
 
   ```bash
@@ -138,6 +296,7 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
   # config
   # use prsent & restart terminal
   starship preset nerd-font-symbols -o ~/.config/starship.toml
+  # or can refer to github dotfiles
   ```
 
 - Zsh plugins
@@ -189,7 +348,7 @@ refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm
 refer to [fzf](https://junegunn.github.io/fzf/getting-started/)
 
 | keys     | desc     |
-| -------- | -------- |
+| :------: | :------: |
 | ctrl + t | 列出文件/文件夹 |
 | ctrl + r | 列出历史命令   |
 
@@ -266,11 +425,11 @@ z() {
 ```
 
 
-## Aerospace
+## ~~Aerospace~~
 refer to [aerospace dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/aerospace)
 
 
-## Yazi
+## ~~Yazi~~
 
 config refer to [yazi dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/yazi)
 
@@ -288,7 +447,7 @@ function ya() {
 }
 ```
 
-## Iterm2
+## ~~Iterm2~~
 
 config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/iterm2)
 
@@ -309,6 +468,8 @@ config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/n
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151335169.png" alt="telescope" />
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151337040.png" alt="outline" width="100%" />
+
+
 
 ## vimrc
 
@@ -398,15 +559,18 @@ brew upgrade go
 https://go.dev/dl/
 
 # set env
-mkdir -p $HOME/Documents/Code/Project_Go/pkg
-mkdir -p $HOME/Documents/Code/Project_Go/bin
+mkdir -p $HOME/Documents/Tools/GoPath/pkg
+mkdir -p $HOME/Documents/Tools/GoPath/bin
 
 go env -w GOPROXY=https://goproxy.cn,direct
 go env -w GO111MODULE=on
-go env -w GOPATH=$HOME/Documents/Code/Path_Go
+go env -w GOPATH=$HOME/Documents/Tools/GoPath
 
 # gofumpt
 go install mvdan.cc/gofumpt@latest
+
+# gopls
+go install golang.org/x/tools/gopls@latest
 ```
 
 ### Books
@@ -498,53 +662,6 @@ brew install fd
 
 - [fzf](https://github.com/junegunn/fzf) - command-line fuzzy finder
 
-```bash
-# add to ~/.zshrc
-
-# fzf config
-# fzf
-source <(fzf --zsh)
-export FZF_COMPLETION_TRIGGER='~~'
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview 'fzf-preview.sh {}'"
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-
-show_file_or_dir_preview="if [ -d {} ]; then tree -C {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-# use fd (https://github.com/sharkdp/fd) for listing path candidates.
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
-# use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
-# Advanced customization of fzf options via _fzf_comprun function
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
-  esac
-}
-
-# source
-source ~/.zshrc
-```
-
-- [fzf-git](https://github.com/junegunn/fzf-git.sh) - completion selection menu with fzf
-
-```bash
-cd ~/.zsh
-git clone git@github.com:junegunn/fzf-git.sh.git
-# add to ~/.zshrc
-source ~/.zsh/fzf-git.sh/fzf-git.sh
-```
-
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ```bash
@@ -595,6 +712,29 @@ cht.sh --shell [LANG]
 # use  https://httpie.io/docs/cli/redirected-input
 ```
 
+-   [zoxide](https://github.com/ajeetdsouza/zoxide) - smarter cd command
+
+```bash
+# install
+brew install zoxide
+
+# add to ~/.zshrc
+
+# zoxide 
+eval "$(zoxide init zsh)"
+# with fzf
+z() {
+  local dir=$(
+    zoxide query --list --score |
+    fzf --height 40% --layout reverse --info inline \
+        --nth 2.. --tac --no-sort --query "$*" \
+        --bind 'enter:become:echo {2..}'
+  ) && cd "$dir"
+}
+```
+
+
+
 ## Apps
 
 - [AlDente](https://apphousekitchen.com/) -- charge limiter app
@@ -603,7 +743,12 @@ cht.sh --shell [LANG]
 
 - [iTerm2](https://iterm2.com/) -- Terminal app
 
+-  [Wezterm](https://wezterm.org/) -- Terminal app
+
 - [Sequel Ace](https://github.com/Sequel-Ace/Sequel-Ace) -- mysql management
+
+-  [Chrome](https://www.google.com/intl/zh-CN/chrome/) -- browser
+-  [Arc](https://resources.arc.net/hc/en-us) --browser
 
 - [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
 
@@ -648,3 +793,4 @@ cht.sh --shell [LANG]
 
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
 
+[^1]: 
