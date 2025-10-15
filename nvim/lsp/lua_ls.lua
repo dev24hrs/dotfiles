@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
   cmd = { 'lua-language-server' },
   filetypes = { 'lua' },
@@ -17,15 +18,12 @@ return {
         version = 'LuaJIT',
       },
       diagnostics = {
+        globals = { 'vim' },
         disable = {
           'lowercase-global',
           'undefined-global',
           'missing-parameter',
           'param-type-mismatch',
-        },
-        globals = {
-          'vim',
-          'Snacks',
         },
       },
       hint = { enable = true },

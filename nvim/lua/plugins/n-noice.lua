@@ -5,6 +5,7 @@ return {
   enabled = true,
   dependencies = {
     'MunifTanjim/nui.nvim',
+    'rcarriga/nvim-notify',
   },
   config = function()
     require('noice').setup({
@@ -35,5 +36,10 @@ return {
         },
       },
     })
+    require('notify').setup({
+      render = 'wrapped-compact',
+      background_colour = '#000000',
+    })
+    vim.keymap.set('n', '<leader>sn', '<CMD>NoiceFzf<CR>', { desc = '[S]earch [N]otify' })
   end,
 }

@@ -8,7 +8,7 @@ return {
       yaml = { 'yamllint' },
       json = { 'jsonlint' },
       sql = { 'sqlfluff' },
-      lua = { 'luacheck' },
+      -- lua = { 'luacheck' },
       rust = { 'clippy' },
       sh = { 'shellcheck' },
       bash = { 'shellcheck' },

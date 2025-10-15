@@ -18,7 +18,7 @@ return {
           icon = ' ',
           label = '',
           action = function(path)
-            Snacks.picker.files({ cwd = path })
+            require('fzf-lua').files({ cwd = path })
           end,
         },
         shortcut = {
@@ -29,7 +29,7 @@ return {
             desc = 'Files',
             group = '@property',
             action = function()
-              Snacks.picker.files()
+              require('fzf-lua').files()
             end,
             key = 'f',
           },
@@ -37,7 +37,7 @@ return {
             desc = ' dotfiles',
             group = 'Number',
             action = function()
-              Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
+              require('fzf-lua').files({ cwd = '~/.config/nvim' })
             end,
             key = 'd',
           },
