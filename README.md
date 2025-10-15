@@ -258,8 +258,6 @@ brew update
 	 ```
 	-  配置完成后点击deploy即可使用.
 
-
-
 ## Font
 
 perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
@@ -282,7 +280,7 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 | ctrl + ←        | 上一个space     |
 | ctrl + 1-4      | 切换到1-4space  |
 
-## starship
+## Starship
 
 refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starship)
 - install [starship](https://starship.rs/guide/)
@@ -332,14 +330,14 @@ refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starsh
   [ -f ~/.last_directory ] && cd $(cat ~/.last_directory)
   ```
 
-## kitty
+## Kitty
 
 config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
-> [!NOTE]
-> use wezterm recently
+
 
 
 ## WezTerm
+
 refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
 
 
@@ -455,13 +453,23 @@ config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main
 
 ## Tmux
 
-config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/blob/main/tmux/tmux.conf)
+config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/tmux)
+
+>   [!NOTE]
+>
+>   [tmux readme]: https://github.com/dev24hrs/dotfiles/blob/main/tmux/README.md
+
+
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061729031.png" alt="tmux" />
 
 ## Neovim
 
 config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/nvim)
+
+>   [!NOTE]
+>
+>   [nvim readme ]: https://github.com/dev24hrs/dotfiles/blob/main/nvim/README.md
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151334838.png" alt="dashboard" />
 
