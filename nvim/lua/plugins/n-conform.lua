@@ -16,6 +16,7 @@ return {
       desc = 'Format buffer',
     },
   },
+
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
@@ -28,6 +29,7 @@ return {
       sh = { 'shfmt' },
       bash = { 'shfmt' },
       rust = { 'rustfmt' }, -- comes with Rust installation
+      ['_'] = { 'trim_whitespace' },
     },
     format_on_save = {
       pattern = '*.lua,*.json,*.yaml,*.yml,*.md,*.sql,*.sh,*.toml,*.md,*.go',

@@ -4,7 +4,10 @@ return {
     'saghen/blink.cmp',
     event = { 'BufReadPost', 'BufNewFile' },
     version = '1.*',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      'fang2hou/blink-copilot',
+    },
 
     config = function()
       require('blink.cmp').setup({
@@ -12,6 +15,7 @@ return {
         appearance = { nerd_font_variant = 'normal' },
         keymap = {
           preset = 'none',
+
           -- use tab s-tab or up down to select items
           -- enter to accept selected item
           ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -21,6 +25,10 @@ return {
           ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' }, -- 同时存在补全列表和snippet时，补全列表选择优先级更高
           ['<Up>'] = { 'select_prev', 'fallback' },
           ['<Down>'] = { 'select_next', 'fallback' },
+          ['<C-j>'] = { 'select_prev', 'fallback' },
+          ['<C-k>'] = { 'select_next', 'fallback' },
+          ['<C-e>'] = { 'cancel', 'fallback' },
+          ['<Esc>'] = { 'cancel', 'fallback' },
         },
         completion = {
           keyword = { range = 'full' },
@@ -32,8 +40,8 @@ return {
             scrollbar = false,
             draw = {
               columns = {
-                { 'kind_icon' },
                 { 'label', 'label_description', gap = 1 },
+                { 'kind_icon' },
                 { 'kind' },
                 { 'source_name' },
               },
@@ -51,13 +59,18 @@ return {
         },
         signature = { enabled = true },
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+          default = { 'copilot', 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
           providers = {
+            copilot = {
+              name = 'copilot',
+              module = 'blink-copilot',
+              score_offset = 100,
+              async = true,
+            },
             lazydev = {
               name = 'LazyDev',
               module = 'lazydev.integrations.blink',
-              -- make lazydev completions top priority (see `:h blink.cmp`)
-              score_offset = 100,
+              score_offset = 90,
             },
             cmdline = {
               min_keyword_length = function(ctx)

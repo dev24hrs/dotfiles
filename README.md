@@ -136,7 +136,6 @@ brew update
 		# true   切换大写
 		# false  切换中英
 		# macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
-		#
 		# 切换中英：
 		# 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
 		# commit_code  上屏原始的编码，然后切换到英文
@@ -144,11 +143,12 @@ brew update
 		# clear        清除未上屏内容，然后切换到英文
 		# inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
 		# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
+		########## 关闭  macos 使用大写锁定键切换“ABC”输入法
 	  ascii_composer:
 		good_old_caps_lock: true
 		switch_key:
 		  Caps_Lock: commit_code
-		  Shift_L: clear noop
+		  Shift_L: commit_code
 		  Shift_R: noop
 		  Control_L: clear
 		  Control_R: noop
@@ -164,7 +164,9 @@ brew update
 	    - { when: always, accept: Release+Escape, toggle: ascii_mode }
 	  # 以下软件默认英文模式
 	  # ascii_mode: false  默认输入法模式: false 中文 true 英文
-	  # ascii_punct: true  是否设置为英文标点  
+	  # ascii_punct: true  是否设置为英文标点 
+	  
+	  # 使用 osascript -e 'id of app "kitty"' 命令获取对应的app 标识
 	  app_options:
 	    com.googlecode.iterm2:
 	      ascii_mode: true

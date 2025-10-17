@@ -60,9 +60,10 @@ vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.mouse:append('a')
+vim.opt.undofile = true
+
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.undofile = true
 
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'

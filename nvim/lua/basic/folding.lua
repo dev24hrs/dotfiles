@@ -6,10 +6,9 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldmethod = 'expr'
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
--- lsp folding refer to lua/plugins/lsp/n-lspsaga.lua : line 140
 
--- Source: https://www.reddit.com/r/neovim/comments/1fzn1zt/custom_fold_text_function_with_treesitter_syntax/
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
 local function fold_virt_text(result, start_text, lnum)
   local text = ''
   local hl
