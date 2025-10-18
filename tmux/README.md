@@ -110,7 +110,7 @@ tmux source ~/.config/tmux/tmux.conf
 
 tmux中 每个session可以有多个window; 每个window 可以有多个pane;
 
-keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
+default keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 
 **Steps**
 
@@ -125,7 +125,7 @@ keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 9.   使用`prefix + d` 暂离session
 10.   使用`tmux a -t  <name>` 重连session 或 使用`tmux kill-session -t <name>` 结束session
 
-###  Session
+###  Session Keymaps
 
 | cmd                         | desc              |
 | :-------------------------- | :---------------- |
@@ -142,7 +142,7 @@ keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 | Ctrl + b |  d   |  detach session   |
 |   Ctrl   |  d   |   kill session    |
 
-###  Window
+###  Window Keymaps
 
 |   key    |  key  |           desc            |
 | :------: | :---: | :-----------------------: |
@@ -158,7 +158,7 @@ keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 |  Shift   | Right |        next window        |
 |  Ctrl+b  |  0-9  |     switch to window      |
 
-### Pane
+### Pane Keymaps
 
 |  key   |  key  |     description     |
 | :----: | :---: | :-----------------: |
