@@ -18,14 +18,13 @@ return {
         end
 
         --  Navigation
-
         map('n', ']h', function()
           if vim.wo.diff then
             vim.cmd.normal({ ']h', bang = true })
           else
             gitsigns.nav_hunk('next')
           end
-        end, { desc = '[N]ext [H]unk gitsigns' })
+        end, { desc = '[Gitsigns]: Next Hunk ' })
 
         map('n', '[h', function()
           if vim.wo.diff then
@@ -33,28 +32,24 @@ return {
           else
             gitsigns.nav_hunk('prev')
           end
-        end, { desc = '[P]revious [H]unk gitsigns' })
+        end, { desc = '[Gitsigns]: Previous Hunk' })
 
         -- Actions
-
-        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[P]review [H]unk gitsigns' })
-
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[Gitsigns]: Preview Hunk' })
         map('n', '<leader>hb', function()
           gitsigns.blame_line({ full = true })
-        end, { desc = '[B]lame [H]unk gitsigns' })
+        end, { desc = '[Gitsigns]: Blame Hunk' })
 
-        map('n', '<leader>hd', gitsigns.diffthis, { desc = '[D]iff [T]his gitsigns' })
-
-        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[S]tage [H]unk gitsigns' })
-
+        map('n', '<leader>hd', gitsigns.diffthis, { desc = '[Gitsigns]: Diff This' })
+        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[Gitsigns]: Stage Hunk' })
         map('v', '<leader>hs', function()
           gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = '[S]tage [H]unk gitsigns' })
+        end, { desc = '[Gitsigns]: Stage Hunk' })
 
-        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[R]eset [H]unk gitsigns' })
+        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[Gitsigns]: Reset Hunk' })
         map('v', '<leader>hr', function()
           gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
-        end, { desc = '[R]eset [H]unk gitsigns' })
+        end, { desc = '[Gitsigns]: Reset Hunk' })
         --
       end,
     })

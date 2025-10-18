@@ -9,7 +9,7 @@ return {
         require('mini.diff').toggle_overlay(vim.api.nvim_get_current_buf())
       end,
       mode = 'n',
-      desc = '[Mini.Diff] Toggle diff overlay',
+      desc = '[Diff]: Toggle diff overlay',
     },
   },
   opts = {

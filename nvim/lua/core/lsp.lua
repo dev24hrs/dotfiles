@@ -41,9 +41,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
     end
 
-    keymap('<leader>,', vim.lsp.buf.code_action, 'Code Action')
-    keymap('<leader>r', vim.lsp.buf.rename, 'Rename all references')
-    keymap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    keymap('<leader>,', vim.lsp.buf.code_action, '[Lsp]: Code Action')
+    keymap('<leader>r', vim.lsp.buf.rename, '[Lsp]: Rename all references')
+    keymap('K', vim.lsp.buf.hover, '[Lsp]: Hover Documentation')
 
     -- 自动高亮光标下内容的引用，并在光标移动时清除
     local function client_supports_method(client, method, bufnr)

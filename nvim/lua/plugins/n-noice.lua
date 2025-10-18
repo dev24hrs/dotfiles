@@ -61,6 +61,6 @@ return {
       render = 'wrapped-compact',
       background_colour = '#000000',
     })
-    vim.keymap.set('n', '<leader>sn', '<CMD>NoiceFzf<CR>', { desc = '[S]earch [N]otify' })
+    vim.keymap.set('n', '<leader>sn', '<CMD>NoiceFzf<CR>', { desc = '[Notify]: Search notifications' })
   end,
 }

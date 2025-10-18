@@ -1,8 +1,6 @@
 --Color
 vim.env.TERM = 'xterm-256color'
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
 vim.opt.signcolumn = 'yes'
 
 -- disable netrw
@@ -20,7 +18,7 @@ vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 
 -- Tabs & Indentation
-vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true -- default
@@ -30,8 +28,8 @@ vim.opt.breakindent = true
 -- Search Settings
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.opt.hlsearch = true -- default
+vim.opt.incsearch = true -- default
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
@@ -64,6 +62,8 @@ vim.opt.undofile = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'

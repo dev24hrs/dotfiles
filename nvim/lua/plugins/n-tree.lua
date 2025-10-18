@@ -32,7 +32,7 @@ return {
   },
   config = function()
     local api = require('nvim-tree.api')
-    vim.keymap.set('n', '<leader>e', api.tree.toggle, { desc = '[T]oggle [N]vim [T]ree' })
+    vim.keymap.set('n', '<leader>e', api.tree.toggle, { desc = '[NvimTree]: Toggle Nvim Tree' })
 
     --  automatically resize the floating window when neovim's window size changes
     vim.api.nvim_create_augroup('NvimTreeResize', {
@@ -67,11 +67,11 @@ return {
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
       api.config.mappings.default_on_attach(bufnr)
-      vim.keymap.set('n', 'l', edit_or_open, opts('Edit Or Open'))
-      vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close'))
+      vim.keymap.set('n', 'l', edit_or_open, opts('[NvimTree]: Edit Or Open'))
+      vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('[NvimTree]: Close'))
       -- del map for '-' and 's'
-      vim.keymap.set('n', '-', '', opts('cancel - in nvim-tree'))
-      vim.keymap.set('n', 's', '', opts('cancel s in nvim-tree'))
+      vim.keymap.set('n', '-', '', opts('[NvimTree]: cancel - '))
+      vim.keymap.set('n', 's', '', opts('[NvimTree]: cancel s '))
     end
 
     require('nvim-tree').setup({

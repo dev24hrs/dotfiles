@@ -8,13 +8,13 @@ return {
 
     vim.keymap.set('n', ']t', function()
       require('todo-comments').jump_next()
-    end, { desc = 'Next todo comment' })
+    end, { desc = '[Todo]: Next Todo comment' })
 
     vim.keymap.set('n', '[t', function()
       require('todo-comments').jump_prev()
-    end, { desc = 'Previous todo comment' })
+    end, { desc = '[Todo]: Previous Todo comment' })
 
-    vim.keymap.set('n', '<leader>td', '<CMD>TodoFzfLua<CR>', { desc = '[S]how [T]oDo List' })
+    vim.keymap.set('n', '<leader>td', '<CMD>TodoFzfLua<CR>', { desc = '[Todo]: Show Todo List' })
 
     -- 使用
     -- 关键词:

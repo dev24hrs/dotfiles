@@ -23,8 +23,8 @@ return {
           end,
         },
       })
-    end, { desc = '[F]ind [P]rojects' })
+    end, { desc = '[Project]: Find Projects' })
 
-    vim.keymap.set('n', '<leader>fp', '<cmd>FzfProjects<CR>', { desc = '[F]ind [P]rojects' })
+    vim.keymap.set('n', '<leader>fp', '<cmd>FzfProjects<CR>', { desc = '[Project]: Find Projects' })
   end,
 }
