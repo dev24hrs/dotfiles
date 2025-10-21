@@ -1,0 +1,16 @@
+git:
+  branchLogCmd: "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20 --date=format:'%Y-%m-%d %H:%M %a'"
+gui:
+  border: single
+  mouseevents: false
+  nerdFontsVersion: "3"
+  wrapLinesInStagingView: true
+  theme:
+    activeBorderColor:
+      - cyan
+      - bold
+    optionsTextColor:
+      - yellow
+keybinding:
+  universal:
+    filteringMenu: '<c-f>'
