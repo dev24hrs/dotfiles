@@ -37,13 +37,13 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Enable spell checking for certain file types
--- vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
---   pattern = { '*.txt', '*.md' },
---   callback = function()
---     vim.opt.spell = true
---     vim.opt.spelllang = 'en'
---   end,
--- })
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.md',
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.spelllang = 'en'
+  end,
+})
 
 vim.api.nvim_create_autocmd('FileType', {
   callback = function()

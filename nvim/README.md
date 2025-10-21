@@ -73,40 +73,62 @@ Always update and keep it more usefully.
 └── stylua.toml
 ```
 
-
-
 ## Plugins
 
 Apart from native plugins, try to choose plugins which beautiful & useful & minimized to use.
 
--   Plugin management : [lazy.nvim](https://github.com/folke/lazy.nvim)
+- Plugin management : [lazy.nvim](https://github.com/folke/lazy.nvim)
 
--   Color scheme : [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+- Color scheme : [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
 
--   LSP completion : nvim native lsp
+- LSP completion : nvim native lsp
 
--   Mason plugin : [mason.nvim](https://github.com/williamboman/mason.nvim)
+- Mason plugin : [mason.nvim](https://github.com/williamboman/mason.nvim)
 
-    ```bash
-    # if cant install some lsp or formatter e.g u should set npm config set strict-ssl false
-    npm config set strict-ssl false
-    ```
+  ```bash
+  # if cant install some lsp or formatter e.g u should set npm config set strict-ssl false
+  npm config set strict-ssl false
+  ```
 
--   Auto-completion : [blink.cmp](https://github.com/Saghen/blink.cmp)
+- Auto-completion : [blink.cmp](https://github.com/Saghen/blink.cmp)
 
--   Snippets : [friendly-snippets](https://github.com/rafamadriz/friendly-snippets)  &  [luasnip](https://github.com/L3MON4D3/LuaSnip)
+- Snippets : [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) & [luasnip](https://github.com/L3MON4D3/LuaSnip)
 
 - File explorer : [nvim-tree.nvim](https://github.com/nvim-tree/nvim-tree.lua)
 
 - ~~File explorer : [yazi](https://github.com/mikavilpas/yazi.nvim)~~
 
-- Fuzzy finder : [fzf-lua](https://github.com/ibhagwan/fzf-lua) 
+- Fuzzy finder : [fzf-lua](https://github.com/ibhagwan/fzf-lua)
 
-- Terminal : [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim) 
+- Terminal : [toggleterm.nvim](https://github.com/akinsho/toggleterm.nvim)
 
 - Gitsigns : [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
 
 - LazyGit : [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)
+
+```bash
+ # config lazygit
+ # link ~/.config/lazygit to lazygit path path(macos)
+ ln -s $HOME/Library/Application\ Support/lazygit  ~/.config/lazygit
+
+ # add to config.yml
+ git:
+  branchLogCmd: "git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20 --date=format:'%Y-%m-%d %H:%M %a'"
+gui:
+  border: single
+  mouseevents: false
+  nerdFontsVersion: "3"
+  wrapLinesInStagingView: true
+  theme:
+    activeBorderColor:
+      - cyan
+      - bold
+    optionsTextColor:
+      - yellow
+keybinding:
+  universal:
+    filteringMenu: '<c-f>'
+```
 
 - Diffview : [mini.diff](https://github.com/nvim-mini/mini.diff)
 
@@ -114,40 +136,38 @@ Apart from native plugins, try to choose plugins which beautiful & useful & mini
 
 - Linter plugin : [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 
-- Code format : [conform.nvim](https://github.com/stevearc/conform.nvim) 
+- Code format : [conform.nvim](https://github.com/stevearc/conform.nvim)
 
 - Markdown : [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
 
 - Dashboard : [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)
 
-- Auto-pair : [nvim-autopairs](https://github.com/windwp/nvim-autopairs) 
+- Auto-pair : [nvim-autopairs](https://github.com/windwp/nvim-autopairs)
 
-- Comment : [Comment.nvim](https://github.com/numToStr/Comment.nvim) 
+- Comment : [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
 - Indent scope : [mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 - Statusline : [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim)
 
-- UI plugin : 
-
-    -   [noice.nvim](https://github.com/folke/noice.nvim)
-    -   [nvim-notify](https://github.com/rcarriga/nvim-notify)
-    -   [fidget.nvim](https://github.com/j-hui/fidget.nvim)  manage lsp progress messages
+- UI plugin :
+  - [noice.nvim](https://github.com/folke/noice.nvim)
+  - [nvim-notify](https://github.com/rcarriga/nvim-notify)
+  - [fidget.nvim](https://github.com/j-hui/fidget.nvim) manage lsp progress messages
 
 - Project Management : [project.nvim](https://github.com/ahmedkhalf/project.nvim)
 
-- Hlsearch : [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens) 
+- Hlsearch : [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 
-- Enhanced search : [flash.nvim](https://github.com/folke/flash.nvim) 
+- Enhanced search : [flash.nvim](https://github.com/folke/flash.nvim)
 
-- Managing crates.io dependencies: [crates.nvim](https://github.com/Saecki/crates.nvim) 
+- Managing crates.io dependencies: [crates.nvim](https://github.com/Saecki/crates.nvim)
 
-- AI : 
-
-    -   [Codeium](https://github.com/Exafunction/windsurf.vim) 
-    -   [copilot.vim](https://github.com/github/copilot.vim)
-    -   [copilot.lia](https://github.com/zbirenbaum/copilot.lua)
-    -   [codecompanion.nvim](olimorris/codecompanion.nvim)
+- AI :
+  - [Codeium](https://github.com/Exafunction/windsurf.vim)
+  - [copilot.vim](https://github.com/github/copilot.vim)
+  - [copilot.lia](https://github.com/zbirenbaum/copilot.lua)
+  - [codecompanion.nvim](olimorris/codecompanion.nvim)
 
 ## Keymaps
 
@@ -168,11 +188,11 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 
 ### Comment keymaps
 
-|    Key     |                  Desc                  |
-| :--------: | :------------------------------------: |
-| \<leader>[ |    [Comment]: Comment line or lines    |
-| \<leader>] |   [Comment]: UnComment line or lines   |
-| \<leader>\ | [Comment]: Comment/Uncomment blockwise |
+|     Key     |                  Desc                  |
+| :---------: | :------------------------------------: |
+| \<leader>[  |    [Comment]: Comment line or lines    |
+| \<leader>]  |   [Comment]: UnComment line or lines   |
+| \<leader>\  | [Comment]: Comment/Uncomment blockwise |
 
 ### Fzf keymaps
 
@@ -216,7 +236,7 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 | \<leader>gl | [Fzf]: List Git Commits Log |
 | \<leader>gb |  [Fzf]: List Git Branches   |
 
-#### show  diagnostics or keymaps
+#### show diagnostics or keymaps
 
 |     Key     |               Desc               |
 | :---------: | :------------------------------: |
@@ -256,8 +276,6 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 |   \<C-s>    | [CodeCompanion]: Send context in Chat |
 |   \<C-c>    |      [CodeCompanion]: Close Chat      |
 
-
-
 ### Other
 
 |     Key     |             Desc              |
@@ -266,8 +284,6 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 |   \<c-/>    | [Toggleterm]: Open Toggleterm |
 | \<leader>lg |    [LazyGit]: Open LazyGit    |
 | \<leader>to |  [Diff]: Toggle diff overlay  |
-
-
 
 ## Requirements
 
@@ -293,11 +309,11 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 
 Personal perfer neovim author
 
--   adibhanna
-    -   tutoria: https://github.com/adibhanna/minimal-vim
-    -   main: https://github.com/adibhanna/nvim
--   Jacky-Lzx
-    -   tutoria: https://github.com/Jacky-Lzx/nvim.tutorial.config
-    -   main: https://github.com/Jacky-Lzx/nvim_conf
--   patricorgi
-    -   https://github.com/patricorgi/dotfiles
+- adibhanna
+  - tutoria: https://github.com/adibhanna/minimal-vim
+  - main: https://github.com/adibhanna/nvim
+- Jacky-Lzx
+  - tutoria: https://github.com/Jacky-Lzx/nvim.tutorial.config
+  - main: https://github.com/Jacky-Lzx/nvim_conf
+- patricorgi
+  - https://github.com/patricorgi/dotfiles

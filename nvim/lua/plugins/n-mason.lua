@@ -1,6 +1,8 @@
 return {
   'mason-org/mason.nvim',
-  lazy = false, -- Load immediately to ensure PATH is set
+  -- lazy = true, -- Load immediately to ensure PATH is set
+  -- event = { 'BufReadPost', 'BufNewFile', 'VimEnter' },
+  event = 'VeryLazy',
   cmd = 'Mason',
   build = ':MasonUpdate',
   opts = {

@@ -151,6 +151,21 @@ return {
       end,
       desc = '[Fzf]: Show Neovim Help Pages',
     },
+    -- quick fix
+    {
+      '<leader>sq',
+      function()
+        require('fzf-lua').grep_quickfix()
+      end,
+      desc = '[Fzf]: Show Quickfix List',
+    },
+    {
+      '<leader>lq',
+      function()
+        require('fzf-lua').lgrep_quickfix()
+      end,
+      desc = '[Fzf]: Show Quickfix List from current buffer',
+    },
 
     -- git commands
     {
