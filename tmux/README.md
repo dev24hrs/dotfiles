@@ -162,10 +162,10 @@ default keybindings refer to [tmux_cheatsheet](https://tmuxcheatsheet.com/)
 
 |  key   |  key  |     description     |
 | :----: | :---: | :-----------------: |
-|  Ctrl  |   h   |   select pane -L    |
-|  Ctrl  |   l   |   select pane -R    |
-|  Ctrl  |   k   |   select pane -U    |
-|  Ctrl  |   j   |   select pane -D    |
+| prefix |   h   |   select pane -L    |
+| prefix |   l   |   select pane -R    |
+| prefix |   k   |   select pane -U    |
+| prefix |   j   |   select pane -D    |
 | prefix |   x   | close current pane  |
 | prefix | space | toggle pane layouts |
 
