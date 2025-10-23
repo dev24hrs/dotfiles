@@ -8,11 +8,11 @@ return {
       yaml = { 'yamllint' },
       json = { 'jsonlint' },
       sql = { 'sqlfluff' },
-      -- lua = { 'luacheck' },
+      lua = { 'luacheck' },
       rust = { 'clippy' },
       sh = { 'shellcheck' },
       bash = { 'shellcheck' },
-      -- markdown = { 'markdownlint' },
+      -- markdown = { 'markdownlint-cli2' },
     }
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {

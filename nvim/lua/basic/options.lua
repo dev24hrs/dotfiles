@@ -1,6 +1,5 @@
---Color
-vim.env.TERM = 'xterm-256color'
-vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+vim.opt.termguicolors = true
+vim.g.have_nerd_font = true
 vim.opt.signcolumn = 'yes'
 
 -- disable netrw
@@ -16,10 +15,12 @@ vim.opt.relativenumber = true
 
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
+vim.opt.wrap = true
 
 -- Tabs & Indentation
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 0
+vim.opt.tabstop = 4
 vim.opt.expandtab = true
 vim.opt.autoindent = true -- default
 vim.opt.smartindent = true
@@ -39,7 +40,6 @@ vim.opt.list = false
 vim.opt.conceallevel = 0
 
 vim.opt.autoread = true -- default
-vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -56,15 +56,18 @@ vim.opt.fileencoding = 'utf-8'
 vim.o.grepprg = 'rg --vimgrep --no-heading'
 vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
-vim.opt.clipboard:append('unnamedplus')
-vim.opt.mouse:append('a')
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.mouse = 'a'
 vim.opt.undofile = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'
--- vim.opt.winborder = 'solid'
+
+-- Big file limit
+vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+
+-- folding
+require('basic.folding')

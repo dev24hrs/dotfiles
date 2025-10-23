@@ -1,10 +1,32 @@
 # Neovim Config
 
+<!--toc:start-->
+
+- [Neovim Config](#neovim-config)
+  - [Feautures](#feautures)
+  - [Plugins](#plugins)
+  - [Keymaps](#keymaps)
+    - [Basic keymap](#basic-keymap)
+    - [Comment keymaps](#comment-keymaps)
+    - [Fzf keymaps](#fzf-keymaps)
+      - [find files or words or buffers](#find-files-or-words-or-buffers)
+      - [lsp](#lsp)
+      - [git](#git)
+      - [show diagnostics or keymaps](#show-diagnostics-or-keymaps)
+    - [Gitsigns keymaps](#gitsigns-keymaps)
+    - [Todo keymaps](#todo-keymaps)
+    - [AI](#ai)
+    - [Other](#other)
+  - [Requirements](#requirements)
+  - [Recommended](#recommended)
+  <!--toc:end-->
+
 This repo hosts my Neovim configuration.
 
-The `init.lua` is the config entry point for terminal Neovim.
+The `init.lua` is the Config entry point for terminal NeoVim.
 
 It's a simple but satisfying configuration for me, with `lua, bash, json, yaml, sql, markdown, golang, rust` yet.
+
 Always update and keep it more usefully.
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151334838.png" alt="dashboard" />
@@ -310,10 +332,10 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 Personal perfer neovim author
 
 - adibhanna
-  - tutoria: https://github.com/adibhanna/minimal-vim
-  - main: https://github.com/adibhanna/nvim
+  - tutoria: <https://github.com/adibhanna/minimal-vim>
+  - main: <https://github.com/adibhanna/nvim>
 - Jacky-Lzx
-  - tutoria: https://github.com/Jacky-Lzx/nvim.tutorial.config
-  - main: https://github.com/Jacky-Lzx/nvim_conf
+  - tutoria: <https://github.com/Jacky-Lzx/nvim.tutorial.config>
+  - main: <https://github.com/Jacky-Lzx/nvim_conf>
 - patricorgi
-  - https://github.com/patricorgi/dotfiles
+  - <https://github.com/patricorgi/dotfiles>

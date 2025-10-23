@@ -32,11 +32,13 @@ local function fold_virt_text(result, start_text, lnum)
   end
   table.insert(result, { text, hl })
 end
+
 function _G.custom_foldtext()
   local start_text = vim.fn.getline(vim.v.foldstart):gsub('\t', string.rep(' ', vim.o.tabstop))
   local nline = vim.v.foldend - vim.v.foldstart
   local result = {}
   fold_virt_text(result, start_text, vim.v.foldstart - 1)
+  table.insert(result, { '  ', nil })
   table.insert(result, { ' ... ↙ ' .. nline .. ' lines', 'DapBreakpointCondition' })
   return result
 end

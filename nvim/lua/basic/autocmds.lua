@@ -37,31 +37,13 @@ vim.api.nvim_create_autocmd(
 )
 
 -- Enable spell checking for certain file types
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufReadPost', 'BufNewFile' }, {
   pattern = '*.md',
   callback = function()
+    vim.wo.wrap = true
+    vim.wo.linebreak = true
+    vim.wo.breakindent = true
     vim.opt.spell = true
-    vim.opt.spelllang = 'en'
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
-})
-
--- Copilot suggestions
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'BlinkCmpMenuOpen',
-  callback = function()
-    vim.b.copilot_suggestion_hidden = true
-  end,
-})
-
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'BlinkCmpMenuClose',
-  callback = function()
-    vim.b.copilot_suggestion_hidden = false
+    vim.opt.spelllang = 'en_us'
   end,
 })

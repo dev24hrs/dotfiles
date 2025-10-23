@@ -4,6 +4,8 @@ return {
   opts = {
     winopts = {
       border = 'single',
+      height = 0.80,
+      width = 0.80,
       preview = {
         border = 'single',
         layout = 'horizontal',
@@ -45,7 +47,7 @@ return {
     {
       '<leader>fc',
       function()
-        require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })
+        require('fzf-lua').files({ cwd = '~/.config/nvim' })
       end,
       desc = '[Fzf]: Find in neovim Configuration',
     },
@@ -58,76 +60,83 @@ return {
     },
 
     -- lsp
-    {
-      'gd',
-      function()
-        require('fzf-lua').lsp_definitions()
-      end,
-      desc = '[Fzf]: Goto Definition',
-    },
-    {
-      'gp',
-      function()
-        require('fzf-lua').lsp_declarations()
-      end,
-      desc = '[Fzf]: Goto Peke Declarations',
-    },
-    {
-      'gy',
-      function()
-        require('fzf-lua').lsp_typedefs()
-      end,
-      desc = '[Fzf]: Goto TYpe Definitions',
-    },
-    {
-      'gi',
-      function()
-        require('fzf-lua').lsp_implementations()
-      end,
-      desc = '[Fzf]: Goto Implementations',
-    },
-    {
-      'gr',
-      function()
-        require('fzf-lua').lsp_references()
-      end,
-      desc = '[Fzf]: Goto References',
-    },
-    {
-      'gs',
-      function()
-        require('fzf-lua').lsp_document_symbols()
-      end,
-      desc = '[Fzf]: Goto LSP Symbols',
-    },
-    {
-      '<leader>ci',
-      function()
-        require('fzf-lua').lsp_incoming_calls()
-      end,
-      desc = '[Fzf]: Incoming Calls',
-    },
-    {
-      '<leader>co',
-      function()
-        require('fzf-lua').lsp_outgoing_calls()
-      end,
-      desc = '[Fzf]: Outcoming Calls',
-    },
-    {
-      '<leader>la',
-      function()
-        require('fzf-lua').lsp_code_actions()
-      end,
-      desc = '[Fzf]: LSP Code Actions',
-    },
-    {
-      '<leader>lf',
-      function()
-        require('fzf-lua').lsp_finder()
-      end,
-      desc = '[Fzf]: LSP Finder',
-    },
+    -- {
+    --   'gd',
+    --   function()
+    --     require('fzf-lua').lsp_definitions()
+    --   end,
+    --   desc = '[Fzf]: Goto Definition',
+    -- },
+    -- {
+    --   'gp',
+    --   function()
+    --     require('fzf-lua').lsp_declarations()
+    --   end,
+    --   desc = '[Fzf]: Goto Peke Declarations',
+    -- },
+    -- {
+    --   'gy',
+    --   function()
+    --     require('fzf-lua').lsp_typedefs()
+    --   end,
+    --   desc = '[Fzf]: Goto TYpe Definitions',
+    -- },
+    -- {
+    --   'gi',
+    --   function()
+    --     require('fzf-lua').lsp_implementations()
+    --   end,
+    --   desc = '[Fzf]: Goto Implementations',
+    -- },
+    -- {
+    --   'gr',
+    --   function()
+    --     require('fzf-lua').lsp_references()
+    --   end,
+    --   desc = '[Fzf]: Goto References',
+    -- },
+    -- {
+    --   'gs',
+    --   function()
+    --     require('fzf-lua').lsp_document_symbols()
+    --   end,
+    --   desc = '[Fzf]: Goto LSP Symbols',
+    -- },
+    -- {
+    --   '<leader>ci',
+    --   function()
+    --     require('fzf-lua').lsp_incoming_calls()
+    --   end,
+    --   desc = '[Fzf]: Incoming Calls',
+    -- },
+    -- {
+    --   '<leader>co',
+    --   function()
+    --     require('fzf-lua').lsp_outgoing_calls()
+    --   end,
+    --   desc = '[Fzf]: Outcoming Calls',
+    -- },
+    -- {
+    --   '<leader>la',
+    --   function()
+    --     require('fzf-lua').lsp_code_actions()
+    --   end,
+    --   desc = '[Fzf]: LSP Code Actions',
+    -- },
+    -- {
+    --   '<leader>lf',
+    --   function()
+    --     require('fzf-lua').lsp_finder()
+    --   end,
+    --   desc = '[Fzf]: LSP Finder',
+    -- },
+    -- {
+    --       '<leader>sd',
+    --       function()
+    --         require('fzf-lua').diagnostics_document()
+    --       end,
+    --       desc = '[Fzf]: Show Diagnostics',
+    --     },
 
     -- show notifications or diagnostics or keymaps
     {
@@ -137,13 +146,7 @@ return {
       end,
       desc = '[Fzf]: Show Keymaps',
     },
-    {
-      '<leader>sd',
-      function()
-        require('fzf-lua').diagnostics_document()
-      end,
-      desc = '[Fzf]: Show Diagnostics',
-    },
+
     {
       '<leader>sh',
       function()

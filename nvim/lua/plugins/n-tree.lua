@@ -26,14 +26,17 @@ end
 return {
   'nvim-tree/nvim-tree.lua',
   version = '*',
-  lazy = true,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
     local api = require('nvim-tree.api')
-    vim.keymap.set('n', '<leader>e', api.tree.toggle, { desc = '[NvimTree]: Toggle Nvim Tree' })
-
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>e',
+      '<CMD>NvimTreeToggle<CR>',
+      { silent = true, noremap = true, desc = '[NvimTree]: Toggle Nvim Tree' }
+    )
     --  automatically resize the floating window when neovim's window size changes
     vim.api.nvim_create_augroup('NvimTreeResize', {
       clear = true,
@@ -67,6 +70,7 @@ return {
         return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
       api.config.mappings.default_on_attach(bufnr)
+
       vim.keymap.set('n', 'l', edit_or_open, opts('[NvimTree]: Edit Or Open'))
       vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('[NvimTree]: Close'))
       -- del map for '-' and 's'
@@ -76,6 +80,11 @@ return {
 
     require('nvim-tree').setup({
       on_attach = on_my_attach,
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
+      },
       view = {
         signcolumn = 'yes',
         float = {

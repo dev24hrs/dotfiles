@@ -16,21 +16,24 @@ return {
         }
       end
     end
-
     local custom_gruvbox = require('lualine.themes.gruvbox_dark')
     local colors = {
-      red = '#fb4934',
-      gray = '#a89984',
-      darkgray = '#3c3836',
+      MAGENTA = '#a89984',
+      DARKGRAY = '#3e3d3d',
+      RED = '#cb241d',
+      GREEN = '#a9b665',
+      YELLOW = '#d8a657',
+      BLUE = '#7daea3',
+      CYAN = '#89b482',
     }
     custom_gruvbox = {
       normal = {
-        a = { bg = colors.darkgray, fg = colors.red },
-        b = { bg = colors.darkgray, fg = colors.gray },
-        c = { bg = colors.darkgray, fg = colors.gray },
-        x = { bg = colors.darkgray, fg = colors.gray },
-        y = { bg = colors.darkgray, fg = colors.gray },
-        z = { bg = colors.darkgray, fg = colors.red },
+        a = { bg = colors.DARKGRAY, fg = colors.RED },
+        b = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
+        c = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
+        x = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
+        y = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
+        z = { bg = colors.DARKGRAY, fg = colors.RED },
       },
     }
 
@@ -56,7 +59,7 @@ return {
           'filename',
         },
         lualine_x = {
-          -- '%3{codeium#GetStatusString()}',
+          '%3{codeium#GetStatusString()}',
           'encoding',
           {
             'fileformat',

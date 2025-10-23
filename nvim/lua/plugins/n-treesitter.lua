@@ -2,26 +2,31 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    lazy = false,
+    -- lazy = false,
+    branch = 'main',
     priority = 1000,
     build = ':TSUpdate',
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          'bash',
-          'go',
-          'gomod',
-          'gosum',
-          'lua',
-          'json',
-          'markdown',
-          'sql',
-          'yaml',
-          'regex',
-          'rust',
-          'toml',
-          'dockerfile',
-        },
+    opts = {
+      ensure_installed = {
+        'bash',
+        'go',
+        'gomod',
+        'gosum',
+        'lua',
+        'json',
+        'markdown',
+        'sql',
+        'yaml',
+        'regex',
+        'rust',
+        'toml',
+        'dockerfile',
+      },
+    },
+    config = function(_, opts)
+      local nvim_treesitter = require('nvim-treesitter')
+      nvim_treesitter.setup({
+        -- ensure_installed = opts.ensure_installed,
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false, -- disable standard vim highlighting
@@ -39,6 +44,25 @@ return {
         autotag = {
           enable = true,
         },
+      })
+      local pattern = {}
+      for _, parser in ipairs(opts.ensure_installed) do
+        local has_parser, _ = pcall(vim.treesitter.language.inspect, parser)
+        if not has_parser then
+          -- Needs restart to take effect
+          nvim_treesitter.install(parser)
+        else
+          vim.list_extend(pattern, vim.treesitter.language.get_filetypes(parser))
+        end
+      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = pattern,
+        callback = function()
+          vim.treesitter.start()
+          vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
       })
     end,
   },

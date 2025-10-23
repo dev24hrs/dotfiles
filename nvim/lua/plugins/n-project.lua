@@ -10,7 +10,6 @@ return {
 
     vim.api.nvim_create_user_command('FzfProjects', function()
       local projects = history.get_recent_projects()
-
       require('fzf-lua').fzf_exec(projects, {
         prompt = 'Projects> ',
         actions = {

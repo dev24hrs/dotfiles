@@ -9,10 +9,10 @@ return {
       underline = true,
       bold = true,
       italic = {
-        strings = false, -- default is true
+        strings = true, -- default is true
         emphasis = true,
         comments = true,
-        operators = false,
+        operators = true,
         folds = true,
       },
       strikethrough = true,

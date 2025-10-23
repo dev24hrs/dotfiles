@@ -5,22 +5,23 @@ return {
     version = '1.*',
     dependencies = {
       'rafamadriz/friendly-snippets',
-      'fang2hou/blink-copilot',
-      { 'L3MON4D3/LuaSnip', version = 'v2.*', keys = {} },
+      { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', keys = {} },
     },
+    init = function()
+      require('luasnip.loaders.from_vscode').lazy_load()
+    end,
     opts = {
       snippets = { preset = 'luasnip' },
       appearance = { nerd_font_variant = 'normal' },
       keymap = {
         preset = 'none',
-
         -- use tab s-tab or up down to select items
         -- enter to accept selected item
         ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         ['<CR>'] = { 'accept', 'fallback' }, -- 更改成'select_and_accept'会选择第一项插入
 
         ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' }, -- 同时存在补全列表和snippet时，补全列表选择优先级更高
+        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
         ['<Up>'] = { 'select_prev', 'fallback' },
         ['<Down>'] = { 'select_next', 'fallback' },
         ['<C-j>'] = { 'select_prev', 'fallback' },
@@ -57,14 +58,8 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { 'copilot', 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
+        default = { 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
         providers = {
-          copilot = {
-            name = 'copilot',
-            module = 'blink-copilot',
-            score_offset = 100,
-            async = true,
-          },
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',

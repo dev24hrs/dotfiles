@@ -6,19 +6,19 @@ vim.lsp.enable({
   'pyright',
   'bashls',
   'sqlls',
+  'marksman',
   'rust-analyzer',
 })
-
 vim.diagnostic.config({
   severity_sort = true,
-  float = { border = 'single' },
+  float = { border = 'single', source = 'if_many' },
   underline = { severity = vim.diagnostic.severity.ERROR },
   virtual_text = {
     prefix = '◍ ',
     format = function(diagnostic)
       return string.format('%s [%s] ', diagnostic.message, diagnostic.source)
     end,
-    spacing = 5,
+    spacing = 4,
   },
   signs = {
     text = {
@@ -33,19 +33,31 @@ vim.diagnostic.config({
     },
   },
 })
-
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
     local keymap = function(keys, func, desc)
       vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
     end
-
-    keymap('<leader>,', vim.lsp.buf.code_action, '[Lsp]: Code Action')
     keymap('<leader>r', vim.lsp.buf.rename, '[Lsp]: Rename all references')
-    keymap('K', vim.lsp.buf.hover, '[Lsp]: Hover Documentation')
 
-    -- 自动高亮光标下内容的引用，并在光标移动时清除
+    -- keymap for lsp useing lspsaga plugin
+    keymap('<leader>,', '<CMD>Lspsaga code_action<CR>', '[Lsp]: Code Action')
+    keymap('K', '<CMD>Lspsaga hover_doc<CR>', '[Lsp]: Hover Documentation')
+    keymap('gd', '<CMD>Lspsaga goto_definition<CR>', '[Lsp]: Goto Definition')
+    keymap('gp', '<CMD>Lspsaga peek_definition<CR>', '[Lsp]: Peek Definition')
+    keymap('gi', '<CMD>Lspsaga finder imp<CR>', '[Lsp]: Goto Implementation')
+    keymap('gr', '<CMD>Lspsaga finder ref<CR>', '[Lsp]: Goto References')
+    keymap('gs', '<CMD>Lspsaga outline<CR>', '[Lsp]: Goto Outline Symbols')
+    keymap('[d', '<CMD>Lspsaga diagnostic_jump_prev<CR>', '[Lsp]: Diagnostic Previous')
+    keymap(']d', '<CMD>Lspsaga diagnostic_jump_next<CR>', '[Lsp]: Diagnostic Next')
+    keymap('<leader>ld', '<CMD>Lspsaga show_buf_diagnostics ++float<CR>', '[Lsp]: Show Buffer Diagnostics')
+    keymap('<leader>lw', '<CMD>Lspsaga show_workspace_diagnostics ++float<CR>', '[Lsp]: Show Workspace Diagnostics')
+    keymap('<leader>li', '<CMD>Lspsaga incoming_calls<CR>', '[Lsp]: Incoming Calls')
+    keymap('<leader>lo', '<CMD>Lspsaga outgoing_calls<CR>', '[Lsp]: Outgoing Calls')
+    keymap('<leader>lf', '<CMD>Lspsaga finder tyd+ref+imp+def<CR>', '[Lsp]: Lsp Finder')
+
+    -- Highlight words under cursor
     local function client_supports_method(client, method, bufnr)
       return client:supports_method(method, bufnr)
     end
@@ -80,6 +92,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
     end
 
+    -- lsp
+    local api, lsp = vim.api, vim.lsp
+    api.nvim_create_user_command('LspInfo', ':checkhealth vim.lsp', { desc = 'Alias to `:checkhealth vim.lsp`' })
+    api.nvim_create_user_command('LspLog', function()
+      vim.cmd(string.format('tabnew %s', lsp.get_log_path()))
+    end, {
+      desc = 'Opens the Nvim LSP client log.',
+    })
     -- Inlay hint
     vim.lsp.inlay_hint.enable(true)
   end,

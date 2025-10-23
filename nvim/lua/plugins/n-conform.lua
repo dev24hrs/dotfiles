@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
     {
@@ -12,11 +12,13 @@ return {
           end
         end)
       end,
-      mode = { 'n', 'v' },
+      -- mode = { 'n', 'v' },
+      mode = '',
       desc = '[Conform]: Format buffer',
     },
   },
-
+  ---@module "conform"
+  ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
       lua = { 'stylua' },
@@ -24,12 +26,15 @@ return {
       json = { 'prettier' },
       yaml = { 'yamlfmt' },
       sql = { 'prettier' },
-      markdown = { 'prettier' },
+      markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
+      ['markdown.mdx'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
       python = { 'isort', 'black' },
       sh = { 'shfmt' },
       bash = { 'shfmt' },
-      rust = { 'rustfmt' }, -- comes with Rust installation
-      ['_'] = { 'trim_whitespace' },
+      rust = { 'rustfmt', lsp_format = 'fallback' }, -- comes with Rust installation
+    },
+    default_format_opts = {
+      lsp_format = 'fallback',
     },
     format_on_save = {
       pattern = '*.lua,*.json,*.yaml,*.yml,*.md,*.sql,*.sh,*.toml,*.md,*.go',

@@ -22,6 +22,7 @@ return {
       'json-lsp', -- JSON LSP  jsonls
       'bash-language-server', -- Bash LSP bashls
       'sqlls', -- SQL LSP
+      'marksman', -- Markdown LSP
 
       -- Formatters (for conform.nvim and general use)
       'stylua',
@@ -32,6 +33,7 @@ return {
       'black',
       'isort',
       'shfmt', -- Shell formatter
+      'markdown-toc', -- Markdown
 
       -- Linters
       'golangci-lint',
@@ -40,6 +42,7 @@ return {
       'yamllint', -- YAML linting
       'jsonlint', -- JSON linting
       'sqlfluff', -- SQL linting
+      'markdownlint-cli2', -- Markdown linting
 
       -- Debuggers--
       'delve', -- Go debugger
@@ -49,11 +52,11 @@ return {
     require('mason').setup(opts)
 
     -- Auto-install ensure_installed tools with better error handling
-    local mr = require('mason-registry')
+    local registry = require('mason-registry')
     local function ensure_installed()
       for _, tool in ipairs(opts.ensure_installed) do
-        if mr.has_package(tool) then
-          local p = mr.get_package(tool)
+        if registry.has_package(tool) then
+          local p = registry.get_package(tool)
           if not p:is_installed() then
             vim.notify('Mason: Installing ' .. tool .. '...', vim.log.levels.INFO)
             p:install():once('closed', function()
@@ -70,8 +73,8 @@ return {
       end
     end
 
-    if mr.refresh then
-      mr.refresh(ensure_installed)
+    if registry.refresh then
+      registry.refresh(ensure_installed)
     else
       ensure_installed()
     end

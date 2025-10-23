@@ -53,4 +53,36 @@ return {
       },
     },
   },
+  {
+    '3rd/image.nvim',
+    ft = { 'markdown' },
+    build = false,
+    opts = {
+      processor = 'magick_cli',
+      window_overlap_clear_enabled = true,
+    },
+  },
+  {
+    'HakonHarnes/img-clip.nvim',
+    -- require pngpaste on macos
+    ft = { 'markdown' },
+    opts = {
+      default = {
+        -- save images to same directory as current file with .assest suffix
+        dir_path = function()
+          return string.gsub(vim.fn.expand('%:t'), '%..*', '') .. '.assest'
+        end,
+        insert_mode_after_paste = false,
+      },
+      filetypes = {
+        markdown = {
+          template = '![$FILE_NAME_NO_EXT]($FILE_PATH)', ---@type string | fun(context: table): string
+        },
+      },
+    },
+    keys = {
+      -- suggested keymap
+      { '<leader>pp', '<cmd>PasteImage<cr>', desc = 'Paste image from system clipboard' },
+    },
+  },
 }

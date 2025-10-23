@@ -8,15 +8,6 @@ return {
   },
   config = function()
     require('noice').setup({
-      -- lsp = {
-      --   override = {
-      --     ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-      --     ['vim.lsp.util.stylize_markdown'] = true,
-      --   },
-      --   hover = {
-      --     silent = true,
-      --   },
-      -- },
       lsp = {
         progress = { enabled = false },
         override = {
@@ -61,6 +52,6 @@ return {
       render = 'wrapped-compact',
       background_colour = '#000000',
     })
-    vim.keymap.set('n', '<leader>sn', '<CMD>NoiceFzf<CR>', { desc = '[Notify]: Search notifications' })
+    -- vim.keymap.set('n', '<leader>sn', '<CMD>NoiceFzf<CR>', { desc = '[Notify]: Search notifications' })
   end,
 }
