@@ -1,26 +1,43 @@
 ---
-title: " Mac Dotfiles"
+title: ' Mac Dotfiles'
 author: dev24hrs
 tags:
   - dotfiles
   - config
-date: 2025-07-08 15:41 星期二
+date: '2025-07-08 15:41 星期二'
 ---
-
-
-
-
-
-
 # [Mac] WorkFlow
 
-> This is a collection of configurations that includes all on my Mac.
-> 
-> keywords: [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust] 
+<!--toc:start-->
 
+- [[Mac] WorkFlow](#mac-workflow)
+  - [Clash](#clash)
+  - [Enhance terminal](#enhance-terminal)
+  - [Git Config](#git-config)
+  - [Homebrew](#homebrew)
+  - [Rime 输入法](#rime-输入法)
+  - [Font](#font)
+  - [System Keymap](#system-keymap)
+  - [Starship](#starship)
+  - [Kitty](#kitty)
+  - [WezTerm](#wezterm)
+  - [fzf](#fzf)
+  - [~~Iterm2~~](#iterm2)
+  - [Tmux](#tmux)
+  - [Neovim](#neovim)
+  - [vimrc](#vimrc)
+  - [Golang](#golang)
+  - [Rust](#rust)
+  - [VsCode](#vscode)
+  - [CLI Tools](#cli-tools)
+  - [Apps](#apps)
+  <!--toc:end-->
+
+> This is a collection of configurations that includes all on my Mac.
+>
+> keywords: [git, homebrew, nerdfonts, iterm2, starship, neovim, tmux, golang, rust]
 
 ---
-
 
 ## Clash
 
@@ -78,7 +95,7 @@ osascript -e 'id of app "Wezterm"'
 
   # pretty git log
   # add to ~/.zshrc
-  alias glog='git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20'
+  alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20 --date=format:'%Y-%m-%d %H:%M %a'"
   ```
 
 - gitignore global
@@ -110,155 +127,171 @@ brew update
 ```
 
 ## Rime 输入法
+
 - 官网下载 [Rime](https://github.com/rime/squirrel). 安装完成后需要到设置->键盘->输入法 中添加鼠须管输入法
--  Homebrew安装. 注销用户重新登录才能在系统设置的输入法处看到鼠须管输入法
-	```bash
-	brew install --cask squirrel
-	```
- - 安装[雾凇拼音](https://dvel.me/posts/rime-ice/)
-	 -  点击 mac右上角输入法squirrel图标,打开settings目录
-	 - 下载仓库内容,解压后全部复制到 settings目录
-	 -   再次点击squirrel图标,然后点击deploy 部署, 即可开始使用
- -  配置雾凇拼音
-	 -  在settings目录下创建`default.custom.yaml`,添加内容
-	 ```yaml
-	 patch:
-	  schema_list:
-	  	# 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
-	  	# 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
-	    - schema: rime_ice               # 雾凇拼音（全拼）
-	    - schema: double_pinyin          # 自然码双拼
-	    - schema: double_pinyin_abc      # 智能 ABC 双拼
-	    - schema: double_pinyin_sogou    # 搜狗双拼
-		# 中西文切换
-		#
-		# good_old_caps_lock:
-		# true   切换大写
-		# false  切换中英
-		# macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
-		# 切换中英：
-		# 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
-		# commit_code  上屏原始的编码，然后切换到英文
-		# commit_text  上屏拼出的词句，然后切换到英文
-		# clear        清除未上屏内容，然后切换到英文
-		# inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
-		# noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
-		########## 关闭  macos 使用大写锁定键切换“ABC”输入法
-	  ascii_composer:
-		good_old_caps_lock: true
-		switch_key:
-		  Caps_Lock: commit_code
-		  Shift_L: commit_code
-		  Shift_R: noop
-		  Control_L: clear
-		  Control_R: noop
-	
-	 ```
-	 -  在settings目录下创建`squirrel.custom.yaml`, 添加内容
-	 ```yaml
-	patch:
-	  # 通知栏显示方式以及 ascii_mode 应用，与外观无关
-	  show_notifications_via_notification_center: true
-	  key_binder:
-	    bindings:
-	    - { when: always, accept: Release+Escape, toggle: ascii_mode }
-	  # 以下软件默认英文模式
-	  # ascii_mode: false  默认输入法模式: false 中文 true 英文
-	  # ascii_punct: true  是否设置为英文标点 
-	  
-	  # 使用 osascript -e 'id of app "kitty"' 命令获取对应的app 标识
-	  app_options:
-	    com.googlecode.iterm2:
-	      ascii_mode: true
-	      vim_mode: true
-	      ascii_punct: true
-	    com.jetbrains.goland:
-	      ascii_mode: true
-	      vim_mode: true
-	      ascii_punct: true
-	    com.jetbrains.intellij:
-	      ascii_mode: true
-	      vim_mode: true
-	      ascii_punct: true      
-	    com.apple.Terminal:
-	      ascii_mode: true
-	      vim_mode: true
-	      ascii_punct: true
-	    com.github.wez.wezterm:
-	      ascii_mode: true
-	      vim_mode: true
-	      ascii_punct: true 
-	    md.obsidian:
-	      ascii_mode: false
-	      vim_mode: true
-	      ascii_punct: true          
-	
-	# 如果想要修改皮肤，直接更改 color_scheme 的值即可
-	  style:
-	    color_scheme: macos_dark 
-	    color_scheme_dark: macos_dark
-	
-	  preset_color_schemes:
-	    macos_light:
-	      font_face: "RecMonoCasualNF"
-	      font_point: 15.0
-	      label_font_face: "RecMonoCasualNF"
-	      label_font_point: 15.0
-	      comment_font_face: "RecMonoCasualNF"
-	      comment_font_point: 15.0
-	      candidate_list_layout: linear
-	      text_orientation: horizontal
-	      inline_preedit: true
-	      translucency: true
-	      color_space: display_p3
-	      corner_radius: 10.0
-	      hilited_corner_radius: 8.0
-	      border_height: -3.0
-	      border_width: -3.0
-	      line_spacing: 8.0
-	      base_offset: 6.0
-	      shadow_size: 3.0
-	      back_color: 0x4CDDDDDD
-	      candidate_text_color: 0x333333
-	      comment_text_color: 0x333333
-	      label_color: 0x5B5B5B
-	      hilited_candidate_back_color: 0x9A8150
-	      hilited_candidate_text_color: 0xFFFDFE
-	      hilited_comment_text_color: 0xFFFDFE
-	      hilited_candidate_label_color: 0xFFFFFF
-	      text_color: 0x333333
-	      hilited_text_color: 0xF7F7F7
-	
-	    macos_dark:
-	      font_face: "RecMonoCasualNF"
-	      font_point: 15.0
-	      label_font_face: "RecMonoCasualNF"
-	      label_font_point: 15.0
-	      comment_font_face: "RecMonoCasualNF"
-	      comment_font_point: 15.0
-	      candidate_list_layout: linear
-	      text_orientation: horizontal
-	      inline_preedit: true
-	      translucency: true
-	      corner_radius: 10.0
-	      hilited_corner_radius: 8.0
-	      border_height: -3.0
-	      border_width: -3.0
-	      line_spacing: 8.0
-	      base_offset: 6.0
-	      shadow_size: 3.0
-	      back_color: 0x4CDDDDDD
-	      candidate_text_color: 0x333333
-	      comment_text_color: 0x333333
-	      label_color: 0x5B5B5B
-	      hilited_candidate_back_color: 0x9A8150
-	      hilited_candidate_text_color: 0xFFFDFE
-	      hilited_comment_text_color: 0xFFFDFE
-	      hilited_candidate_label_color: 0xFFFFFF
-	      text_color: 0x333333
-	      hilited_text_color: 0xF7F7F7
-	 ```
-	-  配置完成后点击deploy即可使用.
+- Homebrew安装. 注销用户重新登录才能在系统设置的输入法处看到鼠须管输入法
+
+  ```bash
+  brew install --cask squirrel
+  ```
+
+- 安装[雾凇拼音](https://dvel.me/posts/rime-ice/)
+  - 点击 mac右上角输入法squirrel图标,打开settings目录
+  - 下载仓库内容,解压后全部复制到 settings目录
+  - 再次点击squirrel图标,然后点击deploy 部署, 即可开始使用
+- 配置雾凇拼音
+  - 在settings目录下创建`default.custom.yaml`,添加内容
+
+  ```yaml
+   patch:
+    schema_list:
+     # 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
+     # 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
+      - schema: rime_ice               # 雾凇拼音（全拼）
+      - schema: double_pinyin          # 自然码双拼
+      - schema: double_pinyin_abc      # 智能 ABC 双拼
+      - schema: double_pinyin_sogou    # 搜狗双拼
+    # 菜单
+    menu:
+      page_size: 7  # 候选词个数
+  # 中西文切换
+  #
+  # good_old_caps_lock:
+  # true   切换大写
+  # false  切换中英
+  # macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
+  # 切换中英：
+  # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
+  # commit_code  上屏原始的编码，然后切换到英文
+  # commit_text  上屏拼出的词句，然后切换到英文
+  # clear        清除未上屏内容，然后切换到英文
+  # inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
+  # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
+  ########## 关闭  macos 使用大写锁定键切换“ABC”输入法
+    ascii_composer:
+   good_old_caps_lock: true
+   switch_key:
+     Caps_Lock: commit_code
+     Shift_L: commit_code
+     Shift_R: noop
+     Control_L: clear
+     Control_R: noop
+    key_binder:
+      bindings:
+      - { when: always, accept: Release+Escape, toggle: ascii_mode }
+  ```
+
+  - 在settings目录下创建`squirrel.custom.yaml`, 添加内容
+
+  ```yaml
+  patch:
+    # options: last | default | _custom_
+    # last: the last used latin keyboard layout
+    # default: US (ABC) keyboard layout
+    # _custom_: keyboard layout of your choice, e.g. 'com.apple.keylayout.USExtended' or simply 'USExtended'
+    keyboard_layout: default
+    # for veteran chord-typist
+    chord_duration: 0.1 # seconds
+    # options: always | never | appropriate
+    show_notifications_when: appropriate
+
+    # 以下软件默认英文模式
+    # ascii_mode: false  默认输入法模式: false 中文 true 英文
+    # ascii_punct: true  是否设置为英文标点
+    # 使用 osascript -e 'id of app "kitty"' 命令获取对应的app 标识
+    app_options:
+      com.googlecode.iterm2:
+        ascii_mode: true
+        vim_mode: true
+        ascii_punct: true
+      com.jetbrains.goland:
+        ascii_mode: true
+        vim_mode: true
+        ascii_punct: true
+      com.jetbrains.intellij:
+        ascii_mode: true
+        vim_mode: true
+        ascii_punct: true
+      com.apple.Terminal:
+        ascii_mode: true
+        vim_mode: true
+        ascii_punct: true
+      com.github.wez.wezterm:
+        ascii_mode: true
+        vim_mode: true
+        ascii_punct: true
+      md.obsidian:
+        ascii_mode: false
+        vim_mode: true
+        ascii_punct: true
+
+    # 如果想要修改皮肤，直接更改 color_scheme 的值即可
+    style:
+      color_scheme: macos_dark
+      color_scheme_dark: macos_dark
+
+    preset_color_schemes:
+      macos_light:
+        font_face: "RecMonoCasualNF"
+        font_point: 15.0
+        label_font_face: "RecMonoCasualNF"
+        label_font_point: 15.0
+        comment_font_face: "RecMonoCasualNF"
+        comment_font_point: 15.0
+        candidate_list_layout: linear
+        text_orientation: horizontal
+        inline_preedit: true
+        translucency: true
+        color_space: display_p3
+        corner_radius: 10.0
+        hilited_corner_radius: 8.0
+        border_height: -3.0
+        border_width: -3.0
+        line_spacing: 8.0
+        base_offset: 6.0
+        shadow_size: 3.0
+        back_color: 0x4CDDDDDD
+        candidate_text_color: 0x333333
+        comment_text_color: 0x333333
+        label_color: 0x5B5B5B
+        hilited_candidate_back_color: 0x9A8150
+        hilited_candidate_text_color: 0xFFFDFE
+        hilited_comment_text_color: 0xFFFDFE
+        hilited_candidate_label_color: 0xFFFFFF
+        text_color: 0x333333
+        hilited_text_color: 0xF7F7F7
+
+      macos_dark:
+        font_face: "RecMonoCasualNF"
+        font_point: 15.0
+        label_font_face: "RecMonoCasualNF"
+        label_font_point: 15.0
+        comment_font_face: "RecMonoCasualNF"
+        comment_font_point: 15.0
+        candidate_list_layout: linear
+        text_orientation: horizontal
+        inline_preedit: true
+        translucency: true
+        corner_radius: 10.0
+        hilited_corner_radius: 8.0
+        border_height: -3.0
+        border_width: -3.0
+        line_spacing: 8.0
+        base_offset: 6.0
+        shadow_size: 3.0
+        back_color: 0x4CDDDDDD
+        candidate_text_color: 0x333333
+        comment_text_color: 0x333333
+        label_color: 0x5B5B5B
+        hilited_candidate_back_color: 0x9A8150
+        hilited_candidate_text_color: 0xFFFDFE
+        hilited_comment_text_color: 0xFFFDFE
+        hilited_candidate_label_color: 0xFFFFFF
+        text_color: 0x333333
+        hilited_text_color: 0xF7F7F7
+  ```
+
+  - 配置完成后点击deploy即可使用.
 
 ## Font
 
@@ -272,19 +305,19 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 ## System Keymap
 
-
-| keymap          | desc         |
-| :--------------: | :-----------: |
-| shift + cmd + L | 打开控制台        |
-| ctrl + space    | 切换输入法        |
-| cmd + space     | 打开 Spotlight |
-| ctrl + →        | 下一个space     |
-| ctrl + ←        | 上一个space     |
-| ctrl + 1-4      | 切换到1-4space  |
+|     keymap      |      desc      |
+| :-------------: | :------------: |
+| shift + cmd + L |   打开控制台   |
+|  ctrl + space   |   切换输入法   |
+|   cmd + space   | 打开 Spotlight |
+|    ctrl + →     |  下一个space   |
+|    ctrl + ←     |  上一个space   |
+|   ctrl + 1-4    | 切换到1-4space |
 
 ## Starship
 
 refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starship)
+
 - install [starship](https://starship.rs/guide/)
 
   ```bash
@@ -294,7 +327,7 @@ refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starsh
   eval "$(starship init zsh)"
 
   # config
-  # use prsent & restart terminal
+  # use preset & restart terminal
   starship preset nerd-font-symbols -o ~/.config/starship.toml
   # or can refer to github dotfiles
   ```
@@ -336,24 +369,20 @@ refer to [starship config](https://github.com/dev24hrs/dotfiles/tree/main/starsh
 
 config refer to [kitty dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/kitty)
 
-
-
 ## WezTerm
 
 refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
-
 
 ## fzf
 
 refer to [fzf](https://junegunn.github.io/fzf/getting-started/)
 
-| keys     | desc     |
-| :------: | :------: |
+|   keys   |      desc       |
+| :------: | :-------------: |
 | ctrl + t | 列出文件/文件夹 |
-| ctrl + r | 列出历史命令   |
+| ctrl + r |  列出历史命令   |
 
-
-``` bash
+```bash
 # add to ~/.zshrc
 # fzf
 source <(fzf --zsh)
@@ -411,7 +440,7 @@ rfv() (
       --query "$*"
 )
 
-# zoxide 
+# zoxide
 eval "$(zoxide init zsh)"
 # with fzf
 z() {
@@ -421,29 +450,6 @@ z() {
         --nth 2.. --tac --no-sort --query "$*" \
         --bind 'enter:become:echo {2..}'
   ) && cd "$dir"
-}
-```
-
-
-## ~~Aerospace~~
-refer to [aerospace dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/aerospace)
-
-
-## ~~Yazi~~
-
-config refer to [yazi dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/yazi)
-
-also add config to **~/.zshrc**
-
-```bash
-# yazi
-function ya() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
 }
 ```
 
@@ -457,11 +463,7 @@ config refer to [iterm2 dotfiles](https://github.com/dev24hrs/dotfiles/tree/main
 
 config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/tmux)
 
->   [!NOTE]
->
->   [tmux readme]: https://github.com/dev24hrs/dotfiles/blob/main/tmux/README.md
-
-
+> [!NOTE]
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061729031.png" alt="tmux" />
 
@@ -469,9 +471,7 @@ config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/t
 
 config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/nvim)
 
->   [!NOTE]
->
->   [nvim readme ]: https://github.com/dev24hrs/dotfiles/blob/main/nvim/README.md
+> [!NOTE]
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151334838.png" alt="dashboard" />
 
@@ -479,11 +479,9 @@ config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/n
 
 <img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151337040.png" alt="outline" width="100%" />
 
-
-
 ## vimrc
 
-config vim 
+config vim
 
 ```bash
 vim ~/.vimrc
@@ -585,9 +583,9 @@ go install golang.org/x/tools/gopls@latest
 
 ### Books
 
-- Go 语言圣经 https://golang-china.github.io/gopl-zh/index.html
-- Go 语言设计与实现 https://draveness.me/golang/
-- Go 语言高级编程 https://chai2010.cn/advanced-go-programming-book/index.html
+- Go 语言圣经 <https://golang-china.github.io/gopl-zh/index.html>
+- Go 语言设计与实现 <https://draveness.me/golang/>
+- Go 语言高级编程 <https://chai2010.cn/advanced-go-programming-book/index.html>
 
 ## Rust
 
@@ -607,19 +605,19 @@ cargo --version
 rustup update
 ```
 
-- 官方文档中文 https://rustwiki.org/
+- 官方文档中文 <https://rustwiki.org/>
 
-- Rust 程序设计语言 https://rustwiki.org/zh-CN/book/
+- Rust 程序设计语言 <https://rustwiki.org/zh-CN/book/>
 
-- Rust 程序设计语言 https://doc.rust-lang.org/book/ch01-01-installation.html
+- Rust 程序设计语言 <https://doc.rust-lang.org/book/ch01-01-installation.html>
 
-- Rust Cookbook 中文版 https://rustwiki.org/zh-CN/rust-cookbook/
+- Rust Cookbook 中文版 <https://rustwiki.org/zh-CN/rust-cookbook/>
 
 ### Awesome Rust
 
-- awesome rust https://github.com/rust-unofficial/awesome-rust
+- awesome rust <https://github.com/rust-unofficial/awesome-rust>
 
-- Rust 嵌入式 https://github.com/rust-embedded/awesome-embedded-rust
+- Rust 嵌入式 <https://github.com/rust-embedded/awesome-embedded-rust>
 
 ## VsCode
 
@@ -722,7 +720,7 @@ cht.sh --shell [LANG]
 # use  https://httpie.io/docs/cli/redirected-input
 ```
 
--   [zoxide](https://github.com/ajeetdsouza/zoxide) - smarter cd command
+- [zoxide](https://github.com/ajeetdsouza/zoxide) - smarter cd command
 
 ```bash
 # install
@@ -730,7 +728,7 @@ brew install zoxide
 
 # add to ~/.zshrc
 
-# zoxide 
+# zoxide
 eval "$(zoxide init zsh)"
 # with fzf
 z() {
@@ -743,22 +741,17 @@ z() {
 }
 ```
 
-
-
 ## Apps
 
 - [AlDente](https://apphousekitchen.com/) -- charge limiter app
 
 - [lemon](https://lemon.qq.com/) -- mac clean app
 
-- [iTerm2](https://iterm2.com/) -- Terminal app
-
--  [Wezterm](https://wezterm.org/) -- Terminal app
-
 - [Sequel Ace](https://github.com/Sequel-Ace/Sequel-Ace) -- mysql management
 
--  [Chrome](https://www.google.com/intl/zh-CN/chrome/) -- browser
--  [Arc](https://resources.arc.net/hc/en-us) --browser
+- [Chrome](https://www.google.com/intl/zh-CN/chrome/) -- browser
+
+- [Arc](https://resources.arc.net/hc/en-us) --browser
 
 - [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
 
@@ -803,4 +796,5 @@ z() {
 
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
 
-[^1]: 
+[^1]:
+
