@@ -5,6 +5,7 @@ return {
     version = '1.*',
     dependencies = {
       'rafamadriz/friendly-snippets',
+      'Exafunction/windsurf.nvim',
       { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', keys = {} },
     },
     init = function()
@@ -26,7 +27,6 @@ return {
         ['<Down>'] = { 'select_next', 'fallback' },
         ['<C-j>'] = { 'select_prev', 'fallback' },
         ['<C-k>'] = { 'select_next', 'fallback' },
-        ['<C-e>'] = { 'cancel', 'fallback' },
         ['<Esc>'] = { 'cancel', 'fallback' },
       },
       completion = {
@@ -58,8 +58,9 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
+        default = { 'lsp', 'snippets', 'buffer', 'path', 'lazydev', 'codeium' },
         providers = {
+          codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           lazydev = {
             name = 'LazyDev',
             module = 'lazydev.integrations.blink',

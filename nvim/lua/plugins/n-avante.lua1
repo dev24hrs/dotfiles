@@ -1,0 +1,48 @@
+return {
+  'yetone/avante.nvim',
+  build = 'make',
+  event = 'VeryLazy',
+  version = false, -- 永远不要将此值设置为 "*"！永远不要！
+  ---@module 'avante'
+  ---@type avante.Config
+  opts = {
+    -- instructions_file = "avante.md",
+    provider = 'ollama',
+    providers = {
+      ollama = {
+        endpoint = 'http://127.0.0.1:11434',
+        model = 'deepseek-r1:8b',
+        is_env_set = function()
+          return true
+        end,
+        disable_tools = true,
+        use_ReAct_prompt = true,
+        extra_request_body = {
+          options = {
+            stream = true,
+            temperature = 0.8,
+            num_ctx = 20480,
+            keep_alive = '5m',
+          },
+        },
+      },
+    },
+    windows = {
+      edit = {
+        border = 'single',
+        start_insert = false, -- 打开编辑窗口时开始插入模式
+      },
+    },
+    selector = {
+      --- "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope"
+      provider = 'fzf_lua',
+      provider_opts = {},
+    },
+  },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'MunifTanjim/nui.nvim',
+    'ibhagwan/fzf-lua',
+    'saghen/blink.cmp',
+  },
+}

@@ -15,7 +15,7 @@ return {
         imp_sign = '󰳛 ',
       },
       lightbulb = {
-        enable = false,
+        enable = true,
         sign = false, -- 设置成false 防止光标经过codeaction所在行之后的窗口抖动
       },
       code_action = {

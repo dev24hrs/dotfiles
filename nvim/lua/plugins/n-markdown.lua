@@ -9,6 +9,7 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
+      file_types = { 'markdown' },
       sign = { enabled = false },
       code = {
         border = 'thin',
@@ -26,11 +27,11 @@ return {
         unchecked = { icon = '✘' },
         checked = { icon = '✔' },
         custom = {
-          question = { raw = '[?]', rendered = '' },
-          todo = { raw = '[>]', rendered = '󰦖' },
+          question = { raw = '[?]', rendered = '', highlight = 'RenderMarkdownQuestion' },
+          todo = { raw = '[>]', rendered = '󰦖', highlight = 'RenderMarkdownTodo' },
           canceled = { raw = '[-]', rendered = '', scope_highlight = '@text.strike' },
-          important = { raw = '[!]', rendered = '' },
-          favorite = { raw = '[~]', rendered = '' },
+          important = { raw = '[!]', rendered = '', highlight = 'DiagnosticWarn' },
+          favorite = { raw = '[~]', rendered = '', highlight = 'RenderMarkdownFavorite' },
         },
       },
       pipe_table = {
@@ -66,6 +67,7 @@ return {
     'HakonHarnes/img-clip.nvim',
     -- require pngpaste on macos
     ft = { 'markdown' },
+    event = 'VeryLazy',
     opts = {
       default = {
         -- save images to same directory as current file with .assest suffix
@@ -73,6 +75,11 @@ return {
           return string.gsub(vim.fn.expand('%:t'), '%..*', '') .. '.assest'
         end,
         insert_mode_after_paste = false,
+        embed_image_as_base64 = false,
+        prompt_for_file_name = false,
+        drag_and_drop = {
+          insert_mode = true,
+        },
       },
       filetypes = {
         markdown = {

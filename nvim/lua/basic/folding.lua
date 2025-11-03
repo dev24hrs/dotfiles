@@ -38,8 +38,7 @@ function _G.custom_foldtext()
   local nline = vim.v.foldend - vim.v.foldstart
   local result = {}
   fold_virt_text(result, start_text, vim.v.foldstart - 1)
-  table.insert(result, { '  ', nil })
-  table.insert(result, { ' ... ↙ ' .. nline .. ' lines', 'DapBreakpointCondition' })
+  table.insert(result, { '      ......  ↙ ' .. nline .. ' folding lines', 'DapBreakpointCondition' })
   return result
 end
 vim.opt.foldtext = 'v:lua.custom_foldtext()'

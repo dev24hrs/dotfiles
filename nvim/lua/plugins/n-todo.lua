@@ -15,7 +15,7 @@ return {
       require('todo-comments').jump_prev()
     end, { desc = '[Todo]: Previous Todo comment' })
 
-    vim.keymap.set('n', '<leader>td', '<CMD>TodoFzfLua<CR>', { desc = '[Todo]: Show Todo List' })
+    vim.keymap.set('n', '<leader>td', '<CMD>Snacks.picker.todo_comments()<CR>', { desc = '[Todo]: Show Todo List' })
 
     -- 使用
     -- 关键词:

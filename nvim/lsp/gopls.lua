@@ -103,7 +103,7 @@ return {
       completeUnimported = true,
       staticcheck = true,
       semanticTokens = true,
-      -- directoryFilters = { '-.git', '-.vscode', '-.idea', '-.vscode-test', '-node_modules' },
+      buildFlags = { '-tags=integration' },
       codelenses = {
         gc_details = false,
         generate = true,

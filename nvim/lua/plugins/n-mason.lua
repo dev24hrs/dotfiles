@@ -1,8 +1,8 @@
 return {
   'mason-org/mason.nvim',
   -- lazy = true, -- Load immediately to ensure PATH is set
-  -- event = { 'BufReadPost', 'BufNewFile', 'VimEnter' },
-  event = 'VeryLazy',
+  event = { 'BufReadPost', 'BufNewFile', 'VimEnter' },
+  -- event = 'VeryLazy',
   cmd = 'Mason',
   build = ':MasonUpdate',
   opts = {
@@ -23,6 +23,7 @@ return {
       'bash-language-server', -- Bash LSP bashls
       'sqlls', -- SQL LSP
       'marksman', -- Markdown LSP
+      'pyright', -- Python LSP
 
       -- Formatters (for conform.nvim and general use)
       'stylua',

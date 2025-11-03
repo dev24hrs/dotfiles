@@ -59,7 +59,6 @@ return {
           'filename',
         },
         lualine_x = {
-          '%3{codeium#GetStatusString()}',
           'encoding',
           {
             'fileformat',

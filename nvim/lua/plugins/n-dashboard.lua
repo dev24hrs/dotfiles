@@ -15,31 +15,42 @@ return {
         project = {
           enable = true,
           limit = 5,
-          icon = ' ',
+          icon = ' ',
           label = '',
           action = function(path)
+            -- Snacks.picker.files({ cwd = path })
             require('fzf-lua').files({ cwd = path })
           end,
         },
         shortcut = {
-          { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+          { icon = '󰊳 ', desc = 'Update', group = '@property', action = 'Lazy update', key = 'u' },
           {
             icon = ' ',
             icon_hl = '@variable',
             desc = 'Files',
             group = '@property',
             action = function()
+              -- Snacks.picker.files()
               require('fzf-lua').files()
             end,
             key = 'f',
           },
           {
-            desc = ' dotfiles',
+            icon = ' ',
+            desc = 'Dotfiles',
             group = 'Number',
             action = function()
+              -- Snacks.picker.files({ cwd = vim.fn.stdpath('config') })
               require('fzf-lua').files({ cwd = '~/.config/nvim' })
             end,
             key = 'd',
+          },
+          {
+            icon = '󱃖 ',
+            desc = 'LeetCode',
+            group = 'Label',
+            key = 'c',
+            action = 'Leet',
           },
         },
       },

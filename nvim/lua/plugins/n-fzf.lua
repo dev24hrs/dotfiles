@@ -1,211 +1,100 @@
 return {
   'ibhagwan/fzf-lua',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
-  opts = {
-    winopts = {
-      border = 'single',
-      height = 0.80,
-      width = 0.80,
-      preview = {
+  event = 'VeryLazy',
+  dependencies = 'nvim-tree/nvim-web-devicons',
+  config = function()
+    require('fzf-lua').setup({
+      winopts = {
         border = 'single',
-        layout = 'horizontal',
-        scrollbar = false,
+        height = 0.85,
+        width = 0.80,
+        row = 0.45, -- window row position (0=top, 1=bottom)
+        col = 0.50,
+        preview = {
+          wrap = true,
+          scrollbar = false,
+        },
       },
-    },
-  },
-  keys = {
+      fzf_colors = true,
+    })
 
-    -- find files or words or buffers
-    {
-      '<leader>fl',
-      function()
-        require('fzf-lua').files()
-      end,
-      desc = '[Fzf]: Files List in project',
-    },
-    {
-      '<leader>fw',
-      function()
-        require('fzf-lua').lgrep_curbuf()
-      end,
-      desc = '[Fzf]: Find Word in current buffer',
-    },
-    {
-      '<leader>fg',
-      function()
-        require('fzf-lua').live_grep()
-      end,
-      desc = '[Fzf]: Find Grep words in project',
-    },
-    {
-      '<leader>fr',
-      function()
-        require('fzf-lua').oldfiles()
-      end,
-      desc = '[Fzf]: Find Recent files',
-    },
-    {
-      '<leader>fc',
-      function()
-        require('fzf-lua').files({ cwd = '~/.config/nvim' })
-      end,
-      desc = '[Fzf]: Find in neovim Configuration',
-    },
-    {
-      '<leader>fb',
-      function()
-        require('fzf-lua').buffers()
-      end,
-      desc = '[Fzf]: Find existing Buffers',
-    },
+    --NOTE: fzf-lua
 
-    -- lsp
-    -- {
-    --   'gd',
-    --   function()
-    --     require('fzf-lua').lsp_definitions()
-    --   end,
-    --   desc = '[Fzf]: Goto Definition',
-    -- },
-    -- {
-    --   'gp',
-    --   function()
-    --     require('fzf-lua').lsp_declarations()
-    --   end,
-    --   desc = '[Fzf]: Goto Peke Declarations',
-    -- },
-    -- {
-    --   'gy',
-    --   function()
-    --     require('fzf-lua').lsp_typedefs()
-    --   end,
-    --   desc = '[Fzf]: Goto TYpe Definitions',
-    -- },
-    -- {
-    --   'gi',
-    --   function()
-    --     require('fzf-lua').lsp_implementations()
-    --   end,
-    --   desc = '[Fzf]: Goto Implementations',
-    -- },
-    -- {
-    --   'gr',
-    --   function()
-    --     require('fzf-lua').lsp_references()
-    --   end,
-    --   desc = '[Fzf]: Goto References',
-    -- },
-    -- {
-    --   'gs',
-    --   function()
-    --     require('fzf-lua').lsp_document_symbols()
-    --   end,
-    --   desc = '[Fzf]: Goto LSP Symbols',
-    -- },
-    -- {
-    --   '<leader>ci',
-    --   function()
-    --     require('fzf-lua').lsp_incoming_calls()
-    --   end,
-    --   desc = '[Fzf]: Incoming Calls',
-    -- },
-    -- {
-    --   '<leader>co',
-    --   function()
-    --     require('fzf-lua').lsp_outgoing_calls()
-    --   end,
-    --   desc = '[Fzf]: Outcoming Calls',
-    -- },
-    -- {
-    --   '<leader>la',
-    --   function()
-    --     require('fzf-lua').lsp_code_actions()
-    --   end,
-    --   desc = '[Fzf]: LSP Code Actions',
-    -- },
-    -- {
-    --   '<leader>lf',
-    --   function()
-    --     require('fzf-lua').lsp_finder()
-    --   end,
-    --   desc = '[Fzf]: LSP Finder',
-    -- },
-    -- {
-    --       '<leader>sd',
-    --       function()
-    --         require('fzf-lua').diagnostics_document()
-    --       end,
-    --       desc = '[Fzf]: Show Diagnostics',
-    --     },
+    -- setup for 2 using case
+    -- one is for codecompanion.nvim or avante.nvim, all of them can use fzf-lua as default picker selector
+    -- when i using these 2 plugins, want to change adapters in codecompanion chat buff with ga keybinding or choose files in avante chat
+    -- buffer with @ keybinding, the selector window is not fzf ui window.
+    -- about this problem, i think it may be that they used vim.ui.selector in the new generated selection window of the chat buffer,not fzf ui selector .im not good at lua,so I can't be sure.
+    -- one is for using FzfLua lsp_code_actions,i got the msg : " FzfLua is not currently registered as 'vim.ui.select' backend,
+    -- use 'silent=true' to hide this message or register globally using ':FzfLua register_ui_select'"
+    -- i attempted to using ":FzfLua register_ui_select ",it works. but when i quit neoivm session and restart, i still got the msg.
+    -- others fzf cmd is ok.
 
-    -- show notifications or diagnostics or keymaps
-    {
-      '<leader>sk',
-      function()
-        require('fzf-lua').keymaps()
-      end,
-      desc = '[Fzf]: Show Keymaps',
-    },
+    vim.cmd('FzfLua register_ui_select')
+    -- require('fzf-lua').register_ui_select({
+    --   winopts = {
+    --     width = 0.6,
+    --     height = 0.5,
+    --     row = 0.50, -- window row position (0=top, 1=bottom)
+    --     col = 0.50, -- window col position (0=left, 1=right)
+    --   },
+    -- })
 
-    {
-      '<leader>sh',
-      function()
-        require('fzf-lua').helptags()
-      end,
-      desc = '[Fzf]: Show Neovim Help Pages',
-    },
-    -- quick fix
-    {
-      '<leader>sq',
-      function()
-        require('fzf-lua').grep_quickfix()
-      end,
-      desc = '[Fzf]: Show Quickfix List',
-    },
-    {
-      '<leader>lq',
-      function()
-        require('fzf-lua').lgrep_quickfix()
-      end,
-      desc = '[Fzf]: Show Quickfix List from current buffer',
-    },
+    vim.keymap.set('n', '<leader>fl', function()
+      require('fzf-lua').files()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Files List in project' })
 
-    -- git commands
-    {
-      '<leader>gf',
-      function()
-        require('fzf-lua').git_files()
-      end,
-      desc = '[Fzf]: List Git Files',
-    },
-    {
-      '<leader>gs',
-      function()
-        require('fzf-lua').git_status()
-      end,
-      desc = '[Fzf]: List Git Status',
-    },
-    {
-      '<leader>gd',
-      function()
-        require('fzf-lua').git_diff()
-      end,
-      desc = '[Fzf]: List Git Diff',
-    },
-    {
-      '<leader>gl',
-      function()
-        require('fzf-lua').git_commits()
-      end,
-      desc = '[Fzf]: List Git Commits Log',
-    },
-    {
-      '<leader>gb',
-      function()
-        require('fzf-lua').git_branches()
-      end,
-      desc = '[Fzf]: List Git Branches',
-    },
-    -- fzf_colors = false,
-  },
+    vim.keymap.set('n', '<leader>fw', function()
+      require('fzf-lua').lgrep_curbuf()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Find Word in current buffer' })
+
+    vim.keymap.set('n', '<leader>fg', function()
+      require('fzf-lua').live_grep()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Find Grep words in project' })
+
+    vim.keymap.set('n', '<leader>fr', function()
+      require('fzf-lua').oldfiles()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Find Recent files' })
+
+    vim.keymap.set('n', '<leader>fc', function()
+      require('fzf-lua').files({ cwd = '~/.config/nvim' })
+    end, { noremap = true, silent = true, desc = '[Fzf]: Find in neovim Configuration' })
+
+    vim.keymap.set('n', '<leader>fb', function()
+      require('fzf-lua').buffers()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Find existing Buffers' })
+
+    vim.keymap.set('n', '<leader>sk', function()
+      require('fzf-lua').keymaps()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Show Keymaps' })
+
+    vim.keymap.set('n', '<leader>sh', function()
+      require('fzf-lua').helptags()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Show Neovim Help Pages' })
+
+    vim.keymap.set('n', '<leader>sq', function()
+      require('fzf-lua').lgrep_quickfix()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Show Quickfix List current buffer' })
+
+    -- git
+    vim.keymap.set('n', '<leader>gf', function()
+      require('fzf-lua').git_files()
+    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Files' })
+
+    vim.keymap.set('n', '<leader>gs', function()
+      require('fzf-lua').git_status()
+    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Status' })
+
+    vim.keymap.set('n', '<leader>gd', function()
+      require('fzf-lua').git_diff()
+    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Diff' })
+
+    vim.keymap.set('n', '<leader>gl', function()
+      require('fzf-lua').git_commits()
+    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Commits Log' })
+
+    vim.keymap.set('n', '<leader>gb', function()
+      require('fzf-lua').git_branches()
+    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Branches' })
+  end,
 }

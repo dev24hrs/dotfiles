@@ -21,7 +21,7 @@ return {
   ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
-      lua = { 'stylua' },
+      lua = { 'stylua', format_on_save = true },
       go = { 'gofumpt', 'goimports' },
       json = { 'prettier' },
       yaml = { 'yamlfmt' },

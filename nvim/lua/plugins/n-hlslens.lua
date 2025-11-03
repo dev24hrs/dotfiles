@@ -8,13 +8,13 @@ return {
     })
     vim.api.nvim_set_keymap(
       'n',
-      'N',
+      'n',
       [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
       { noremap = true, silent = true, desc = '[Hlslens]: Prev Search Word' }
     )
     vim.api.nvim_set_keymap(
       'n',
-      'n',
+      'N',
       [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
       { noremap = true, silent = true, desc = '[Hlslens]: Next Search Word' }
     )
