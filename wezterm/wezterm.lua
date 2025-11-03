@@ -3,28 +3,29 @@
 
 -- refer to https://github.com/wsgggws/slides-md-ppt/blob/main/wezterm/wezterm.lua
 
-local wezterm = require 'wezterm'
-local config = wezterm.config_builder()
-
+local wezterm = require("wezterm")
+local config = {}
 
 -- This is where you actually apply your config choices.
 
-config.font = wezterm.font('RecMonoCasual Nerd Font Mono')
-config.font_size = 16
+config.font = wezterm.font("RecMonoCasual Nerd Font Mono")
+config.font_size = 16.0
 
-config.enable_tab_bar = false 
-config.window_decorations = 'RESIZE'
+-- disable ligatures
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
-
+config.enable_tab_bar = false
+config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 30
-
 config.initial_cols = 140
-config.initial_rows = 45 
+config.initial_rows = 45
+config.default_cursor_style = "SteadyBar"
 
-config.window_close_confirmation = 'NeverPrompt'
+config.window_close_confirmation = "NeverPrompt"
 
-config.color_scheme = 'Gruvbox Dark (Gogh)'
+config.color_scheme = "Gruvbox Dark (Gogh)"
+-- config.color_scheme = 'Catppuccin Frappe'
 
 -- config.color_scheme = 'Gruvbox dark, medium (base16)'
 
