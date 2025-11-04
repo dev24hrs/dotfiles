@@ -40,8 +40,8 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', comm
 --     vim.wo.wrap = true
 --     vim.wo.linebreak = true
 --     vim.wo.breakindent = true
---     vim.opt.spell = true
---     vim.opt.spelllang = 'en_us'
+--     -- vim.opt.spell = true
+--     -- vim.opt.spelllang = 'en_us'
 --   end,
 -- })
 

@@ -42,6 +42,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     keymap('<leader>r', vim.lsp.buf.rename, '[Lsp]: Rename all references')
 
+    keymap('grr', '', '[Basic]: cancel grr default') -- vim.lsp.buf.references()
+    keymap('grt', '', '[Basic]: cancel grt default') -- vim.lsp.buf.type_definition()
+    keymap('gra', '', '[Basic]: cancel gra default') -- vim.lsp.buf.code_action()
+    keymap('gri', '', '[Basic]: cancel gri default') -- vim.lsp.buf.implementation()
+    keymap('grn', '', '[Basic]: cancel grn default') -- vim.lsp.buf.rename()
+
     -- keymap for lsp useing lspsaga plugin
     keymap('<leader>,', '<CMD>Lspsaga code_action<CR>', '[Lsp]: Code Action')
     keymap('K', '<CMD>Lspsaga hover_doc<CR>', '[Lsp]: Hover Documentation')

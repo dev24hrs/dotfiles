@@ -35,6 +35,7 @@ return {
       'isort',
       'shfmt', -- Shell formatter
       'markdown-toc', -- Markdown
+      'yamlfmt',
 
       -- Linters
       'golangci-lint',
