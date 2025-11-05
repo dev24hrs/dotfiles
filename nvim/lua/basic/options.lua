@@ -1,6 +1,6 @@
 vim.opt.termguicolors = true
 vim.g.have_nerd_font = true
-vim.opt.signcolumn = 'auto'
+vim.opt.signcolumn = 'yes'
 
 -- disable netrw
 vim.g.loaded_netrw = 1
@@ -69,6 +69,6 @@ vim.opt.winborder = 'single'
 vim.opt.jumpoptions = 'stack'
 -- Big file limit
 vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-
+vim.g.markdown_folding = 1 -- enable folding for markdown
 -- folding
 require('basic.folding')

@@ -1,12 +1,7 @@
--- Luacheck configuration for Neovim
-globals = {
-  'vim', -- Neovim global
+globals = { 'vim' }
+read_globals = { 'vim' }
+ignore = {
+  '631', -- max_line_length
+  '122',
 }
-
--- Ignore line length warnings
 max_line_length = false
-
--- Read-only globals
-read_globals = {
-  'vim',
-}

@@ -26,19 +26,19 @@ return {
       'pyright', -- Python LSP
 
       -- Formatters (for conform.nvim and general use)
-      'stylua',
-      'goimports',
-      'gofumpt',
+      'stylua', -- Lua
+      'goimports', --Golang
+      'gofumpt', --Golang
       'prettier',
-      'sql-formatter',
-      'black',
-      'isort',
+      -- 'sql-formatter',
+      'black', -- Python
+      'isort', -- Python
       'shfmt', -- Shell formatter
       'markdown-toc', -- Markdown
-      'yamlfmt',
+      'yamlfmt', -- YAML
 
       -- Linters
-      'golangci-lint',
+      'golangci-lint', -- Go linting
       'luacheck', -- Lua linting
       'shellcheck', -- Shell linter
       'yamllint', -- YAML linting

@@ -18,7 +18,11 @@ return {
         version = 'LuaJIT',
       },
       diagnostics = {
-        globals = { 'vim', 'Snacks' },
+        globals = { 'vim' },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file('', true),
+        checkThirdParty = false,
       },
       hint = { enable = true },
       codeLens = { enable = true },
