@@ -45,13 +45,6 @@ return {
             end,
             key = 'd',
           },
-          {
-            icon = '󱃖 ',
-            desc = 'LeetCode',
-            group = 'Label',
-            key = 'c',
-            action = 'Leet',
-          },
         },
       },
     })

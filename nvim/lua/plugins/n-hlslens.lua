@@ -4,7 +4,6 @@ return {
   config = function()
     require('hlslens').setup({
       calm_down = true,
-      -- nearest_only = true,
     })
     vim.api.nvim_set_keymap(
       'n',

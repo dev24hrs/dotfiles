@@ -12,8 +12,7 @@ return {
           end
         end)
       end,
-      -- mode = { 'n', 'v' },
-      mode = '',
+      mode = 'n',
       desc = '[Conform]: Format buffer',
     },
   },

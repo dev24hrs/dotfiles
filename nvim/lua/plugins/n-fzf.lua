@@ -8,7 +8,7 @@ return {
         border = 'single',
         height = 0.85,
         width = 0.80,
-        row = 0.45, -- window row position (0=top, 1=bottom)
+        row = 0.45,
         col = 0.50,
         preview = {
           wrap = true,

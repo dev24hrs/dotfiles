@@ -39,7 +39,6 @@ vim.opt.listchars = 'tab:> ,trail:-,nbsp:+' -- default
 vim.opt.list = true
 vim.opt.conceallevel = 0
 
-vim.opt.autoread = true -- default
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
@@ -65,10 +64,15 @@ vim.opt.splitbelow = true
 
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'
+
 -- helps jumps out of the definition without too many C-o & gd
 vim.opt.jumpoptions = 'stack'
--- Big file limit
-vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-vim.g.markdown_folding = 1 -- enable folding for markdown
+
+-- Big file limit  1.5 MB
+vim.g.bigfile_size = 1024 * 1024 * 1.5
+
+-- enable folding for markdown
+vim.g.markdown_folding = 1
+
 -- folding
 require('basic.folding')

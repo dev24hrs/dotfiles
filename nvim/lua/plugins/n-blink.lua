@@ -111,7 +111,6 @@ return {
       fuzzy = {
         sorts = { 'exact', 'score', 'sort_text' },
       },
-      -- require('luasnip.loaders.from_vscode').lazy_load(),
     },
     opts_extend = { 'sources.default' },
   },
