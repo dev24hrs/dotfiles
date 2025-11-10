@@ -35,11 +35,11 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', comm
 
 -- Enable spell checking for certain file types
 -- vim.api.nvim_create_autocmd({ 'BufRead', 'BufReadPost', 'BufNewFile' }, {
---   pattern = '*.md',
+--   pattern = { '*.md', 'markdown' },
 --   callback = function()
---     vim.wo.wrap = true
 --     vim.wo.linebreak = true
---     vim.wo.breakindent = true
+--     -- vim.wo.breakindent = true
+--     vim.wo.colorcolumn = '150'
 --     -- vim.opt.spell = true
 --     -- vim.opt.spelllang = 'en_us'
 --   end,
@@ -54,8 +54,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'man',
     'notify',
     'qf',
-    'spectre_panel',
-    'startuptime',
     'neotest-output',
     'checkhealth',
     'neotest-summary',

@@ -12,7 +12,7 @@ return {
           end
         end)
       end,
-      mode = 'n',
+      mode = '',
       desc = '[Conform]: Format buffer',
     },
   },
@@ -22,11 +22,13 @@ return {
     formatters_by_ft = {
       lua = { 'stylua', format_on_save = true },
       go = { 'gofumpt', 'goimports' },
-      json = { 'prettier' },
+      -- json = { 'prettier' },
+      -- sql = { 'prettier' },
+      json = { 'jsonls' }, -- comes with jsonls
       yaml = { 'yamlfmt' },
-      sql = { 'prettier' },
-      markdown = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
-      ['markdown.mdx'] = { 'prettier', 'markdownlint-cli2', 'markdown-toc' },
+      sql = { 'sqlfmt' },
+      markdown = { 'prettier', 'markdown-toc' },
+      ['markdown.mdx'] = { 'prettier', 'markdown-toc' },
       python = { 'isort', 'black' },
       sh = { 'shfmt' },
       bash = { 'shfmt' },

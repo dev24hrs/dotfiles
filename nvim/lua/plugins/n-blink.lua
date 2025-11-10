@@ -4,13 +4,19 @@ return {
     event = { 'BufReadPost', 'BufNewFile', 'InsertEnter' },
     version = '1.*',
     dependencies = {
-      'rafamadriz/friendly-snippets',
+      -- 'rafamadriz/friendly-snippets',
       'Exafunction/windsurf.nvim',
-      { 'L3MON4D3/LuaSnip', version = 'v2.*', build = 'make install_jsregexp', keys = {} },
+      {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        build = 'make install_jsregexp',
+        -- dependencies = 'rafamadriz/friendly-snippets',
+        init = function()
+          -- load my snippets
+          require('luasnip.loaders.from_vscode').lazy_load({ paths = './snippets' })
+        end,
+      },
     },
-    init = function()
-      require('luasnip.loaders.from_vscode').lazy_load()
-    end,
     opts = {
       snippets = { preset = 'luasnip' },
       appearance = { nerd_font_variant = 'normal' },
@@ -58,7 +64,7 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'snippets', 'buffer', 'path', 'lazydev', 'codeium' },
+        default = { 'codeium', 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
         providers = {
           codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           lazydev = {

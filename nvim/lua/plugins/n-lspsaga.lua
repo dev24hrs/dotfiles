@@ -24,7 +24,7 @@ return {
       },
       symbol_in_winbar = { enable = true },
       outline = {
-        win_position = 'right',
+        -- win_position = 'right',
         layout = 'float', -- normal or float
         win_width = 50,
         max_height = 0.5,

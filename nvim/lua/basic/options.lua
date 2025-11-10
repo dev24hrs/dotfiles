@@ -25,6 +25,7 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true -- default
 vim.opt.smartindent = true
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 
 -- Search Settings
 vim.opt.ignorecase = true

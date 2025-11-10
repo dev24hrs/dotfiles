@@ -1,0 +1,39 @@
+{
+    "name": "snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "go",
+                "path": "./go/go.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust/rust.json"
+            },
+            {
+                "language": "rustdoc",
+                "path": "./rust/rustdoc.json"
+            },
+            {
+                "language": "markdown",
+                "path": "./markdown/markdown.json"
+            },
+            {
+                "language": "lua",
+                "path": "./lua/lua.json"
+            },
+            {
+                "language": "luadoc",
+                "path": "./lua/luadoc.json"
+            },
+            {
+                "language": "dockerfile",
+                "path": "./docker/docker_file.json"
+            },
+            {
+                "language": "yaml",
+                "path": "./docker/docker-compose.json"
+            }
+        ]
+    }
+}

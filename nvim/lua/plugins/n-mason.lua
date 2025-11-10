@@ -44,7 +44,7 @@ return {
       'yamllint', -- YAML linting
       'jsonlint', -- JSON linting
       'sqlfluff', -- SQL linting
-      'markdownlint-cli2', -- Markdown linting
+      -- 'markdownlint-cli2', -- Markdown linting
 
       -- Debuggers--
       'delve', -- Go debugger
