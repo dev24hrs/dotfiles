@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-doc-name
+---@diagnostic disable: missing-fields
 -- this plugin is already lazy-loaded, it adds only about 1ms of load
 return {
   'olexsmir/gopher.nvim',
@@ -6,10 +6,54 @@ return {
   -- branch = "develop"
   -- (optional) will update plugin's deps on every update
 
-  build = function()
-    vim.cmd.GoInstallDeps()
+  -- build = function()
+  --   vim.cmd.GoInstallDeps()
+  -- end,
+  config = function()
+    require('gopher').setup({
+      -- log level, you might consider using DEBUG or TRACE for debugging the plugin
+      log_level = vim.log.levels.INFO,
+
+      -- timeout for running internal commands
+      timeout = 2000,
+
+      -- timeout for running installer commands(e.g :GoDepsInstall, :GoDepsInstallSync)
+      installer_timeout = 999999,
+
+      -- user specified paths to binaries
+      commands = {
+        go = 'go',
+        gomodifytags = 'gomodifytags',
+        gotests = 'gotests',
+        impl = 'impl',
+        iferr = 'iferr',
+      },
+      gotests = {
+        -- a default template that gotess will use.
+        -- gotets doesn't have template named `default`, we use it to represent absence of the provided template.
+        template = 'default',
+
+        -- path to a directory containing custom test code templates
+        template_dir = nil,
+
+        -- use named tests(map with test name as key) in table tests(slice of structs by default)
+        named = false,
+      },
+      gotag = {
+        transform = 'snakecase',
+
+        -- default tags to add to struct fields
+        default_tag = 'json',
+
+        -- default tag option added struct fields, set to nil to disable
+        -- e.g: `option = "json=omitempty,xml=omitempty`
+        option = nil,
+      },
+      iferr = {
+        -- choose a custom error message, nil to use default
+        -- e.g: `message = 'fmt.Errorf("failed to %w", err)'`
+        message = nil,
+      },
+    })
   end,
-  ---@module "gopher"
-  ---@type gopher.Config
-  opts = {},
 }

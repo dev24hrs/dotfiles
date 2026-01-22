@@ -30,12 +30,14 @@ return {
       'goimports', --Golang
       'gofumpt', --Golang
       'prettier',
-      -- 'sql-formatter',
+      'prettierd',
+      'sqlfmt', -- 'Sql formatter',
       'black', -- Python
       'isort', -- Python
       'shfmt', -- Shell formatter
       'markdown-toc', -- Markdown
       'yamlfmt', -- YAML
+      'taplo', -- TOML
 
       -- Linters
       'golangci-lint', -- Go linting

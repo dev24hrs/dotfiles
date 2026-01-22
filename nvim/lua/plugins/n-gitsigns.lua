@@ -3,7 +3,6 @@ return {
   event = 'VeryLazy',
   config = function()
     require('gitsigns').setup({
-      numhl = true,
       current_line_blame = true,
       current_line_blame_formatter = '      <author>, <author_time:%Y-%m-%d> - <summary>',
       preview_config = {
@@ -16,11 +15,9 @@ return {
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-
-        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[Gitsigns]: Preview Hunk' })
         map('n', '<leader>hb', function()
           gitsigns.blame_line({ full = true })
-        end, { desc = '[Gitsigns]: Blame Hunk' })
+        end, { desc = '[Gitsigns]: Show Blame Line' })
 
         map('n', '<leader>hd', gitsigns.diffthis, { desc = '[Gitsigns]: Diff This' })
       end,

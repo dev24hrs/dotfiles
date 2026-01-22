@@ -1,7 +1,9 @@
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'highlight copying text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.highlight.on_yank({ timeout = 500 })
   end,
 })
 
@@ -31,7 +33,11 @@ vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   command = 'set cursorline',
   group = cursorGrp,
 })
-vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', command = 'set nocursorline', group = cursorGrp })
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  pattern = '*',
+  command = 'set nocursorline',
+  group = cursorGrp,
+})
 
 -- Enable spell checking for certain file types
 -- vim.api.nvim_create_autocmd({ 'BufRead', 'BufReadPost', 'BufNewFile' }, {
@@ -53,11 +59,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'lspinfo',
     'man',
     'notify',
-    'qf',
-    'neotest-output',
     'checkhealth',
-    'neotest-summary',
-    'neotest-output-panel',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

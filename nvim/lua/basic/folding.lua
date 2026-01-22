@@ -1,12 +1,12 @@
 -- powerful folding
-
-vim.opt.foldcolumn = '0' -- '0' is not bad
-vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.foldmethod = 'expr'
-vim.opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.foldmethod = 'expr'
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 local function fold_virt_text(result, start_text, lnum)
   local text = ''
@@ -50,4 +50,4 @@ function _G.custom_foldtext()
   table.insert(result, { '      ......  ↙ ' .. nline .. ' lines folded', '@comment' })
   return result
 end
-vim.opt.foldtext = 'v:lua.custom_foldtext()'
+vim.o.foldtext = 'v:lua.custom_foldtext()'

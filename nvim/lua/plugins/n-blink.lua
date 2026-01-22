@@ -65,6 +65,7 @@ return {
       signature = { enabled = true },
       sources = {
         default = { 'codeium', 'lsp', 'snippets', 'buffer', 'path', 'lazydev' },
+        -- default = { 'codeium', 'lsp', 'snippets', 'buffer', 'path' },
         providers = {
           codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           lazydev = {

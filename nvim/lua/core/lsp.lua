@@ -145,7 +145,7 @@ vim.api.nvim_create_user_command('LspInfo', function()
     print(string.format('󰌘 Client %d: %s', i, client.name))
     print('  ID: ' .. client.id)
     print('  Root dir: ' .. (client.config.root_dir or 'Not set'))
-    print('  Command: ' .. table.concat(client.config.cmd or {}, ' '))
+    -- print('  Command: ' .. table.concat(client.config.cmd or {}, ' '))
     print('  Filetypes: ' .. table.concat(client.config.filetypes or {}, ', '))
 
     if client.is_stopped() then

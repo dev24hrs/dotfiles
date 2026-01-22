@@ -1,10 +1,10 @@
-vim.opt.termguicolors = true
-vim.g.have_nerd_font = true
-vim.opt.signcolumn = 'yes'
-
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.have_nerd_font = true
+
+vim.opt.termguicolors = true
+vim.opt.signcolumn = 'yes'
 
 -- Incremental live completion
 vim.opt.inccommand = 'nosplit'
@@ -36,7 +36,7 @@ vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
 vim.opt.backspace = 'indent,eol,start' -- default
-vim.opt.listchars = 'tab:> ,trail:-,nbsp:+' -- default
+vim.o.listchars = 'tab:> ,trail:-,nbsp:+' -- default
 vim.opt.list = true
 vim.opt.conceallevel = 0
 
@@ -45,7 +45,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 400
-vim.opt.completeopt = 'menu,menuone,noselect,noinsert'
+vim.o.completeopt = 'menu,menuone,noselect,noinsert'
 
 -- utf-8
 vim.scriptencoding = 'utf-8'

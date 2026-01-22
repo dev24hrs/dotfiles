@@ -1,6 +1,7 @@
 return {
   'nvimdev/lspsaga.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  -- event = { 'BufReadPre', 'BufNewFile' },
+  event = 'LspAttach',
   dependencies = {
     'nvim-treesitter/nvim-treesitter', -- optional
     'nvim-tree/nvim-web-devicons', -- optional

@@ -20,16 +20,17 @@ return {
 
     --NOTE: fzf-lua
 
-    -- setup for 2 using case
-    -- one is for codecompanion.nvim or avante.nvim, all of them can use fzf-lua as default picker selector
-    -- when i using these 2 plugins, want to change adapters in codecompanion chat buff with ga keybinding or choose files in avante chat
-    -- buffer with @ keybinding, the selector window is not fzf ui window.
-    -- about this problem, i think it may be that they used vim.ui.selector in the new generated selection window of the chat buffer,not fzf ui selector .im not good at lua,so I can't be sure.
-    -- one is for using FzfLua lsp_code_actions,i got the msg : " FzfLua is not currently registered as 'vim.ui.select' backend,
-    -- use 'silent=true' to hide this message or register globally using ':FzfLua register_ui_select'"
-    -- i attempted to using ":FzfLua register_ui_select ",it works. but when i quit neoivm session and restart, i still got the msg.
-    -- others fzf cmd is ok.
-
+    --[[
+    setup for 2 using case
+    1.one is for codecompanion.nvim or avante.nvim, all of them can use fzf-lua as default picker selector
+        when i using these 2 plugins, want to change adapters in codecompanion chat buff with ga keybinding or choose files in avante chat
+        buffer with @ keybinding, the selector window is not fzf ui window.
+        about this problem, i think it may be that they used vim.ui.selector in the new generated selection window of the chat buffer,not fzf ui selector .im not good at lua,so I can't be sure.
+    2.one is for using FzfLua lsp_code_actions,i got the msg : " FzfLua is not currently registered as 'vim.ui.select' backend,
+        use 'silent=true' to hide this message or register globally using ':FzfLua register_ui_select'"
+    3.i attempted to using ":FzfLua register_ui_select ",it works. but when i quit neoivm session and restart, i still got the msg.
+    others fzf cmd is ok.
+ ]]
     vim.cmd('FzfLua register_ui_select')
     -- require('fzf-lua').register_ui_select({
     --   winopts = {
@@ -76,25 +77,9 @@ return {
       require('fzf-lua').lgrep_quickfix()
     end, { noremap = true, silent = true, desc = '[Fzf]: Show Quickfix List current buffer' })
 
-    -- git
-    vim.keymap.set('n', '<leader>gf', function()
-      require('fzf-lua').git_files()
-    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Files' })
-
-    vim.keymap.set('n', '<leader>gs', function()
-      require('fzf-lua').git_status()
-    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Status' })
-
-    vim.keymap.set('n', '<leader>gd', function()
-      require('fzf-lua').git_diff()
-    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Diff' })
-
-    vim.keymap.set('n', '<leader>gl', function()
-      require('fzf-lua').git_commits()
-    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Commits Log' })
-
-    vim.keymap.set('n', '<leader>gb', function()
-      require('fzf-lua').git_branches()
-    end, { noremap = true, silent = true, desc = '[Fzf]: List Git Branches' })
+    -- lsp code actions
+    vim.keymap.set('n', '<leader>ca', function()
+      require('fzf-lua').lsp_code_actions()
+    end, { noremap = true, silent = true, desc = '[Fzf]: Lsp Code Actions' })
   end,
 }

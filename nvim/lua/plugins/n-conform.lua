@@ -22,17 +22,19 @@ return {
     formatters_by_ft = {
       lua = { 'stylua', format_on_save = true },
       go = { 'gofumpt', 'goimports' },
-      -- json = { 'prettier' },
-      -- sql = { 'prettier' },
-      json = { 'jsonls' }, -- comes with jsonls
       yaml = { 'yamlfmt' },
       sql = { 'sqlfmt' },
-      markdown = { 'prettier', 'markdown-toc' },
-      ['markdown.mdx'] = { 'prettier', 'markdown-toc' },
+      json = { 'prettierd', 'jsonls', stop_after_first = true }, -- comes with jsonls
+      markdown = { 'prettierd', 'markdown-toc', stop_after_first = true },
+      ['markdown.mdx'] = { 'prettierd', 'markdown-toc', stop_after_first = true },
       python = { 'isort', 'black' },
       sh = { 'shfmt' },
       bash = { 'shfmt' },
+      toml = { 'taplo' },
       rust = { 'rustfmt', lsp_format = 'fallback' }, -- comes with Rust installation
+    },
+    formatters = {
+      taplo = { command = 'taplo', args = { 'fmt', '--option', 'indent_tables=false', '-' } },
     },
     default_format_opts = {
       lsp_format = 'fallback',
