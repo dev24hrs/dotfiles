@@ -1,11 +1,12 @@
 ---
-title: ' Mac Dotfiles'
+title: " Mac Dotfiles"
 author: dev24hrs
 tags:
   - dotfiles
   - config
-date: '2025-07-08 15:41 星期二'
+date: "2025-07-08 15:41 星期二"
 ---
+
 # [Mac] WorkFlow
 
 <!--toc:start-->
@@ -58,7 +59,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 osascript -e 'id of app "app name"'
 # e.g
 osascript -e 'id of app "Wezterm"'
-
 ```
 
 ## Git Config
@@ -797,4 +797,3 @@ z() {
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
 
 [^1]:
-
