@@ -1,38 +1,4 @@
--- return {
---   cmd = { 'rust-analyzer' },
---   root_markers = { 'Cargo.lock' },
---   filetypes = { 'rust' },
---   settings = {
---     ['rust-analyzer'] = {
---       check = {
---         command = 'clippy',
---       },
---       diagnostics = {
---         enable = true,
---       },
---     },
---   },
--- }
-
 ---@brief
----
---- https://github.com/rust-lang/rust-analyzer
----
---- See [docs](https://rust-analyzer.github.io/book/configuration.html) for extra settings. The settings can be used like this:
---- ```lua
---- vim.lsp.config('rust_analyzer', {
----   settings = {
----     ['rust-analyzer'] = {
----       diagnostics = {
----         enable = false;
----       }
----     }
----   }
---- })
---- ```
----
---- Note: do not set `init_options` for this LS config, it will be automatically populated by the contents of settings["rust-analyzer"] per
---- https://github.com/rust-lang/rust-analyzer/blob/eb5da56d839ae0a9e9f50774fa3eb78eb0964550/docs/dev/lsp-extensions.md?plain=1#L26.
 
 local function reload_workspace(bufnr)
   local clients = vim.lsp.get_clients({ bufnr = bufnr, name = 'rust_analyzer' })
