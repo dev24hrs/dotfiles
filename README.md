@@ -1,12 +1,11 @@
 ---
-title: " Mac Dotfiles"
+title: ' Mac Dotfiles'
 author: dev24hrs
 tags:
   - dotfiles
   - config
-date: "2025-07-08 15:41 星期二"
+date: '2025-07-08 15:41 星期二'
 ---
-
 # [Mac] WorkFlow
 
 <!--toc:start-->
@@ -59,6 +58,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 osascript -e 'id of app "app name"'
 # e.g
 osascript -e 'id of app "Wezterm"'
+
 ```
 
 ## Git Config
@@ -110,12 +110,13 @@ osascript -e 'id of app "Wezterm"'
 Use pkg to install [homebrew](https://github.com/Homebrew/brew/releases/), but need to config ~/.zshrc
 
 ```bash
-# add blew to ~/.zshrc
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# add to ~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
 # set ustc mirrors
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
-# export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
 # then
 source ~/.zshrc
 
@@ -124,6 +125,15 @@ brew update
 # then brew autoremove
 # brew cleanup
 # brew cleanup --prune=all
+```
+
+恢复官方源
+
+```zsh
+# 删除源
+# 删除镜像环境变量
+sed -i '' '/HOMEBREW_BOTTLE_DOMAIN/d' ~/.zshrc
+source ~/.zshrc
 ```
 
 ## Rime 输入法
@@ -194,7 +204,7 @@ brew update
     chord_duration: 0.1 # seconds
     # options: always | never | appropriate
     show_notifications_when: appropriate
-
+  
     # 以下软件默认英文模式
     # ascii_mode: false  默认输入法模式: false 中文 true 英文
     # ascii_punct: true  是否设置为英文标点
@@ -224,12 +234,12 @@ brew update
         ascii_mode: false
         vim_mode: true
         ascii_punct: true
-
+  
     # 如果想要修改皮肤，直接更改 color_scheme 的值即可
     style:
       color_scheme: macos_dark
       color_scheme_dark: macos_dark
-
+  
     preset_color_schemes:
       macos_light:
         font_face: "RecMonoCasualNF"
@@ -260,7 +270,7 @@ brew update
         hilited_candidate_label_color: 0xFFFFFF
         text_color: 0x333333
         hilited_text_color: 0xF7F7F7
-
+  
       macos_dark:
         font_face: "RecMonoCasualNF"
         font_point: 15.0
@@ -698,20 +708,14 @@ alias lt='ls --tree'
 - [cheat.sh](https://github.com/chubin/cheat.sh) - command line cheat sheet
 
 ```bash
-mkdir -p $HOME/Documents/Tools/Cheat/bin
-curl https://cht.sh/:cht.sh > "$HOME/Documents/Tools/Cheat/bin/cht.sh"
-chmod +x "$HOME/Documents/Tools/Cheat/bin/cht.sh"
-
-# config ~/.zshrc
-# cheat.sh
-export CHEAT_DIR=$HOME/Documents/Tools/Cheat
-export PATH=$PATH:$CHEAT_DIR/bin
-source ~/.zshrc
-
+# zsh function
+ch(){
+	curl cheat.sh/$argv[1]
+}
 #use like
-cht.sh go chan
-# prefer use
-cht.sh --shell [LANG]
+ch go chan
+
+# or install refer to github 
 ```
 
 - [httpie](https://github.com/httpie/cli) - command-line HTTP client
@@ -739,7 +743,29 @@ z() {
         --bind 'enter:become:echo {2..}'
   ) && cd "$dir"
 }
+
 ```
+
+-   [go-musicfox](https://github.com/go-musicfox/go-musicfox) - music cli
+
+```bash
+# install
+brew install anhoder/go-musicfox/go-musicfox
+
+# use
+musicfox
+
+# config
+# default config: https://github.com/go-musicfox/go-musicfox/blob/master/utils/filex/embed/config.toml
+# macos path is: $HOME/Library/Application Support/go-musicfox
+# 软链到 ~/.config/go-musicfox
+mkdir -p ~/.config/go-musicfox
+cd ~/.config/go-musicfox
+ln -s $HOME/Library/Application Support/go-musicfox/config.toml config.toml
+# vim config.toml
+```
+
+
 
 ## Apps
 
@@ -797,3 +823,5 @@ z() {
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
 
 [^1]:
+
+ 
