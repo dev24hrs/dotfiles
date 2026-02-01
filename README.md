@@ -494,12 +494,26 @@ config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/n
 config vim
 
 ```bash
-vim ~/.vimrc
-
 " basic
+" fzf"
+set rtp+=/opt/homebrew/opt/fzf
+
+if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 syntax on
 set t_Co=256
-" set termguicolors
+set termguicolors
 set background=dark
 set nocompatible
 set number
@@ -510,10 +524,13 @@ set clipboard=unnamed
 " tab
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
 set expandtab
 set smarttab
+set smartindent
 set autoindent
 set backspace=eol,start,indent
+set noexpandtab
 
 " search
 set showmatch
@@ -536,6 +553,10 @@ set noswapfile
 
 set noerrorbells
 
+set wildmenu               " enhance command-line auto-completion
+set wildignore=*.o         " files matched will be ignored by wildmenu
+set wildmode=longest:list  " Completion mode
+
 " encoding
 " set spell spelllang=en_us
 set encoding=utf-8
@@ -545,8 +566,8 @@ set termencoding=utf-8
 filetype indent on
 
 " auto tag
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
+inoremap ( ()<ESC>i  
+inoremap [ []<ESC>i 
 inoremap { {}<ESC>i
 inoremap < <><ESC>i
 inoremap ' ''<ESC>i
@@ -561,6 +582,11 @@ nnoremap L $
 " $/^ doesn't do anything
 nnoremap $ <nop>
 nnoremap ^ <nop>
+
+" Gruvbox config
+" git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
+let g:gruvbox_italic=1
+colorscheme gruvbox
 ```
 
 ## Golang
