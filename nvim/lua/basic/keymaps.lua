@@ -20,3 +20,7 @@ vim.keymap.set('n', 'wh', '<C-w>h', { noremap = true, silent = true, desc = '[Ba
 vim.keymap.set('n', 'wl', '<C-w>l', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
 vim.keymap.set('n', 'wj', '<C-w>j', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
 vim.keymap.set('n', 'wk', '<C-w>k', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
+
+-- buffer switch
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer next' })
+vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer previous' })

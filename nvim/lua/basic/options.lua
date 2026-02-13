@@ -4,7 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.have_nerd_font = true
 
 vim.opt.termguicolors = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'no'
 
 -- Incremental live completion
 vim.opt.inccommand = 'nosplit'
