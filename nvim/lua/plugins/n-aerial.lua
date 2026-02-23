@@ -3,7 +3,7 @@ return {
   event = 'LspAttach',
   opts = {
     attach_mode = 'global',
-    backends = { 'treesitter', 'lsp', 'markdown', 'man' },
+    backends = { 'treesitter', 'lsp', 'markdown', 'man', 'asciidoc' },
     disable_max_lines = 5000,
     -- filter_kind = false,
     filter_kind = {
@@ -21,6 +21,15 @@ return {
     layout = { min_width = 20, width = 30, default_direction = 'prefer_right', resize_to_content = true },
     show_guides = true,
     autojump = true,
+    lazy_load = true,
+    keymaps = {
+      ['o'] = 'actions.jump',
+      ['{'] = 'actions.prev',
+      ['}'] = 'actions.next',
+      ['q'] = 'actions.close',
+      ['l'] = 'actions.tree_toggle',
+      ['h'] = 'actions.tree_toggle',
+    },
   },
   dependencies = {
     'nvim-treesitter/nvim-treesitter',

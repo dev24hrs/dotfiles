@@ -2,7 +2,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    -- lazy = false,
+    lazy = false,
     branch = 'main',
     priority = 1000,
     build = ':TSUpdate',
@@ -70,8 +70,7 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    cmd = 'TSContextToggle',
-    ft = { 'lua', 'go' },
+    ft = { 'lua', 'go', 'rust', 'toml', 'yaml', 'json', 'markdown', 'markdown.mdx' },
     config = function()
       require('treesitter-context').setup({
         enable = true,
@@ -114,5 +113,15 @@ return {
         },
       })
     end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
+    init = function()
+      -- Disable entire built-in ftplugin mappings to avoid conflicts.
+      -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+      vim.g.no_plugin_maps = true
+    end,
+    config = function() end,
   },
 }
