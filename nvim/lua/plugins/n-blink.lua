@@ -41,6 +41,7 @@ return {
         ghost_text = { enabled = true },
         menu = {
           winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpMenuSelection,Search:None',
+          -- winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Normal,Search:None',
           scrolloff = 1,
           scrollbar = false,
           draw = {

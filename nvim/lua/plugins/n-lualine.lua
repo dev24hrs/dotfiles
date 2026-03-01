@@ -16,17 +16,18 @@ return {
         }
       end
     end
-    local custom_gruvbox = require('lualine.themes.gruvbox_dark')
+    -- local custom_gruvbox = require('lualine.themes.gruvbox_dark')
     local colors = {
       MAGENTA = '#a89984',
-      DARKGRAY = '#3e3d3d',
+      -- DARKGRAY = '#3e3d3d',
+      DARKGRAY = '#282828',
       RED = '#cb241d',
       GREEN = '#a9b665',
       YELLOW = '#d8a657',
       BLUE = '#7daea3',
       CYAN = '#89b482',
     }
-    custom_gruvbox = {
+    local custom_gruvbox = {
       normal = {
         a = { bg = colors.DARKGRAY, fg = colors.RED },
         b = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
@@ -42,33 +43,21 @@ return {
         theme = custom_gruvbox,
         section_separators = '',
         component_separators = '',
+        always_divide_middle = false,
+        always_show_tabline = false,
+        globalstatus = false,
       },
       sections = {
         lualine_a = { 'mode' },
         lualine_b = {
           { 'branch', icon = '' },
-          {
-            'diff',
-            symbols = { added = '+', modified = '~', removed = '-' },
-            source = diff_source,
-          },
+          { 'diff', symbols = { added = '+', modified = '~', removed = '-' }, source = diff_source },
           { 'diagnostics' },
         },
-
-        lualine_c = {
-          'filename',
-        },
+        lualine_c = { 'filename' },
         lualine_x = {
           'encoding',
-          {
-            'fileformat',
-            icons_enabled = true,
-            symbols = {
-              unix = 'LF',
-              dos = 'CRLF',
-              mac = 'CR',
-            },
-          },
+          { 'fileformat', icons_enabled = true, symbols = { unix = 'LF', dos = 'CRLF', mac = 'CR' } },
         },
         lualine_y = { 'filetype' },
         lualine_z = {
@@ -81,12 +70,13 @@ return {
               separator = ' ',
             },
             ignore_lsp = {},
-            -- Display the LSP name
             show_name = true,
           },
         },
       },
       tabline = {},
+      winbar = {},
+      inactive_winbar = {},
       extensions = {},
     })
   end,

@@ -9,7 +9,9 @@ vim.opt.signcolumn = 'no'
 -- Incremental live completion
 vim.opt.inccommand = 'nosplit'
 vim.opt.ttyfast = true
+-- 高亮当前行的行号, 非整行
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'number'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -18,14 +20,20 @@ vim.opt.laststatus = 3
 vim.opt.wrap = true
 
 -- Tabs & Indentation
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 0
-vim.opt.tabstop = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true -- default
-vim.opt.smartindent = true
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 0
+-- vim.opt.tabstop = 4
+-- vim.opt.expandtab = true
+-- vim.opt.autoindent = true -- default
+-- vim.opt.smartindent = true
 vim.opt.breakindent = true
 vim.opt.linebreak = true
+
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = false -- Set to false for Go (uses real tabs)
 
 -- Search Settings
 vim.opt.ignorecase = true
@@ -47,6 +55,9 @@ vim.opt.updatetime = 300
 vim.opt.timeoutlen = 400
 vim.o.completeopt = 'menu,menuone,noselect,noinsert'
 
+-- 添加 '-' 词语
+vim.opt.iskeyword:append('-')
+
 -- utf-8
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8' -- default
@@ -62,7 +73,6 @@ vim.opt.undofile = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
 -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.winborder = 'single'
 

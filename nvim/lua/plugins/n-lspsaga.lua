@@ -23,8 +23,9 @@ return {
         extend_gitsigns = true,
         keys = { quit = 'q', exec = '<CR>' },
       },
-      symbol_in_winbar = { enable = true },
+      symbol_in_winbar = { enable = false },
       outline = {
+        enable = false,
         -- win_position = 'right',
         layout = 'float', -- normal or float
         win_width = 50,

@@ -12,7 +12,10 @@ return {
         'go',
         'gomod',
         'gosum',
+        'gowork',
         'lua',
+        'vim',
+        'vimdoc',
         'json',
         'markdown',
         'markdown-inline',
@@ -34,7 +37,14 @@ return {
           additional_vim_regex_highlighting = false, -- disable standard vim highlighting
         },
         indent = { enable = true },
-        incremental_selection = { enable = true },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<CR>', -- Enter to start selecting
+            node_incremental = '<CR>',
+            node_decremental = '<BS>', -- Backspace to shrink
+          },
+        },
         context_commentstring = { enable = true, enable_autocmd = false },
         query_linter = {
           enable = true,

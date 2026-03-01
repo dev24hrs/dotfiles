@@ -22,5 +22,9 @@ vim.keymap.set('n', 'wj', '<C-w>j', { noremap = true, silent = true, desc = '[Ba
 vim.keymap.set('n', 'wk', '<C-w>k', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
 
 -- buffer switch
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer next' })
-vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer previous' })
+vim.keymap.set('n', '<C-n>', '<cmd>bnext<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer next' })
+vim.keymap.set('n', '<C-p>', '<cmd>bprevious<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer previous' })
+vim.keymap.set('n', '<C-c>', '<cmd>bdelete!<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer close' })
+
+vim.keymap.set('n', 'vw', 'viw', { noremap = true, silent = true, desc = '[Basic]: selecte current word' })
+vim.keymap.set('n', 'vv', 'V', { noremap = true, silent = true, desc = '[Basic]: selecte whole line' })

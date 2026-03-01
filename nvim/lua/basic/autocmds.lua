@@ -62,3 +62,8 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf, silent = true })
   end,
 })
+
+-- 创建 :H 命令，在新的竖屏中打开 help
+vim.api.nvim_create_user_command('H', function(opts)
+  vim.cmd('vertical help ' .. (opts.args ~= '' and opts.args or ''))
+end, { nargs = '*', complete = 'help' })
