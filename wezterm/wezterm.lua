@@ -5,58 +5,68 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices.
 
 config.font = wezterm.font("RecMonoCasual Nerd Font Mono")
-config.font_size = 16.5
+config.font_size = 17
 -- disable ligatures
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+config.line_height = 1.0
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
-config.initial_cols = 150
+config.initial_cols = 155
 config.initial_rows = 50
 config.default_cursor_style = "SteadyBar"
 config.window_close_confirmation = "NeverPrompt"
 config.adjust_window_size_when_changing_font_size = false
 
-config.macos_window_background_blur = 30
--- config.window_background_opacity = 0.95
+-- config.window_background_opacity = 0.96
+config.macos_window_background_blur = 25
 config.color_scheme = "Gruvbox Dark (Gogh)"
 -- config.color_scheme = "Gruvbox Material (Gogh)"
 
--- config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
--- local act = wezterm.action
--- config.keys = {
--- 	{ key = "=", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
--- 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
--- 	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
--- 	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
--- 	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
--- 	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
--- 	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
--- 	{ key = "m", mods = "LEADER", action = act.ToggleFullScreen },
--- 	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
--- }
--- config.key_tables = {
--- 	resize_pane = {
--- 		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
--- 		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
--- 		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
--- 		{ key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
--- 		{ key = "Escape", action = "PopKeyTable" },
--- 	},
--- }
--- config.mouse_bindings = {
--- 	-- Ctrl+左键打开链接
--- 	{
--- 		event = { Up = { streak = 1, button = "Left" } },
--- 		mods = "CMD",
--- 		action = wezterm.action.OpenLinkAtMouseCursor,
--- 	},
--- 	{
--- 		event = { Up = { streak = 1, button = "Left" } },
--- 		mods = "CMD",
--- 		action = wezterm.action.OpenLinkAtMouseCursor,
--- 	},
--- }
+config.window_padding = {
+	left = 2,
+	right = 2,
+	top = 2,
+	bottom = 2,
+}
+
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+local act = wezterm.action
+config.keys = {
+	{ key = "a", mods = "LEADER", action = act.SendKey({ key = "a", mods = "CTRL" }) },
+
+	{ key = "\\", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
+	{ key = "m", mods = "LEADER", action = act.ToggleFullScreen },
+	{ key = "r", mods = "LEADER", action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }) },
+}
+config.key_tables = {
+	resize_pane = {
+		{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
+		{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+		{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
+		{ key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
+		{ key = "Escape", action = "PopKeyTable" },
+	},
+}
+config.mouse_bindings = {
+	-- Ctrl+左键打开链接
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CMD",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CMD",
+		action = wezterm.action.OpenLinkAtMouseCursor,
+	},
+}
 
 return config
