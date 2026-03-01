@@ -6,13 +6,12 @@ return {
     require('toggleterm').setup({
       open_mapping = [[<c-/>]],
       shading_factor = '1',
-      direction = 'horizontal',
+      -- direction = 'horizontal',
+      direction = 'float',
       size = 15,
-      -- direction = 'float',
-      -- size = 20,
-      -- float_opts = {
-      --   border = 'single',
-      -- },
+      float_opts = {
+        border = 'single',
+      },
     })
   end,
 }

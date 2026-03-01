@@ -38,7 +38,7 @@ return {
       buffer_close_icon = '',
       close_icon = '',
       modified_icon = '',
-
+      show_buffer_icons = false,
       show_buffer_close_icons = false,
       show_close_icon = false,
       left_mouse_command = 'buffer %d',
