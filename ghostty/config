@@ -1,0 +1,67 @@
+# font
+font-family                 = RecMonoCasual Nerd Font Mono
+font-size                   = 16.5
+font-thicken                = true
+font-family-italic          = true
+font-feature                = calt,liga,dlig
+# adjust-cell-height          = 10%
+window-inherit-font-size    = true
+
+# theme
+theme                       = Gruvbox Dark
+# theme                       = Gruvbox Dark Hard
+term                        = xterm-256color
+
+background-opacity          = 0.96
+background-blur             = 25
+selection-invert-fg-bg      = true
+
+# cursor
+cursor-style                = bar
+cursor-style-blink          = true
+
+# window
+window-width                = 150
+window-height               = 50
+window-padding-balance      = true
+window-padding-x            = 0
+window-padding-y            = 0
+window-save-state           = always
+window-colorspace           = display-p3
+
+# macos
+macos-titlebar-style        = hidden
+macos-non-native-fullscreen = true
+macos-icon                  = custom
+macos-custom-icon           = ~/.config/ghostty/Ghostty.icns
+
+# shell
+shell-integration           = zsh
+shell-integration-features  = no-cursor,sudo,no-title
+
+# quick terminal
+keybind                             = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-position             = top
+quick-terminal-size                 = 45%,45%
+quick-terminal-animation-duration   = 0
+
+# other
+bell-features                   = no-audio
+bell-audio-volume               = 0
+scrollback-limit                = 100000
+copy-on-select                  = clipboard
+quit-after-last-window-closed   = true
+
+# Key bindings
+# split
+keybind                     = cmd+s>\=new_split:right
+keybind                     = cmd+s>-=new_split:down
+
+keybind                     = cmd+s>j=goto_split:bottom
+keybind                     = cmd+s>k=goto_split:top
+keybind                     = cmd+s>h=goto_split:left
+keybind                     = cmd+s>l=goto_split:right
+keybind                     = cmd+s>z=toggle_split_zoom
+keybind                     = cmd+s>x=close_surface
+keybind                     = cmd+s>enter=toggle_fullscreen
+keybind                     = cmd+s>r=reload_config
