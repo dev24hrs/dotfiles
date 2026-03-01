@@ -5,10 +5,10 @@ local config = wezterm.config_builder()
 -- This is where you actually apply your config choices.
 
 config.font = wezterm.font("RecMonoCasual Nerd Font Mono")
-config.font_size = 17
+config.font_size = 17.0
 -- disable ligatures
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.line_height = 1.0
+config.line_height = 1.2
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
@@ -27,8 +27,8 @@ config.color_scheme = "Gruvbox Dark (Gogh)"
 config.window_padding = {
 	left = 2,
 	right = 2,
-	top = 2,
-	bottom = 2,
+	top = 0,
+	bottom = 0,
 }
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
