@@ -56,6 +56,7 @@ nic() {
 
     # splite bottom for terminal (20% height )
     tmux split-window -v -t "$session_name" -c "$PWD" -l 20%
+    tmux select-pane -t "$session_name":1.1
 
     # attach
     tmux attach-session -t "$session_name"

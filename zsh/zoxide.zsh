@@ -1,6 +1,3 @@
-# zoxide 
-eval "$(zoxide init zsh)"
-
 # with fzf
 z() {
   local dir=$(

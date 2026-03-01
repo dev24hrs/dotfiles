@@ -9,8 +9,8 @@ alias mu='musicfox'
 
 # lsd
 alias ls='lsd'
-alias la='ls -la'
-alias lt='ls --tree'
+alias la='lsd -la'
+alias lt='lsd --tree'
 
 # git
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20 --date=format:'%Y-%m-%d %H:%M %a'"

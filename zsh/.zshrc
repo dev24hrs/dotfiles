@@ -9,26 +9,28 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # ========= zsh plugins ========
-[[ -f ~/.zsh/zsh-plugins.zsh ]] && source ~/.zsh/zsh-plugins.zsh
+[[ -f ~/.config/zsh/zsh_plugins.zsh ]] && source ~/.config/zsh/zsh_plugins.zsh
+
+# ========= code env ========
+[[ -f ~/.config/zsh/code_env.zsh ]] && source ~/.config/zsh/code_env.zsh
 
 # ========= fzf ========
-[[ -f ~/.zsh/fzf.zsh ]] && source ~/.zsh/fzf.zsh
+[[ -f ~/.config/zsh/fzf.zsh ]] && source ~/.config/zsh/fzf.zsh
 
 # ========= zoxide ========
-[[ -f ~/.zsh/zoxide.zsh ]] && source ~/.zsh/zoxide.zsh
+[[ -f ~/config/zsh/zoxide.zsh ]] && source ~/.config/zsh/zoxide.zsh
 
 # ========= chpwd ========
-[[ -f ~/.zsh/tools.zsh ]] && source ~/.zsh/tools.zsh
-
-# ========= code-env ========
-[[ -f ~/.zsh/code-env.zsh ]] && source ~/.zsh/code-env.zsh
+[[ -f ~/.config/zsh/tools.zsh ]] && source ~/.config/zsh/tools.zsh
 
 # ========= ai-pai ========
-[[ -f ~/.zsh/ai-api.zsh ]]  && source ~/.zsh/ai-api.zsh
+# [[ -f ~/.config/zsh/ai_api.zsh ]]  && source ~/.config/zsh/ai_api.zsh
 
 # ========= alias ========
-[[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
+[[ -f ~/.config/zsh/aliases.zsh ]] && source ~/.config/zsh/aliases.zsh
 
 # starship
 eval "$(starship init zsh)"
+# zoxide 
+eval "$(zoxide init zsh)"
 
