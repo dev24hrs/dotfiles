@@ -21,19 +21,17 @@
 --   end,
 -- }
 return {
-  {
     'f-person/git-blame.nvim',
     event = 'VeryLazy',
     config = function()
-      require('gitblame').setup({
-        enabled = true,
-        message_template = '      <author>, <date> • <summary> • <<sha>>',
-        date_format = '%Y-%m-%d %H:%M',
-        virtual_text_column = 1,
-      })
-      vim.g.gitblame_highlight_group = 'Comment'
-      vim.g.gitblame_use_blame_commit_file_urls = true
-      vim.g.gitblame_max_commit_summary_length = 60
+        require('gitblame').setup({
+            enabled = true,
+            message_template = '      <author>, <date> • <summary> • <<sha>>',
+            date_format = '%Y-%m-%d %H:%M',
+            virtual_text_column = 1,
+        })
+        vim.g.gitblame_highlight_group = 'Comment'
+        vim.g.gitblame_use_blame_commit_file_urls = true
+        vim.g.gitblame_max_commit_summary_length = 60
     end,
-  },
 }
