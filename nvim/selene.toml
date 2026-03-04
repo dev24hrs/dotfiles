@@ -1,0 +1,20 @@
+# 开启标准库支持
+std = "lua51+nvim"
+
+# 如果你想更精细地控制，也可以手动添加全局变量
+[config]
+global_usage_check = true
+
+[rules]
+# 允许使用 pairs
+unscoped_variables = "allow"
+# 关闭强制引号一致性
+consistent_quotes = "allow"
+# 允许局部变量覆盖上层变量 (local vim = vim)
+shadowing_variable = "allow"
+# 未使用的变量 设置为警告
+unused_variable = { level = "warn" }
+# 允许使用某些可能“不够优雅”但有效的逻辑 (if x == true then ...)
+bool_comparison = "allow"
+# 允许空的 if/else 分支
+empty_if = "allow"

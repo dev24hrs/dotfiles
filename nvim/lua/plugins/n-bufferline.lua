@@ -96,7 +96,6 @@ return {
                 bg = normal_bg,
             },
             modified_visible = {
-
                 fg = '#fb4934',
                 bg = normal_bg,
             },

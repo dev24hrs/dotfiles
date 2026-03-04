@@ -27,16 +27,20 @@ return {
         formatters_by_ft = {
             lua = { 'stylua' },
             go = { 'gofumpt', 'goimports' },
-            yaml = { 'yamlfmt' },
-            sql = { 'sqlfmt' },
+            sql = { 'sql-formatter' },
+            yaml = { 'prettierd', 'prettier', stop_after_first = true },
             json = { 'prettierd' },
+            jsonc = { 'prettierd' },
             markdown = { 'prettierd', 'markdown-toc', stop_after_first = true },
             ['markdown.mdx'] = { 'prettierd', 'markdown-toc', stop_after_first = true },
             python = { 'isort', 'black' },
             sh = { 'shfmt' },
             bash = { 'shfmt' },
             toml = { 'taplo' },
-            rust = { 'rustfmt', lsp_format = 'fallback' }, -- comes with Rust installation
+            rust = { 'rustfmt' }, -- comes with Rust installation
+            fish = { 'fish_indent' }, -- comes with Fish installation
+            -- 在没有特定格式化器时尝试用 LSP 格式化
+            ['_'] = { "lsp_format = 'fallback'" },
         },
         formatters = {
             taplo = { command = 'taplo', args = { 'fmt', '--option', 'indent_tables=false', '-' } },
@@ -45,7 +49,6 @@ return {
             lsp_format = 'fallback',
         },
         format_on_save = {
-            pattern = '*.lua,*.json,*.jsonc,*.yaml,*.yml,*.md,*.sql,*.sh,*.toml,*.md,*.go',
             timeout_ms = 500,
             lsp_fallback = true,
         },

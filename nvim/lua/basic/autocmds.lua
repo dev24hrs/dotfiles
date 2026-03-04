@@ -49,17 +49,19 @@ end
 local indent_group = vim.api.nvim_create_augroup('LanguagesIndent', { clear = true })
 
 local lang_map = {
-    -- 2 空格 (前端/配置类)
     -- javascript = { 2, true },
     -- typescript = { 2, true },
-    html = { 2, true },
-    css = { 2, true },
+    -- html = { 2, true },
+    -- css = { 2, true },
     json = { 2, true },
+    jsonc = { 2, true },
     yaml = { 2, true },
     markdown = { 2, true },
+    sh = { 2, true },
+    toml = { 2, true },
+    sql = { 2, true },
     -- 4 空格 (真 Tab)
     go = { 4, false },
-    -- 4 空格 (默认/后端)
     python = { 4, true },
     lua = { 4, true },
     c = { 4, true },
@@ -76,6 +78,13 @@ vim.api.nvim_create_autocmd('FileType', {
         end
     end,
 })
+-- tidy go.mod
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = 'go.mod',
+    callback = function()
+        vim.fn.jobstart('go mod tidy', { detach = true })
+    end,
+})
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {
@@ -84,6 +93,7 @@ vim.api.nvim_create_autocmd('FileType', {
         'help',
         'lspinfo',
         'man',
+        'qf',
         'notify',
         'checkhealth',
     },

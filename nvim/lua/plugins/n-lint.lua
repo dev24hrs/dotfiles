@@ -1,29 +1,46 @@
 return {
     'mfussenegger/nvim-lint',
-    event = 'VeryLazy',
-    config = function()
-        local lint = require('lint')
-        lint.linters_by_ft = {
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+        linters_by_ft = {
             go = { 'golangcilint' },
+            lua = { 'selene' },
+            sh = { 'shellcheck' },
             yaml = { 'yamllint' },
             json = { 'jsonlint' },
+            jsonc = { 'jsonlint' },
+            markdown = { 'markdownlint' },
             sql = { 'sqlfluff' },
-            lua = { 'luacheck' },
-            rust = { 'clippy' },
-            sh = { 'shellcheck' },
-            bash = { 'shellcheck' },
-            -- markdown = { 'markdownlint-cli2' },
-            -- markdown = { 'markdownlint' },
+        },
+    },
+    config = function(_, opts)
+        local lint = require('lint')
+        lint.linters_by_ft = opts.linters_by_ft
+
+        -- 针对 SQL 动态检测方言
+        lint.linters.sqlfluff.args = {
+            'lint',
+            '--format=json',
+            '--dialect=mysql',
         }
+        lint.linters.markdownlint.args = {
+            '--config',
+            os.getenv('HOME') .. '/config/.markdownlint.json', -- $HOME/config/.markdownlint.json
+            '--',
+        }
+
         local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
             group = lint_augroup,
             callback = function()
-                local linters = lint.linters_by_ft[vim.bo.filetype]
-                if linters and #linters > 0 then
-                    lint.try_lint()
-                end
+                lint.try_lint()
             end,
         })
+        -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        --     pattern = { '*.go' },
+        --     callback = function()
+        --         require('lint').try_lint('golangcilint')
+        --     end,
+        -- })
     end,
 }

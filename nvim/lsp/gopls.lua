@@ -116,10 +116,10 @@ return {
             },
             hints = {
                 assignVariableTypes = false,
-                compositeLiteralFields = false,
-                compositeLiteralTypes = false,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
                 constantValues = true,
-                functionTypeParameters = false,
+                functionTypeParameters = true,
                 parameterNames = true,
                 rangeVariableTypes = false,
             },
