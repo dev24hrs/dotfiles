@@ -25,10 +25,10 @@ config.color_scheme = "Gruvbox Dark (Gogh)"
 -- config.color_scheme = "Gruvbox Material (Gogh)"
 
 config.window_padding = {
-	left = 2,
-	right = 2,
-	top = 0,
-	bottom = 0,
+	left = "1cell",
+	right = "1cell",
+	top = "0.0cell",
+	bottom = "0.0cell",
 }
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
