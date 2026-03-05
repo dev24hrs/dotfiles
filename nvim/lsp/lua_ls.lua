@@ -1,11 +1,15 @@
+---@diagnostic disable: undefined-doc-name
 local root_markers1 = {
     '.emmyrc.json',
     '.luarc.json',
     '.luarc.jsonc',
 }
 local root_markers2 = {
+    '.luacheckrc',
+    '.stylua.toml',
     'stylua.toml',
     'selene.toml',
+    'selene.yml',
 }
 
 ---@type vim.lsp.Config

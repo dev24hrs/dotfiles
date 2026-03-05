@@ -25,7 +25,8 @@ This repo hosts my Neovim configuration.
 
 The `init.lua` is the Config entry point for terminal NeoVim.
 
-It's a simple but satisfying configuration for me, with `lua, bash, json, yaml, sql, markdown, golang, rust` yet.
+It's a simple but satisfying configuration for me, with
+`lua, bash, json, yaml, sql, markdown, golang, rust` yet.
 
 Always update and keep it more usefully.
 
@@ -97,7 +98,8 @@ Always update and keep it more usefully.
 
 ## Plugins
 
-Apart from native plugins, try to choose plugins which beautiful & useful & minimized to use.
+Apart from native plugins, try to choose plugins which beautiful & useful &
+minimized to use.
 
 - Plugin management : [lazy.nvim](https://github.com/folke/lazy.nvim)
 
@@ -114,7 +116,9 @@ Apart from native plugins, try to choose plugins which beautiful & useful & mini
 
 - Auto-completion : [blink.cmp](https://github.com/Saghen/blink.cmp)
 
-- Snippets : [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) & [luasnip](https://github.com/L3MON4D3/LuaSnip)
+- Snippets :
+  [friendly-snippets](https://github.com/rafamadriz/friendly-snippets) &
+  [luasnip](https://github.com/L3MON4D3/LuaSnip)
 
 - File explorer : [nvim-tree.nvim](https://github.com/nvim-tree/nvim-tree.lua)
 
@@ -154,13 +158,15 @@ keybinding:
 
 - Diffview : [mini.diff](https://github.com/nvim-mini/mini.diff)
 
-- Code treesitter : [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- Code treesitter :
+  [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 
 - Linter plugin : [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 
 - Code format : [conform.nvim](https://github.com/stevearc/conform.nvim)
 
-- Markdown : [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+- Markdown :
+  [render-markdown](https://github.com/MeanderingProgrammer/render-markdown.nvim)
 
 - Dashboard : [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim)
 
@@ -168,22 +174,26 @@ keybinding:
 
 - Comment : [Comment.nvim](https://github.com/numToStr/Comment.nvim)
 
-- Indent scope : [mini.indentscope](https://github.com/echasnovski/mini.indentscope)
+- Indent scope :
+  [mini.indentscope](https://github.com/echasnovski/mini.indentscope)
 
 - Statusline : [nvim-lualine](https://github.com/nvim-lualine/lualine.nvim)
 
 - UI plugin :
   - [noice.nvim](https://github.com/folke/noice.nvim)
   - [nvim-notify](https://github.com/rcarriga/nvim-notify)
-  - [fidget.nvim](https://github.com/j-hui/fidget.nvim) manage lsp progress messages
+  - [fidget.nvim](https://github.com/j-hui/fidget.nvim) manage lsp progress
+    messages
 
-- Project Management : [project.nvim](https://github.com/ahmedkhalf/project.nvim)
+- Project Management :
+  [project.nvim](https://github.com/ahmedkhalf/project.nvim)
 
 - Hlsearch : [nvim-hlslens](https://github.com/kevinhwang91/nvim-hlslens)
 
 - Enhanced search : [flash.nvim](https://github.com/folke/flash.nvim)
 
-- Managing crates.io dependencies: [crates.nvim](https://github.com/Saecki/crates.nvim)
+- Managing crates.io dependencies:
+  [crates.nvim](https://github.com/Saecki/crates.nvim)
 
 - AI :
   - [Codeium](https://github.com/Exafunction/windsurf.vim)
@@ -197,115 +207,115 @@ default keybindings refer to [vim cheatsheet](https://vim.rtorr.com/lang/zh_cn/)
 
 ### Basic keymap
 
-|    Key     |           Desc           |
-| :--------: | :----------------------: |
-|   space    |        leader key        |
-|     J      | move selected line down  |
-|     K      |  move selected line up   |
-|     H      | move cursor to line head |
-|     L      | move cursor to line end  |
-|     zc     |         folding          |
-|     zx     |        unfolding         |
-| \<leader>w |      Format buffer       |
+|    Key    |           Desc           |
+| :-------: | :----------------------: |
+|   space   |        leader key        |
+|     J     | move selected line down  |
+|     K     |  move selected line up   |
+|     H     | move cursor to line head |
+|     L     | move cursor to line end  |
+|    zc     |         folding          |
+|    zx     |        unfolding         |
+| <leader>w |      Format buffer       |
 
 ### Comment keymaps
 
-|     Key     |                  Desc                  |
-| :---------: | :------------------------------------: |
-| \<leader>[  |    [Comment]: Comment line or lines    |
-| \<leader>]  |   [Comment]: UnComment line or lines   |
-| \<leader>\  | [Comment]: Comment/Uncomment blockwise |
+|    Key     |                  Desc                  |
+| :--------: | :------------------------------------: |
+| <leader>[  |    [Comment]: Comment line or lines    |
+| <leader>]  |   [Comment]: UnComment line or lines   |
+| <leader>\  | [Comment]: Comment/Uncomment blockwise |
 
 ### Fzf keymaps
 
 #### find files or words or buffers
 
-|     Key     |                Desc                 |
-| :---------: | :---------------------------------: |
-| \<leader>fl |    [Fzf]: Files List in project     |
-| \<leader>fw | [Fzf]: Find Word in current buffer  |
-| \<leader>fg |  [Fzf]: Find Grep words in project  |
-| \<leader>fr |      [Fzf]: Find Recent files       |
-| \<leader>fb |    [Fzf]: Find existing Buffers     |
-| \<leader>fc | [Fzf]: Find in neovim Configuration |
-| \<leader>fp |      [Project]: Find Projects       |
+|    Key     |                Desc                 |
+| :--------: | :---------------------------------: |
+| <leader>fl |    [Fzf]: Files List in project     |
+| <leader>fw | [Fzf]: Find Word in current buffer  |
+| <leader>fg |  [Fzf]: Find Grep words in project  |
+| <leader>fr |      [Fzf]: Find Recent files       |
+| <leader>fb |    [Fzf]: Find existing Buffers     |
+| <leader>fc | [Fzf]: Find in neovim Configuration |
+| <leader>fp |      [Project]: Find Projects       |
 
 #### lsp
 
-|     Key     |             Desc              |
-| :---------: | :---------------------------: |
-|     gd      |    [Fzf]: Goto Definition     |
-|     gp      | [Fzf]: Goto Peke Declarations |
-|     gy      | [Fzf]: Goto TYpe Definitions  |
-|     gi      |  [Fzf]: Goto Implementations  |
-|     gr      |    [Fzf]: Goto References     |
-|     gs      |    [Fzf]: Goto LSP Symbols    |
-| \<leader>ci |     [Fzf]: Incoming Calls     |
-| \<leader>co |     [Fzf]: Outgoing Calls     |
-| \<leader>la |    [Fzf]: LSP Code Actions    |
-| \<leader>,  |    [Lsp]: LSP Code Actions    |
-| \<leader>lf |       [Fzf]: LSP Finder       |
-| \<leader>r  | [Fzf]: Rename all references  |
-|      K      |  [Lsp]: Hover Documentation   |
+|    Key     |             Desc              |
+| :--------: | :---------------------------: |
+|     gd     |    [Fzf]: Goto Definition     |
+|     gp     | [Fzf]: Goto Peke Declarations |
+|     gy     | [Fzf]: Goto TYpe Definitions  |
+|     gi     |  [Fzf]: Goto Implementations  |
+|     gr     |    [Fzf]: Goto References     |
+|     gs     |    [Fzf]: Goto LSP Symbols    |
+| <leader>ci |     [Fzf]: Incoming Calls     |
+| <leader>co |     [Fzf]: Outgoing Calls     |
+| <leader>la |    [Fzf]: LSP Code Actions    |
+| <leader>,  |    [Lsp]: LSP Code Actions    |
+| <leader>lf |       [Fzf]: LSP Finder       |
+| <leader>r  | [Fzf]: Rename all references  |
+|     K      |  [Lsp]: Hover Documentation   |
 
 #### git
 
-|     Key     |            Desc             |
-| :---------: | :-------------------------: |
-| \<leader>gf |    [Fzf]: List Git Files    |
-| \<leader>gs |   [Fzf]: List Git Status    |
-| \<leader>gd |    [Fzf]: List Git Diff     |
-| \<leader>gl | [Fzf]: List Git Commits Log |
-| \<leader>gb |  [Fzf]: List Git Branches   |
+|    Key     |            Desc             |
+| :--------: | :-------------------------: |
+| <leader>gf |    [Fzf]: List Git Files    |
+| <leader>gs |   [Fzf]: List Git Status    |
+| <leader>gd |    [Fzf]: List Git Diff     |
+| <leader>gl | [Fzf]: List Git Commits Log |
+| <leader>gb |  [Fzf]: List Git Branches   |
 
 #### show diagnostics or keymaps
 
-|     Key     |               Desc               |
-| :---------: | :------------------------------: |
-| \<leader>sd |     [Fzf]: Show Diagnostics      |
-| \<leader>sk |       [Fzf]: Show Keymaps        |
-| \<leader>sh |  [Fzf]: Show Neovim Help Pages   |
-| \<leader>sn | [Notify]: Search Notify Messages |
+|    Key     |               Desc               |
+| :--------: | :------------------------------: |
+| <leader>sd |     [Fzf]: Show Diagnostics      |
+| <leader>sk |       [Fzf]: Show Keymaps        |
+| <leader>sh |  [Fzf]: Show Neovim Help Pages   |
+| <leader>sn | [Notify]: Search Notify Messages |
 
 ### Gitsigns keymaps
 
-|     Key     |           Desc            |
-| :---------: | :-----------------------: |
-|     ]h      |   [Gitsigns]: Next Hunk   |
-|     [h      | [Gitsigns]: Previous Hunk |
-| \<leader>hp | [Gitsigns]: Preview Hunk  |
-| \<leader>hb |  [Gitsigns]: Blame Hunk   |
-| \<leader>hd |   [Gitsigns]: Diff This   |
-| \<leader>hs |  [Gitsigns]: Stage Hunk   |
-| \<leader>hr |  [Gitsigns]: Reset Hunk   |
+|    Key     |           Desc            |
+| :--------: | :-----------------------: |
+|     ]h     |   [Gitsigns]: Next Hunk   |
+|     [h     | [Gitsigns]: Previous Hunk |
+| <leader>hp | [Gitsigns]: Preview Hunk  |
+| <leader>hb |  [Gitsigns]: Blame Hunk   |
+| <leader>hd |   [Gitsigns]: Diff This   |
+| <leader>hs |  [Gitsigns]: Stage Hunk   |
+| <leader>hr |  [Gitsigns]: Reset Hunk   |
 
 ### Todo keymaps
 
-|     Key     |             Desc              |
-| :---------: | :---------------------------: |
-|     ]t      |   [Todo]: Next Todo comment   |
-|     [t      | [Todo]: Previous Todo comment |
-| \<leader>td |    [Todo]: Show Todo List     |
+|    Key     |             Desc              |
+| :--------: | :---------------------------: |
+|     ]t     |   [Todo]: Next Todo comment   |
+|     [t     | [Todo]: Previous Todo comment |
+| <leader>td |    [Todo]: Show Todo List     |
 
 ### AI
 
-|     Key     |                 Desc                  |
-| :---------: | :-----------------------------------: |
-| \<leader>cl |     [CodeCompanion]: Actions List     |
-| \<leader>ca |    [CodeCompanion]: Action Inline     |
-| \<leader>cc |  [CodeCompanion]: CodeCompanion Chat  |
-| \<leader>cp |       [CodeCompanion]: Chat Add       |
-|   \<C-s>    | [CodeCompanion]: Send context in Chat |
-|   \<C-c>    |      [CodeCompanion]: Close Chat      |
+|    Key     |                 Desc                  |
+| :--------: | :-----------------------------------: |
+| <leader>cl |     [CodeCompanion]: Actions List     |
+| <leader>ca |    [CodeCompanion]: Action Inline     |
+| <leader>cc |  [CodeCompanion]: CodeCompanion Chat  |
+| <leader>cp |       [CodeCompanion]: Chat Add       |
+|   <C-s>    | [CodeCompanion]: Send context in Chat |
+|   <C-c>    |      [CodeCompanion]: Close Chat      |
 
 ### Other
 
-|     Key     |             Desc              |
-| :---------: | :---------------------------: |
-| \<leader>e  | [NvimTree]: Toggle Nvim Tree  |
-|   \<c-/>    | [Toggleterm]: Open Toggleterm |
-| \<leader>lg |    [LazyGit]: Open LazyGit    |
-| \<leader>to |  [Diff]: Toggle diff overlay  |
+|    Key     |             Desc              |
+| :--------: | :---------------------------: |
+| <leader>e  | [NvimTree]: Toggle Nvim Tree  |
+|   <c-/>    | [Toggleterm]: Open Toggleterm |
+| <leader>lg |    [LazyGit]: Open LazyGit    |
+| <leader>to |  [Diff]: Toggle diff overlay  |
 
 ## Requirements
 

@@ -100,7 +100,6 @@ vim.api.nvim_create_user_command('LspInfo', function()
 
     print('')
     print('Use :LspLog to view detailed logs')
-    print('Use :LspCapabilities for full capability list')
 end, { desc = 'Show comprehensive LSP information' })
 
 -- LspRestart: Restart LSP clients for current buffer
@@ -169,3 +168,11 @@ vim.api.nvim_create_user_command('LspStatus', function()
         print('')
     end
 end, { desc = 'Show brief LSP status' })
+
+-- lsp
+local api, lsp = vim.api, vim.lsp
+api.nvim_create_user_command('LspLog', function()
+    vim.cmd(string.format('tabnew %s', lsp.get_log_path()))
+end, {
+    desc = 'Opens the Nvim LSP client log.',
+})

@@ -34,6 +34,8 @@ vim.diagnostic.config({
         },
     },
 })
+vim.lsp.set_log_level('error')
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
     callback = function(event)
@@ -97,14 +99,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
         end
 
-        -- lsp
-        local api, lsp = vim.api, vim.lsp
-        -- api.nvim_create_user_command('LspInfo', ':checkhealth vim.lsp', { desc = 'Alias to `:checkhealth vim.lsp`' })
-        api.nvim_create_user_command('LspLog', function()
-            vim.cmd(string.format('tabnew %s', lsp.get_log_path()))
-        end, {
-            desc = 'Opens the Nvim LSP client log.',
-        })
         -- Inlay hint
         vim.lsp.inlay_hint.enable(true)
     end,
