@@ -13,4 +13,4 @@ gui:
       - yellow
 keybinding:
   universal:
-    filteringMenu: '<c-f>'
+    filteringMenu: "<c-f>"
