@@ -4,6 +4,8 @@ set -g fish_greeting ""
 # /opt/homebrew/bin/brew shellenv | source
 eval (/opt/homebrew/bin/brew shellenv)
 
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+
 # 2. 导出开发环境变量 (使用 set -gx)
 set -gx GOPATH $HOME/Documents/Tools/GoPath
 set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
