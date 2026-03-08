@@ -2,15 +2,17 @@
 
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
--- This is where you actually apply your config choices.
 
-config.font = wezterm.font("RecMonoCasual Nerd Font Mono")
-config.font_size = 17.0
--- disable ligatures
+-- --- 字体设置 ---
+config.font = wezterm.font_with_fallback({
+	{ family = "RecMonoCasual Nerd Font Mono", weight = "Regular" },
+	{ family = "Source Han Sans SC", weight = "Regular" }, -- 思源黑体
+})
+config.font_size = 17.5
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.line_height = 1.2
+config.line_height = 1.0
 
--- config.enable_tab_bar = false
+-- --- 界面显示 ---
 config.hide_tab_bar_if_only_one_tab = true
 config.window_decorations = "RESIZE"
 config.initial_cols = 155
@@ -19,10 +21,14 @@ config.default_cursor_style = "SteadyBar"
 config.window_close_confirmation = "NeverPrompt"
 config.adjust_window_size_when_changing_font_size = false
 
--- config.window_background_opacity = 0.96
-config.macos_window_background_blur = 25
+-- --- 颜色与特效 ---
 config.color_scheme = "Gruvbox Dark (Gogh)"
--- config.color_scheme = "Gruvbox Material (Gogh)"
+config.macos_window_background_blur = 25
+-- 若需要开启透明度，取消下面注释：
+-- config.window_background_opacity = 0.96
+
+-- --- 优化项 ---
+config.use_ime = true -- 优化中文输入法跟随
 
 config.window_padding = {
 	left = "1cell",

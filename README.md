@@ -8,6 +8,40 @@ tags:
 
 # [Mac] WorkFlow
 
+<!--toc:start-->
+
+- [[Mac] WorkFlow](#mac-workflow)
+  - [Enhance terminal](#enhance-terminal)
+  - [Git Config](#git-config)
+  - [Homebrew](#homebrew)
+  - [Fish Shell](#fish-shell)
+  - [Cli Tools](#cli-tools)
+    - [Starship](#starship)
+    - [Bat](#bat)
+    - [Fzf](#fzf)
+    - [Zoxide](#zoxide)
+    - [Delta](#delta)
+    - [Lsd](#lsd)
+    - [Fd & RipGrep](#fd-ripgrep)
+    - [LazyGit](#lazygit)
+    - [Cheat.sh](#cheatsh)
+    - [Go-musicbox](#go-musicbox)
+    - [Btop](#btop)
+  - [Font](#font)
+  - [System Keymap](#system-keymap)
+  - [WezTerm](#wezterm)
+  - [Tmux](#tmux)
+  - [Neovim](#neovim)
+  - [vimrc](#vimrc)
+  - [Golang](#golang)
+    - [Books](#books)
+  - [Rust](#rust)
+    - [Setup](#setup)
+    - [Awesome Rust](#awesome-rust)
+  - [Apps](#apps)
+  - [Rime 输入法](#rime-输入法)
+  <!--toc:end-->
+
 > This is a collection of configurations that includes all on my Mac.
 >
 > keywords: [git, homebrew, nerdfonts, fish, starship, neovim, tmux, golang, rust]
@@ -312,10 +346,10 @@ brew install anhoder/go-musicfox/go-musicfox
 ```bash
 # macos default config path is : $HOME/Library/Application Support/go-musicfox/config.toml
 # 软链到 ~/.config/go-musicfox
-mkdir -p ~/.config/go-musicfox
-cd ~/.config
-ln -s $HOME/Library/Application Support/go-musicfox go-musicfox
-# then nvim config.toml
+# mkdir -p ~/.config/go-musicfox
+cd ~/.config/go-musicfox
+# ln -s $HOME/Library/Application Support/go-musicfox go-musicfox
+nvim config.toml
 ```
 
 - with fish
@@ -324,14 +358,28 @@ ln -s $HOME/Library/Application Support/go-musicfox go-musicfox
 alias mu='musicfox'
 ```
 
-### Bottom
+### Btop
 
-- install [bottom](https://github.com/ClementTsang/bottom)
+- install [btop](https://github.com/aristocratos/btop)
 
 ```bash
-brew install bottom
-# use
-btm
+brew install btop
+```
+
+- config
+
+```bash
+# config path is : $HOME/.config/btop/btop.conf
+# themes path is : $HOME/.config/btop/themes/
+# add https://github.com/aristocratos/btop/blob/main/themes/gruvbox_material_dark.theme to theme path
+
+# use bt and the press m to option config to set theme as gruvbox_material_dark
+```
+
+- with fish
+
+```bash
+alias bt='btop'
 ```
 
 ## Font
@@ -342,7 +390,9 @@ perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
 
 - [JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
 
-- [Recursive](https://www.recursive.design/) - prefer fonts, installed from [nerdfonts](https://www.nerdfonts.com/font-downloads)
+- [Recursive](https://www.recursive.design/) - prefer fonts
+
+- [思源黑体](https://github.com/adobe-fonts/source-han-sans)
 
 ## System Keymap
 
@@ -564,6 +614,14 @@ rustup update
 - [lemon](https://lemon.qq.com/) -- mac clean app
 
 - [Chrome](https://www.google.com/intl/zh-CN/chrome/) -- browser
+
+- [appcleaner](https://freemacsoft.net/appcleaner/) -- app manager
+
+- [snipaster](https://www.snipaste.com/) -- screenshot
+
+- [vlc](https://www.videolan.org/vlc/) -- video player
+
+- [easydict](https://github.com/tisfeng/Easydict/) -- translator app
 
 - [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
 
