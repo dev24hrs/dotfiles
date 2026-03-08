@@ -23,6 +23,7 @@ fish_add_path $GRADLE_HOME/bin
 alias cat='bat'
 alias lg='lazygit'
 alias mu='musicfox'
+alias bt='btop'
 # lsd
 alias ls='lsd'
 alias la='lsd -la'
