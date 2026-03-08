@@ -78,11 +78,45 @@ vim.api.nvim_create_autocmd('FileType', {
         end
     end,
 })
--- tidy go.mod
+-- -- tidy go.mod
+-- vim.api.nvim_create_autocmd('BufWritePost', {
+--     pattern = 'go.mod',
+--     callback = function()
+--         vim.fn.jobstart('go mod tidy', { detach = true })
+--     end,
+-- })
+
+--- 优化后的 Go Mod Tidy 部分 ---
+local go_tidy_group = vim.api.nvim_create_augroup('GoModTidy', { clear = true })
+local last_tidy_time = 0
+
 vim.api.nvim_create_autocmd('BufWritePost', {
-    pattern = 'go.mod',
+    pattern = { 'go.mod', 'go.sum' }, -- 增加对 go.sum 的监听
+    group = go_tidy_group,
     callback = function()
-        vim.fn.jobstart('go mod tidy', { detach = true })
+        -- 1. 防抖处理：5秒内只允许触发一次，避免频繁保存导致系统卡顿
+        local now = os.time()
+        if now - last_tidy_time < 5 then
+            return
+        end
+        last_tidy_time = now
+
+        -- 2. 检查 go 命令行工具是否存在
+        if vim.fn.executable('go') ~= 1 then
+            return
+        end
+
+        -- 3. 使用异步任务并添加简单的成功/失败通知
+        vim.fn.jobstart('go mod tidy', {
+            detach = true,
+            on_exit = function(_, exit_code)
+                if exit_code == 0 then
+                    vim.notify('go mod tidy finished', vim.log.levels.INFO, { title = 'Go Tools' })
+                else
+                    vim.notify('go mod tidy failed', vim.log.levels.ERROR, { title = 'Go Tools' })
+                end
+            end,
+        })
     end,
 })
 

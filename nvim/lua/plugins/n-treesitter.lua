@@ -34,7 +34,8 @@ return {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
-            indent = { enable = true },
+            -- 修复：针对 Go 禁用 Treesitter 缩进，使用 Go 自带的缩进逻辑
+            indent = { enable = true, disable = { 'go' } },
             autotag = { enable = true },
             incremental_selection = {
                 enable = true,

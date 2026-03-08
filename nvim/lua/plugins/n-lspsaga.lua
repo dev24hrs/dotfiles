@@ -9,7 +9,8 @@ return {
         require('lspsaga').setup({
             ui = {
                 border = 'single',
-                code_action = '',
+                -- code_action = '',
+                code_action = '',
                 actionfix = '',
                 imp_sign = '󰳛 ',
             },

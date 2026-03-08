@@ -2,6 +2,8 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- 在 Insert 模式下按 Shift + Tab 向前缩进 (Outdent)
+vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true })
 
 -- Indent code in visual mode
 vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true, desc = '[Basic]: Indent code in visual mode' })

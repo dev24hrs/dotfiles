@@ -26,8 +26,32 @@ return {
             ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
             ['<CR>'] = { 'accept', 'fallback' }, -- 更改成'select_and_accept'会选择第一项插入
 
-            ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-            ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+            -- ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+            -- ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+            ['<Tab>'] = {
+                function(cmp)
+                    if cmp.is_visible() then
+                        return cmp.select_next()
+                    elseif cmp.snippet_active() then
+                        return cmp.snippet_forward()
+                    else
+                        return -- 执行 fallback (即正常的 Tab 缩进)
+                    end
+                end,
+                'fallback',
+            },
+            ['<S-Tab>'] = {
+                function(cmp)
+                    if cmp.is_visible() then
+                        return cmp.select_prev()
+                    elseif cmp.snippet_active() then
+                        return cmp.snippet_backward()
+                    else
+                        return
+                    end
+                end,
+                'fallback',
+            },
             ['<Up>'] = { 'select_prev', 'fallback' },
             ['<Down>'] = { 'select_next', 'fallback' },
             ['<C-j>'] = { 'select_prev', 'fallback' },
