@@ -11,6 +11,59 @@ return {
         opts = {
             file_types = { 'markdown' },
             sign = { enabled = false },
+            callout = {
+                abstract = {
+                    raw = '[!ABSTRACT]',
+                    rendered = '󰯂 Abstract',
+                    highlight = 'RenderMarkdownInfo',
+                    category = 'obsidian',
+                },
+                summary = {
+                    raw = '[!SUMMARY]',
+                    rendered = '󰯂 Summary',
+                    highlight = 'RenderMarkdownInfo',
+                    category = 'obsidian',
+                },
+                tldr = { raw = '[!TLDR]', rendered = '󰦩 Tldr', highlight = 'RenderMarkdownInfo', category = 'obsidian' },
+                failure = {
+                    raw = '[!FAILURE]',
+                    rendered = ' Failure',
+                    highlight = 'RenderMarkdownError',
+                    category = 'obsidian',
+                },
+                fail = { raw = '[!FAIL]', rendered = ' Fail', highlight = 'RenderMarkdownError', category = 'obsidian' },
+                missing = {
+                    raw = '[!MISSING]',
+                    rendered = ' Missing',
+                    highlight = 'RenderMarkdownError',
+                    category = 'obsidian',
+                },
+                attention = {
+                    raw = '[!ATTENTION]',
+                    rendered = ' Attention',
+                    highlight = 'RenderMarkdownWarn',
+                    category = 'obsidian',
+                },
+                warning = {
+                    raw = '[!WARNING]',
+                    rendered = ' Warning',
+                    highlight = 'RenderMarkdownWarn',
+                    category = 'github',
+                },
+                danger = {
+                    raw = '[!DANGER]',
+                    rendered = ' Danger',
+                    highlight = 'RenderMarkdownError',
+                    category = 'obsidian',
+                },
+                error = { raw = '[!ERROR]', rendered = ' Error', highlight = 'RenderMarkdownError', category = 'obsidian' },
+                bug = { raw = '[!BUG]', rendered = ' Bug', highlight = 'RenderMarkdownError', category = 'obsidian' },
+                quote = { raw = '[!QUOTE]', rendered = ' Quote', highlight = 'RenderMarkdownQuote', category = 'obsidian' },
+                cite = { raw = '[!CITE]', rendered = ' Cite', highlight = 'RenderMarkdownQuote', category = 'obsidian' },
+                todo = { raw = '[!TODO]', rendered = ' Todo', highlight = 'RenderMarkdownInfo', category = 'obsidian' },
+                wip = { raw = '[!WIP]', rendered = '󰦖 WIP', highlight = 'RenderMarkdownHint', category = 'obsidian' },
+                done = { raw = '[!DONE]', rendered = ' Done', highlight = 'RenderMarkdownSuccess', category = 'obsidian' },
+            },
             code = {
                 -- border = 'thin',
                 left_pad = 1,
@@ -44,9 +97,18 @@ return {
                 },
             },
             pipe_table = {
-                preset = 'round',
-                -- alignment_indicator = '─',
-                -- border = { '╭', '┬', '╮', '├', '┼', '┤', '╰', '┴', '╯', '│', '─' },
+                -- preset = 'round',
+                alignment_indicator = '─',
+                border = { '╭', '┬', '╮', '├', '┼', '┤', '╰', '┴', '╯', '│', '─' },
+            },
+            link = {
+                wiki = { icon = ' ', highlight = 'RenderMarkdownWikiLink', scope_highlight = 'RenderMarkdownWikiLink' },
+                image = ' ',
+                custom = {
+                    github = { pattern = 'github', icon = ' ' },
+                    cern = { pattern = 'cern.ch', icon = ' ' },
+                },
+                hyperlink = ' ',
             },
             anti_conceal = {
                 disabled_modes = { 'n' },
@@ -71,39 +133,6 @@ return {
         opts = {
             processor = 'magick_cli',
             window_overlap_clear_enabled = true,
-        },
-    },
-    {
-        'HakonHarnes/img-clip.nvim',
-        -- require pngpaste on macos
-        ft = { 'markdown' },
-        event = 'VeryLazy',
-        opts = {
-            default = {
-                -- save images to same directory as current file with .assest suffix
-                dir_path = function()
-                    return string.gsub(vim.fn.expand('%:t'), '%..*', '') .. '.assets'
-                end,
-                insert_mode_after_paste = false,
-                embed_image_as_base64 = false,
-                prompt_for_file_name = false,
-                drag_and_drop = {
-                    insert_mode = true,
-                },
-                -- 这样使用 p 或 cmd+v 时，插件不会介入，只有通过快捷键调用 PasteImage 才会执行
-                use_default_keymaps = false,
-                -- 开启图片检查
-                check_clipboard_is_image = true,
-            },
-            filetypes = {
-                markdown = {
-                    template = '![$FILE_NAME_NO_EXT]($FILE_PATH)', ---@type string | fun(context: table): string
-                },
-            },
-        },
-        keys = {
-            -- suggested keymap
-            { '<leader>pp', '<cmd>PasteImage<cr>', desc = 'Paste image from system clipboard' },
         },
     },
 }
