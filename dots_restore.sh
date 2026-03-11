@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- 配置区 ---
-DOT_REPO="$HOME/Documents/dotfiles"
+DOT_REPO="$HOME/Documents/Dotfiles"
 CONFIG_DIR="$HOME/.config"
 
 # 定义恢复清单 (目标路径 | 源备份子目录 | 描述)
@@ -13,6 +13,7 @@ LIST=(
   "$CONFIG_DIR/ghostty          | ghostty         | Ghostty"
   "$CONFIG_DIR/aerospace        | aerospace       | Aerospace"
   "$CONFIG_DIR/bat              | bat             | Bat"
+  "$CONFIG_DIR/git              | git             | Git"
   "$CONFIG_DIR/starship.toml    | starship.toml   | Starship"
   "$CONFIG_DIR/dots_backup.sh   | dots_backup.sh  | Backup Script"
   "$CONFIG_DIR/dots_restore.sh  | dots_restore.sh | Restore Script"

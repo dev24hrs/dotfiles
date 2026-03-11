@@ -1,0 +1,50 @@
+[user]
+    name = dev24hrs
+    email = asang24@foxmail.com
+[core]
+    editor = nvim
+    pager = delta
+    # 处理换行符：提交时转为 LF，检出时不转换（适合跨平台协作）
+    autocrlf = input
+    # 忽略文件权限变化（避免因为 chmod 导致整片文件变红)
+    filemode = false
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    syntax-theme = gruvbox-dark
+    # use n and N to move between diff sections
+    navigate = true
+    side-by-side = true
+    line-numbers = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[commit]
+    template = ~/.config/git/template
+    # 提交时开启详细模式，在编辑器里能看到修改内容，防止写错 commit message
+    verbose = true
+
+[fetch]
+    # 拉取时自动清理远程已删除的分支（保持本地分支列表干净）
+    prune = true
+
+[pull]
+    # 拉取代码时默认使用 rebase 而不是 merge，保持提交历史呈线性
+    rebase = true
+
+[push]
+    # 推送新分支时自动建立远程关联，无需再输入 --set-upstream
+    autoSetupRemote = true
+    # 仅推送当前分支到同名远程分支
+    default = current
+
+[rebase]
+    # rebase 前自动暂存未提交的工作，结束后自动恢复（非常实用！）
+    autoStash = true
+
+[init]
+    # 默认初始分支名为 main
+    defaultBranch = main
