@@ -29,35 +29,60 @@ PaperWM.window_gap = { top = 0, bottom = 0, left = 5, right = 5 }
 PaperWM.window_ratios = { 0.9, 0.5 } -- 循环切换的宽度比例
 
 --- [新窗口] 自动 0.9 比例 ---
-PaperWM.window_filter:subscribe(hs.window.filter.windowCreated, function(win)
-	local retryCount = 0
-	local maxRetries = 5
+local function subscribeWindowCreated()
+	PaperWM.window_filter:subscribe(hs.window.filter.windowCreated, function(win)
+		local retryCount = 0
+		local maxRetries = 5
 
-	local function adjustNewWindow()
-		if not win or not win:isVisible() then
-			return
-		end
+		local function adjustNewWindow()
+			if not win or not win:isVisible() then
+				return
+			end
 
-		local screen = win:screen()
-		local spaceID = hs.spaces.activeSpaceOnScreen(screen)
+			local screen = win:screen()
+			if not screen then
+				if retryCount < maxRetries then
+					retryCount = retryCount + 1
+					hs.timer.doAfter(0.2, adjustNewWindow)
+				end
+				return
+			end
 
-		if spaceID then
 			hs.timer.doAfter(0.3, function()
-				actions.cycle_width()
+				if not win or not win:isVisible() then
+					return
+				end
+				local canvas = PaperWM.windows.getCanvas(screen)
+				local gap = (PaperWM.windows.getGap("left") + PaperWM.windows.getGap("right")) / 2
+				local target_width = PaperWM.window_ratios[1] * (canvas.w + gap) - gap
+				local frame = win:frame()
+				frame.x = frame.x + ((frame.w - target_width) / 2)
+				frame.w = target_width
+				PaperWM.windows.moveWindow(win, frame)
+				local spaces = hs.spaces.windowSpaces(win)
+				if spaces and spaces[1] then
+					PaperWM:tileSpace(spaces[1])
+				end
 			end)
-		elseif retryCount < maxRetries then
-			retryCount = retryCount + 1
-			hs.timer.doAfter(0.2, adjustNewWindow)
 		end
-	end
-	adjustNewWindow()
-end)
+		adjustNewWindow()
+	end)
+end
+
+subscribeWindowCreated()
 
 --- [配置] Modal 模式 ---
 -- 设置快捷键为 Cmd + Enter 进入该模式
 local wmModal = hs.hotkey.modal.new({ "cmd" }, "return")
 
+local paperwmRunning = false
+
 function wmModal:entered()
+	if not paperwmRunning then
+		PaperWM:start()
+		subscribeWindowCreated()
+		paperwmRunning = true
+	end
 	hs.alert.show("进入 PaperWM 模式", 0.5)
 end
 
@@ -91,16 +116,31 @@ wmModal:bind({ "cmd" }, "return", function()
 	wmModal:exit()
 end)
 
+-- 在 PaperWM 接管之前保存所有窗口的原始位置和大小
+local originalFrames = {}
+for _, win in ipairs(hs.window.filter.new():getWindows()) do
+	if win:isStandard() then
+		originalFrames[win:id()] = win:frame()
+	end
+end
+
 wmModal:bind({}, "w", "恢复Macos默认布局", function()
 	PaperWM:stop()
+	paperwmRunning = false
 	local windows = hs.window.filter.new():getWindows()
 	for _, win in ipairs(windows) do
 		if win:isStandard() then
-			win:centerOnScreen(nil, true)
+			local saved = originalFrames[win:id()]
+			if saved then
+				win:setFrame(saved)
+			else
+				win:centerOnScreen(nil, true)
+			end
 		end
 	end
 	wmModal:exit()
-	hs.alert.show("PaperWM 已停止，窗口变为macos 默认布局")
+	hs.alert.show("PaperWM 已停止，窗口已恢复原始位置")
 end)
 
 PaperWM:start()
+paperwmRunning = true
