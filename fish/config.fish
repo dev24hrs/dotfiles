@@ -1,7 +1,8 @@
 set -g fish_greeting ""
+set -gx TERM xterm-256color
+set -gx EDITOR nvim
 
 # 1. 初始化外部工具
-# /opt/homebrew/bin/brew shellenv | source
 eval (/opt/homebrew/bin/brew shellenv)
 
 set -gx XDG_CONFIG_HOME "$HOME/.config"
@@ -20,13 +21,12 @@ fish_add_path $MAVEN_HOME/bin
 fish_add_path $GRADLE_HOME/bin
 
 # 4. 别名 (Alias)
-alias cat='bat'
 alias lg='lazygit'
 alias mu='musicfox'
 alias bt='btop'
 # lsd
-alias ls='lsd'
-alias la='lsd -la'
+alias ls='lsd -X'
+alias la='lsd -la -A -X'
 alias lt='lsd --tree'
 # tmux
 alias ts='tmux source-file ~/.config/tmux/tmux.conf'
@@ -59,6 +59,17 @@ end
 if test -f $HOME/.config/fish/lastPwd.fish
     source $HOME/.config/fish/lastPwd.fish
 end
+
+set -x GEMINI_API_KEY
+
+# deepseek
+set -x DEEPSEEK_API_KEY
+
+# openrouter
+set -x OPENROUTER_API_KEY
+
+# ollama
+set -x OLLAMA_API_BASE 'http://127.0.0.1:11434'
 
 # 7. starship & zoxide
 function starship_transient_prompt_func

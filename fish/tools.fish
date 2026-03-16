@@ -59,7 +59,7 @@ function nic --description 'new tmux session for code'
 
     tmux new-session -d -s $session_name -c $PWD -x (tput cols) -y (tput lines)
     tmux split-window -h -t $session_name -c $PWD -l 35%
-    tmux send-keys -t $session_name:1.2 gemini C-m
+    tmux send-keys -t $session_name:1.2 claude C-m
     tmux select-pane -t $session_name:1.1
     tmux split-window -v -t $session_name:1.1 -c $PWD -l 25%
     tmux send-keys -t $session_name:1.1 nvim C-m
@@ -96,21 +96,4 @@ function dots --description 'Manage dotfiles backup and restore'
         case '*'
             echo "用法: dots [backup|restore]"
     end
-end
-
-# --- 环境校验脚本 ---
-function check_env
-    echo (set_color --bold blue)"=== 核心环境变量校验 ==="(set_color normal)
-    set -l env_vars JAVA_HOME GOPATH MAVEN_HOME GRADLE_HOME
-    for var in $env_vars
-        if set -q $var
-            echo (set_color green)"[OK]"(set_color normal) "$var: " (set_color yellow)$$var(set_color normal)
-        else
-            echo (set_color red)"[FAIL]"(set_color normal) "$var 未设置"
-        end
-    end
-    # 模拟代理测试
-    proxy >/dev/null
-    noproxy >/dev/null
-    echo (set_color green)"[OK]"(set_color normal) 代理函数逻辑测试通过
 end
