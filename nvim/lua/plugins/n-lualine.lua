@@ -1,4 +1,3 @@
----@diagnostic disable: undefined-field
 return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
@@ -16,28 +15,24 @@ return {
                 }
             end
         end
-        -- local custom_gruvbox = require('lualine.themes.gruvbox_dark')
+        -- 将 StatusLine 的背景设为 NONE，继承终端背景
+        vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE', fg = '#EBDBB2' })
+
         local colors = {
-            MAGENTA = '#a89984',
-            -- DARKGRAY = '#3e3d3d',
-            DARKGRAY = '#282828',
-            RED = '#cb241d',
-            GREEN = '#a9b665',
-            YELLOW = '#d8a657',
-            BLUE = '#7daea3',
-            CYAN = '#89b482',
+            MAGENTA = '#A89984',
+            RED = '#FB4934',
         }
         local custom_gruvbox = {
+            -- 使用和终端一致的背景色,无论wezterm/ghostty有没有开启透明
             normal = {
-                a = { bg = colors.DARKGRAY, fg = colors.RED },
-                b = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
-                c = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
-                x = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
-                y = { bg = colors.DARKGRAY, fg = colors.MAGENTA },
-                z = { bg = colors.DARKGRAY, fg = colors.RED },
+                a = { fg = colors.RED },
+                b = { fg = colors.MAGENTA },
+                c = { fg = colors.MAGENTA },
+                x = { fg = colors.MAGENTA },
+                y = { fg = colors.MAGENTA },
+                z = { fg = colors.RED },
             },
         }
-
         require('lualine').setup({
             options = {
                 theme = custom_gruvbox,
