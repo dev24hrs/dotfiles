@@ -1,18 +1,19 @@
 # font
 font-family                 = RecMonoCasual Nerd Font Mono
-font-size                   = 16.5
-font-thicken                = true
+# font-family                 = Smiley Sans Oblique
+font-family                 = Source Han Sans SC
+font-size                   = 18
+font-thicken                = false
 font-family-italic          = true
-font-feature                = calt,liga,dlig
-# adjust-cell-height          = 10%
+# adjust-cell-height          = 5%
 window-inherit-font-size    = true
 
 # theme
 theme                       = Gruvbox Dark
-# theme                       = Gruvbox Dark Hard
 term                        = xterm-256color
 
 background-opacity          = 0.96
+faint-opacity               = 0.96
 background-blur             = 25
 selection-invert-fg-bg      = true
 
@@ -36,11 +37,11 @@ macos-icon                  = custom
 macos-custom-icon           = ~/.config/ghostty/Ghostty.icns
 
 # shell
-shell-integration           = zsh
+shell-integration           = fish
 shell-integration-features  = no-cursor,sudo,no-title
 
 # quick terminal
-keybind                             = global:cmd+grave_accent=toggle_quick_terminal
+keybind                             = global:cmd+ctrl+t=toggle_quick_terminal
 quick-terminal-position             = top
 quick-terminal-size                 = 45%,45%
 quick-terminal-animation-duration   = 0
@@ -65,3 +66,4 @@ keybind                     = cmd+s>z=toggle_split_zoom
 keybind                     = cmd+s>x=close_surface
 keybind                     = cmd+s>enter=toggle_fullscreen
 keybind                     = cmd+s>r=reload_config
+
