@@ -8,7 +8,7 @@ config.font = wezterm.font_with_fallback({
 	{ family = "RecMonoCasual Nerd Font Mono", weight = "Regular" },
 	{ family = "Source Han Sans SC", weight = "Regular" }, -- 思源黑体
 })
-config.font_size = 17.5
+config.font_size = 18
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.line_height = 1.0
 
@@ -25,10 +25,9 @@ config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = "Gruvbox Dark (Gogh)"
 config.macos_window_background_blur = 25
 -- 若需要开启透明度，取消下面注释：
--- config.window_background_opacity = 0.96
-
--- --- 优化项 ---
-config.use_ime = true -- 优化中文输入法跟随
+config.window_background_opacity = 0.96
+config.text_background_opacity = 0.96
+config.term = "xterm-256color"
 
 config.window_padding = {
 	left = "1cell",
@@ -36,7 +35,6 @@ config.window_padding = {
 	top = "0.0cell",
 	bottom = "0.0cell",
 }
-
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 local act = wezterm.action
 config.keys = {
@@ -61,6 +59,14 @@ config.key_tables = {
 		{ key = "Escape", action = "PopKeyTable" },
 	},
 }
+for i = 1, 5 do
+	-- CMD+ALT + number to activate that window
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "CMD",
+		action = act.ActivateWindow(i - 1),
+	})
+end
 config.mouse_bindings = {
 	-- Ctrl+左键打开链接
 	{
