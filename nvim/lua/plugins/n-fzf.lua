@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
     'ibhagwan/fzf-lua',
     event = 'VeryLazy',
@@ -56,10 +57,6 @@ return {
         vim.keymap.set('n', '<leader>fr', function()
             require('fzf-lua').oldfiles()
         end, { noremap = true, silent = true, desc = '[Fzf]: Find Recent files' })
-
-        vim.keymap.set('n', '<leader>fc', function()
-            require('fzf-lua').files({ cwd = '~/.config/nvim' })
-        end, { noremap = true, silent = true, desc = '[Fzf]: Find in neovim Configuration' })
 
         vim.keymap.set('n', '<leader>fb', function()
             require('fzf-lua').buffers()

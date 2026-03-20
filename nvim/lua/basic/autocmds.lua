@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'highlight copying text',
     group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
     callback = function()
-        vim.highlight.on_yank({ timeout = 500 })
+        vim.hl.on_yank({ timeout = 500 })
     end,
 })
 
@@ -83,6 +83,7 @@ vim.api.nvim_create_autocmd('FileType', {
         'qf',
         'notify',
         'checkhealth',
+        'spectre_panel', -- config in /plugins/n-hlslens.lua
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

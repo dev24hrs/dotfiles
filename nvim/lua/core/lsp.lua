@@ -23,10 +23,10 @@ vim.diagnostic.config({
     },
     signs = {
         text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
+            [vim.diagnostic.severity.ERROR] = 'E',
+            [vim.diagnostic.severity.WARN] = 'W',
+            [vim.diagnostic.severity.INFO] = 'I',
+            [vim.diagnostic.severity.HINT] = 'H',
         },
         numhl = {
             [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
@@ -101,5 +101,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
         -- Inlay hint
         vim.lsp.inlay_hint.enable(true)
+        -- 自动刷新 CodeLens
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+            buffer = bufnr,
+            callback = vim.lsp.codelens.refresh,
+        })
     end,
 })

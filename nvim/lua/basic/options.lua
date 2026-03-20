@@ -4,7 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.have_nerd_font = true
 
 vim.opt.termguicolors = true
-vim.opt.signcolumn = 'no'
+vim.opt.signcolumn = 'number' -- config with vim.diagnostic.config.signs
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.mouse = 'a'
 vim.opt.undofile = true
@@ -15,8 +15,7 @@ vim.opt.inccommand = 'nosplit'
 vim.opt.ttyfast = true
 
 -- 2. UI 渲染与交互
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = 'number' -- 仅高亮行号，不产生整行横条，保持视觉清爽
+-- vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cmdheight = 1

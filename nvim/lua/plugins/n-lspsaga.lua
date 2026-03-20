@@ -23,7 +23,7 @@ return {
                 extend_gitsigns = true,
                 keys = { quit = 'q', exec = '<CR>' },
             },
-            symbol_in_winbar = { enable = false },
+            symbol_in_winbar = { enable = false, hide_keyword = true, show_file = true, folder_level = 0 },
             outline = {
                 enable = false,
                 -- win_position = 'right',

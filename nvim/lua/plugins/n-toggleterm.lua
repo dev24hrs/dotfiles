@@ -10,10 +10,10 @@ return {
             shading_factor = '1',
             -- direction = 'horizontal',
             direction = 'float',
-            size = 10,
+            size = 20,
             float_opts = {
                 width = 100,
-                height = 24,
+                height = 30,
                 border = 'single',
             },
         })
