@@ -1,7 +1,7 @@
 # --- 代理管理系列 ---
 function proxy
-    git config --global http.proxy 127.0.0.1:7890
-    git config --global https.proxy 127.0.0.1:7890
+    git config --global http.proxy 127.0.0.1:12334
+    git config --global https.proxy 127.0.0.1:12334
     # set -gx http_proxy http://127.0.0.1:7890
     # set -gx https_proxy http://127.0.0.1:7890
     echo (set_color green)"🌐 代理已开启 (Git & Session)"(set_color normal)

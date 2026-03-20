@@ -62,21 +62,31 @@ function gl
     commandline -f repaint
 end
 
-# --- 3. Git Branches (对应分支选择/切换预览) ---
+# --- 3. Git Branches (选择并切换分支) ---
 
 function gb
     _fzf_git_check_deps; or return
 
-    # 预览分支最近的提交
-    set -l preview_cmd "git log --oneline --graph --date=short --color=always --pretty='format:%C(auto)%cd %h%d %s' {1}"
+    # 预览分支最近的提交记录
+    set -l preview_cmd "git log --oneline --graph --date=short --color=always --pretty='format:%C(auto)%cd %h%d %s' (string replace -r '^\*?\s*' '' {1})"
 
-    # 获取全部分支（含远程）
+    # 获取全部分支（含远程），按最后提交时间排序
     git branch --all --color=always --sort=-committerdate | grep -v ' -> ' | fzf --ansi \
-        --header "Git Branches | C-d/u: 翻页" \
+        --header "Enter: 切换分支 | C-d/u: 预览翻页" \
         --bind "ctrl-d:preview-page-down,ctrl-u:preview-page-up" \
-        --preview "$preview_cmd" | while read -l line
-        set -l branch (string trim $line | string replace -r '^\* ' '')
-        commandline -i $branch" "
+        --preview "$preview_cmd" | read -l selected
+
+    if test -n "$selected"
+        # 1. 清理字符串：去除星号、空格，以及远程分支的前缀 (remotes/origin/)
+        set -l branch (string trim $selected | string replace -r '^\*?\s*' '' | string replace -r '^remotes/[^/]+/' '')
+
+        # 2. 执行切换逻辑
+        if git switch $branch 2>/dev/null
+            commandline -f repaint
+        else
+            git checkout $branch
+        end
     end
+
     commandline -f repaint
 end
