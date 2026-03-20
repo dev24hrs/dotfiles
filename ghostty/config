@@ -22,8 +22,8 @@ cursor-style                = bar
 cursor-style-blink          = true
 
 # window
-window-width                = 150
-window-height               = 50
+window-width                = 188
+window-height               = 60
 window-padding-balance      = true
 window-padding-x            = 0
 window-padding-y            = 0
@@ -37,13 +37,13 @@ macos-icon                  = custom
 macos-custom-icon           = ~/.config/ghostty/Ghostty.icns
 
 # shell
-shell-integration           = fish
-shell-integration-features  = no-cursor,sudo,no-title
+shell-integration           = detect
+shell-integration-features  = true
 
 # quick terminal
 keybind                             = global:cmd+ctrl+t=toggle_quick_terminal
 quick-terminal-position             = top
-quick-terminal-size                 = 45%,45%
+quick-terminal-size                 = 50%,50%
 quick-terminal-animation-duration   = 0
 
 # other
