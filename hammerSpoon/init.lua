@@ -26,7 +26,9 @@ end
 
 -- 3. 自定义基础参数
 PaperWM.window_gap = { top = 0, bottom = 0, left = 5, right = 5 }
-PaperWM.window_ratios = { 0.9, 0.5 } -- 循环切换的宽度比例
+PaperWM.window_ratios = { 0.9, 0.75, 0.5 } -- 循环切换的宽度比例
+
+PaperWM.infinite_loop_window = true
 
 --- [新窗口] 自动 0.9 比例 ---
 local function subscribeWindowCreated()
