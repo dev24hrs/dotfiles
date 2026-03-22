@@ -33,12 +33,6 @@ alias bt='btop'
 alias ls='lsd'
 alias la='lsd -la -A -X'
 alias lt='lsd --tree'
-# tmux
-alias ts='tmux source-file ~/.config/tmux/tmux.conf'
-alias tl='tmux ls'
-alias ta='tmux attach'
-alias tn='tmux new -s'
-alias tk='tmux kill-session -t'
 
 # 5. FZF 默认选项
 fzf --fish | source
@@ -65,13 +59,14 @@ if test -f $HOME/.config/fish/lastPwd.fish
     source $HOME/.config/fish/lastPwd.fish
 end
 
-set -x GEMINI_API_KEY 
+set -x GEMINI_API_KEY
 
 # deepseek
-set -x DEEPSEEK_API_KEY 
+set -x DEEPSEEK_API_KEY
 
 # openrouter
-set -x OPENROUTER_API_KEY 
+set -x OPENROUTER_API_KEY
+
 # ollama
 set -x OLLAMA_API_BASE 'http://127.0.0.1:11434'
 

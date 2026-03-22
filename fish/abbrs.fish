@@ -20,5 +20,6 @@ abbr -a tk 'tmux kill-session -t'
 # golang
 abbr -a gmi "go mod init"
 abbr -a gmt "go mod tidy"
+abbr -a gmc "go clean -modcache"
 abbr -a gmv "go mod vendor"
 abbr -a gmw "go mod why"
