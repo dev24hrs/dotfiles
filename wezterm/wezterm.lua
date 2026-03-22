@@ -60,7 +60,7 @@ config.key_tables = {
 	},
 }
 for i = 1, 5 do
-	-- CMD+ALT + number to activate that window
+	-- CMD + number to activate that window
 	table.insert(config.keys, {
 		key = tostring(i),
 		mods = "CMD",
@@ -68,12 +68,6 @@ for i = 1, 5 do
 	})
 end
 config.mouse_bindings = {
-	-- Ctrl+左键打开链接
-	{
-		event = { Up = { streak = 1, button = "Left" } },
-		mods = "CMD",
-		action = wezterm.action.OpenLinkAtMouseCursor,
-	},
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "CMD",
