@@ -1,9 +1,9 @@
 # font
 font-family                 = RecMonoCasual Nerd Font Mono
-# font-family                 = Smiley Sans Oblique
 font-family                 = Source Han Sans SC
 font-size                   = 18
 font-thicken                = false
+font-feature                = -calt, -liga, -dlig
 font-family-italic          = true
 # adjust-cell-height          = 5%
 window-inherit-font-size    = true
@@ -33,6 +33,7 @@ window-colorspace           = display-p3
 # macos
 macos-titlebar-style        = hidden
 macos-non-native-fullscreen = true
+macos-option-as-alt         = true
 macos-icon                  = custom
 macos-custom-icon           = ~/.config/ghostty/Ghostty.icns
 
