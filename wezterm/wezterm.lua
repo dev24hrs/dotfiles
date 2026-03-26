@@ -6,9 +6,9 @@ local config = wezterm.config_builder()
 -- --- 字体设置 ---
 config.font = wezterm.font_with_fallback({
 	{ family = "RecMonoCasual Nerd Font Mono", weight = "Regular" },
-	{ family = "Source Han Sans SC", weight = "Regular" }, -- 思源黑体
+	{ family = "Source Han Sans SC VF", weight = "Regular" }, -- 思源黑体中文
 })
-config.font_size = 18
+config.font_size = 19
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.line_height = 1.0
 
