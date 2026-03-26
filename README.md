@@ -14,6 +14,9 @@ tags:
   - [Enhance terminal](#enhance-terminal)
   - [Git Config](#git-config)
   - [Homebrew](#homebrew)
+  - [Font](#font)
+    - [brew 安装](#brew-安装)
+    - [手动安装 (推荐)](#手动安装-推荐)
   - [Fish Shell](#fish-shell)
   - [Cli Tools](#cli-tools)
     - [Starship](#starship)
@@ -27,7 +30,6 @@ tags:
     - [Cheat.sh](#cheatsh)
     - [Go-musicbox](#go-musicbox)
     - [Btop](#btop)
-  - [Font](#font)
   - [System Keymap](#system-keymap)
   - [WezTerm](#wezterm)
   - [Tmux](#tmux)
@@ -62,7 +64,6 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 osascript -e 'id of app "app name"'
 # e.g
 osascript -e 'id of app "Wezterm"'
-
 ```
 
 ## Git Config
@@ -130,6 +131,49 @@ brew update
 # brew cleanup
 # brew cleanup --prune=all
 ```
+
+## Font
+
+### brew 安装
+
+- 英文: recursive & fira
+
+  ```bash
+  brew install --cask font-recursive-mono-nerd-font
+  brew install --cask font-fira-mono-nerd-font
+  ```
+
+- symbols
+
+  ```bash
+  brew install --cask font-symbols-only-nerd-font
+  ```
+
+- 中文: 思源黑体
+
+  ```bash
+  brew install --cask font-source-han-sans-vf
+  ```
+
+### 手动安装 (推荐)
+
+> [!NOTE]
+>
+> brew 方式会安装很多不必要的字体,比如思源黑体,brew方式会自动安装日语 & 韩语 & 繁体,但个人只需要简中
+
+- 英文
+
+  ```bash
+  // recursive & fira
+  https://www.nerdfonts.com/font-downloads
+  ```
+
+- 中文
+
+  ```bash
+  // 简中otf
+  https://github.com/adobe-fonts/source-han-sans/releases
+  ```
 
 ## Fish Shell
 
@@ -381,18 +425,6 @@ brew install btop
 ```bash
 alias bt='btop'
 ```
-
-## Font
-
-perfer nerd fonts [nerd fonts](https://www.nerdfonts.com/font-downloads)
-
-- [firacode](https://github.com/tonsky/FiraCode)
-
-- [JetBrainsMono](https://github.com/JetBrains/JetBrainsMono)
-
-- [Recursive](https://www.recursive.design/) - prefer fonts
-
-- [思源黑体](https://github.com/adobe-fonts/source-han-sans)
 
 ## System Keymap
 
