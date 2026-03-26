@@ -12,7 +12,8 @@ return {
                 }, function(err)
                     if not err then
                         -- 核心改进：格式化成功后立即保存文件
-                        vim.api.nvim_command('write')
+                        -- vim.api.nvim_command('write')
+                        vim.api.nvim_command('update')
                         vim.notify('Formatted & Saved', vim.log.levels.INFO, { title = 'Conform' })
                     end
                 end)

@@ -1,32 +1,50 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
--- 在 Insert 模式下按 Shift + Tab 向前缩进 (Outdent)
-vim.keymap.set('i', '<S-Tab>', '<C-d>', { noremap = true })
+local function map(mode, lhs, rhs, desc)
+    local options = { noremap = true, silent = true, desc = desc }
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
+map('n', '<Esc>', '<cmd>nohlsearch<CR>', '[Basic]: clear search highlight')
+
+-- 在 Insert 模式下按下 Esc，退回到 Normal 模式并保存（仅在文件有修改时保存）
+-- map('i', '<Esc>', '<Esc>:update<CR>')
+
+-- 在 Insert 模式下按 Shift + Tab 向后缩进 (Outdent)
+map('i', '<S-Tab>', '<C-d>', '[Basic]: Outdent code in insert mode')
 
 -- Indent code in visual mode
-vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true, desc = '[Basic]: Indent code in visual mode' })
-vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true, desc = '[Basic]: Indent code in visual mode' })
+map('v', '<', '<gv', '[Basic]: Indent code in visual mode')
+map('v', '>', '>gv', '[Basic]: Indent code in visual mode')
 
 -- 行移动
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true, desc = '[Basic]: move selected line down' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true, desc = '[Basic]: move selected line up' })
+map('v', 'J', ":m '>+1<CR>gv=gv", '[Basic]: move selected line down')
+map('v', 'K', ":m '<-2<CR>gv=gv", '[Basic]: move selected line up')
 
 -- move cursor to line head or end
-vim.keymap.set({ 'n', 'v' }, 'H', '^', { noremap = true, silent = true, desc = '[Basic]: move cursor to line head' })
-vim.keymap.set({ 'n', 'v' }, 'L', '$', { noremap = true, silent = true, desc = '[Basic]: move cursor to line end' })
+map({ 'n', 'v' }, 'W', '^', '[Basic]: move cursor to line head')
+map({ 'n', 'v' }, 'E', '$', '[Basic]: move cursor to line end')
 
-vim.keymap.set('n', 'wc', '<C-w>c', { noremap = true, silent = true, desc = '[Basic]: Close split' })
-vim.keymap.set('n', 'wh', '<C-w>h', { noremap = true, silent = true, desc = '[Basic]: move to left split' })
-vim.keymap.set('n', 'wl', '<C-w>l', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
-vim.keymap.set('n', 'wj', '<C-w>j', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
-vim.keymap.set('n', 'wk', '<C-w>k', { noremap = true, silent = true, desc = '[Basic]: move to right split' })
+-- -- buffer switch
+map('n', '<S-l>', '<cmd>bnext<CR>', '[Basic]: buffer next')
+map('n', '<S-h>', '<cmd>bprevious<CR>', '[Basic]: buffer previous')
+map('n', 'bd', '<cmd>bdelete!<CR>', '[Basic]: buffer close')
 
--- buffer switch
-vim.keymap.set('n', '<C-n>', '<cmd>bnext<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer next' })
-vim.keymap.set('n', '<C-p>', '<cmd>bprevious<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer previous' })
-vim.keymap.set('n', '<C-c>', '<cmd>bdelete!<CR>', { noremap = true, silent = true, desc = '[Basic]: buffer close' })
+map('n', 'vw', 'viw', '[Basic]: selecte current word')
+map('n', 'vv', 'V', '[Basic]: selecte whole line')
 
-vim.keymap.set('n', 'vw', 'viw', { noremap = true, silent = true, desc = '[Basic]: selecte current word' })
-vim.keymap.set('n', 'vv', 'V', { noremap = true, silent = true, desc = '[Basic]: selecte whole line' })
+-- move cursor to line head or end
+-- map({ 'n', 'v' }, 'H', '^', '[Basic]: move cursor to line head')
+-- map({ 'n', 'v' }, 'L', '$', '[Basic]: move cursor to line end')
+--
+-- map('n', 'wc', '<C-w>c', '[Basic]: Close split')
+-- map('n', 'wh', '<C-w>h', '[Basic]: move to left split')
+-- map('n', 'wl', '<C-w>l', '[Basic]: move to right split')
+-- map('n', 'wj', '<C-w>j', '[Basic]: move to right split')
+-- map('n', 'wk', '<C-w>k', '[Basic]: move to right split')
+--
+-- -- buffer switch
+-- map('n', '<C-n>', '<cmd>bnext<CR>', '[Basic]: buffer next')
+-- map('n', '<C-p>', '<cmd>bprevious<CR>', '[Basic]: buffer previous')
+-- map('n', '<C-c>', '<cmd>bdelete!<CR>', '[Basic]: buffer close')

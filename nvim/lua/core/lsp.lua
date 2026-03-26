@@ -57,7 +57,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap('gp', '<CMD>Lspsaga peek_definition<CR>', '[Lsp]: Peek Definition')
         keymap('gi', '<CMD>Lspsaga finder imp<CR>', '[Lsp]: Goto Implementation')
         keymap('gr', '<CMD>Lspsaga finder ref<CR>', '[Lsp]: Goto References')
-        -- keymap('gs', '<CMD>Lspsaga outline<CR>', '[Lsp]: Goto Outline Symbols')
         keymap('[d', '<CMD>Lspsaga diagnostic_jump_prev<CR>', '[Lsp]: Diagnostic Previous')
         keymap(']d', '<CMD>Lspsaga diagnostic_jump_next<CR>', '[Lsp]: Diagnostic Next')
         keymap('<leader>ld', '<CMD>Lspsaga show_buf_diagnostics ++float<CR>', '[Lsp]: Show Buffer Diagnostics')
@@ -67,44 +66,44 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap('<leader>lf', '<CMD>Lspsaga finder tyd+ref+imp+def<CR>', '[Lsp]: Lsp Finder')
 
         -- Highlight words under cursor
-        local function client_supports_method(client, method, bufnr)
-            return client:supports_method(method, bufnr)
-        end
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
-            local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
-            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.document_highlight,
-            })
-
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.clear_references,
-            })
-
-            vim.api.nvim_create_autocmd('LspDetach', {
-                group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-                callback = function(event2)
-                    vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event2.buf })
-                end,
-            })
-        end
-        -- folding
-        if client and client:supports_method('textDocument/foldingRange') then
-            local win = vim.api.nvim_get_current_win()
-            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
-        end
+        -- local function client_supports_method(client, method, bufnr)
+        --     return client:supports_method(method, bufnr)
+        -- end
+        -- local client = vim.lsp.get_client_by_id(event.data.client_id)
+        -- if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+        --     local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+        --     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        --         buffer = event.buf,
+        --         group = highlight_augroup,
+        --         callback = vim.lsp.buf.document_highlight,
+        --     })
+        --
+        --     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        --         buffer = event.buf,
+        --         group = highlight_augroup,
+        --         callback = vim.lsp.buf.clear_references,
+        --     })
+        --
+        --     vim.api.nvim_create_autocmd('LspDetach', {
+        --         group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+        --         callback = function(event2)
+        --             vim.lsp.buf.clear_references()
+        --             vim.api.nvim_clear_autocmds({ group = 'lsp-highlight', buffer = event2.buf })
+        --         end,
+        --     })
+        -- end
+        -- -- folding
+        -- if client and client:supports_method('textDocument/foldingRange') then
+        --     local win = vim.api.nvim_get_current_win()
+        --     vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        -- end
 
         -- Inlay hint
         vim.lsp.inlay_hint.enable(true)
         -- 自动刷新 CodeLens
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-            buffer = bufnr,
-            callback = vim.lsp.codelens.refresh,
-        })
+        -- vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+        --     buffer = bufnr,
+        --     callback = vim.lsp.codelens.refresh,
+        -- })
     end,
 })

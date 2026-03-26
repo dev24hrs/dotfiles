@@ -119,11 +119,11 @@ return {
             hints = {
                 assignVariableTypes = false,
                 compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
+                compositeLiteralTypes = false,
                 functionTypeParameters = true,
+                constantValues = true,
                 parameterNames = true,
-                rangeVariableTypes = true,
+                rangeVariableTypes = false,
             },
             analyses = {
                 useany = true,

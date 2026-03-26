@@ -6,7 +6,6 @@ return {
         build = ':TSUpdate',
         event = { 'BufReadPost', 'BufNewFile' },
         dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
             'windwp/nvim-ts-autotag',
         },
         opts = {
@@ -50,33 +49,25 @@ return {
                     enable = true,
                     lookahead = true,
                     keymaps = {
-                        -- 基础对象
-                        ['af'] = '@function.outer', -- 选中整个函数
-                        ['if'] = '@function.inner', -- 选中函数内部
-                        ['ac'] = '@class.outer', -- 选中整个类/结构体
-                        ['ic'] = '@class.inner', -- 选中类内部
-
-                        -- 逻辑对象 (非常适合 Go/Rust)
-                        ['ai'] = '@conditional.outer', -- 选中整个 if/else 块
-                        ['ii'] = '@conditional.inner', -- 选中 if 内部逻辑
-                        ['al'] = '@loop.outer', -- 选中整个 for/while 循环
-                        ['il'] = '@loop.inner', -- 选中循环体内部
-                        ['ap'] = '@parameter.outer', -- 选中一个函数参数 (a parameter)
-                        ['ip'] = '@parameter.inner', -- 选中参数内容
+                        -- 这里的 "f" 代表 function, "p" 代表 parameter
+                        ['af'] = { query = '@function.outer', desc = '选中整个函数' },
+                        ['if'] = { query = '@function.inner', desc = '选中函数体内部' },
+                        ['ac'] = { query = '@class.outer', desc = '选中整个结构体/类' },
+                        ['ic'] = { query = '@class.inner', desc = '选中结构体内部内容' },
+                        ['ap'] = { query = '@parameter.outer', desc = '选中整个参数' },
+                        ['ip'] = { query = '@parameter.inner', desc = '选中参数内容' },
                     },
                 },
                 move = {
                     enable = true,
-                    set_jumps = true,
+                    set_jumps = true, -- 将跳转记录在 jumplist 中 (可以用 Ctrl+o 跳回)
                     goto_next_start = {
-                        [']f'] = '@function.outer', -- 下一个函数起始
-                        [']c'] = '@class.outer', -- 下一个类起始
-                        [']i'] = '@conditional.outer', -- 下一个 if 语句
+                        [']f'] = { query = '@function.outer', desc = '跳到下一个函数开始' },
+                        [']m'] = { query = '@class.outer', desc = '跳到下一个结构体开始' },
                     },
                     goto_previous_start = {
-                        ['[f'] = '@function.outer', -- 上一个函数起始
-                        ['[c'] = '@class.outer', -- 上一个类起始
-                        ['[i'] = '@conditional.outer', -- 上一个 if 语句
+                        ['[f'] = { query = '@function.outer', desc = '跳到上一个函数开始' },
+                        ['[m'] = { query = '@class.outer', desc = '跳到上一个结构体开始' },
                     },
                 },
             },
@@ -89,14 +80,15 @@ return {
             configs.setup(opts)
         end,
     },
+    { 'nvim-treesitter/nvim-treesitter-textobjects' },
     -- Context 插件建议独立出来，方便单独控制
     {
         'nvim-treesitter/nvim-treesitter-context',
         event = 'BufReadPost',
         opts = {
             max_lines = 3, -- 建议限制，防止占满屏幕
-            mode = 'cursor', --
-            line_numbers = true, --
+            mode = 'cursor',
+            line_numbers = true,
         },
     },
 }
