@@ -18,7 +18,7 @@ local ignoreList = {
 	"com.tencent.xinWeChat",
 	"com.tencent.Foxmail",
 	"com.netease.163music",
-	"cn.com.10jqka.macstockPro",
+	"cn.com.10jqka.macstockPro", -- 同花顺
 }
 for _, app in ipairs(ignoreList) do
 	PaperWM.window_filter:rejectApp(app)
@@ -27,51 +27,8 @@ end
 -- 3. 自定义基础参数
 PaperWM.window_gap = { top = 0, bottom = 0, left = 5, right = 5 }
 PaperWM.window_ratios = { 0.9, 0.75, 0.5 } -- 循环切换的宽度比例
-
+PaperWM.default_width = 0.75
 PaperWM.infinite_loop_window = true
-
---- [新窗口] 自动 0.9 比例 ---
-local function subscribeWindowCreated()
-	PaperWM.window_filter:subscribe(hs.window.filter.windowCreated, function(win)
-		local retryCount = 0
-		local maxRetries = 5
-
-		local function adjustNewWindow()
-			if not win or not win:isVisible() then
-				return
-			end
-
-			local screen = win:screen()
-			if not screen then
-				if retryCount < maxRetries then
-					retryCount = retryCount + 1
-					hs.timer.doAfter(0.2, adjustNewWindow)
-				end
-				return
-			end
-
-			hs.timer.doAfter(0.3, function()
-				if not win or not win:isVisible() then
-					return
-				end
-				local canvas = PaperWM.windows.getCanvas(screen)
-				local gap = (PaperWM.windows.getGap("left") + PaperWM.windows.getGap("right")) / 2
-				local target_width = PaperWM.window_ratios[1] * (canvas.w + gap) - gap
-				local frame = win:frame()
-				frame.x = frame.x + ((frame.w - target_width) / 2)
-				frame.w = target_width
-				PaperWM.windows.moveWindow(win, frame)
-				local spaces = hs.spaces.windowSpaces(win)
-				if spaces and spaces[1] then
-					PaperWM:tileSpace(spaces[1])
-				end
-			end)
-		end
-		adjustNewWindow()
-	end)
-end
-
-subscribeWindowCreated()
 
 --- [配置] Modal 模式 ---
 -- 设置快捷键为 Cmd + Enter 进入该模式
@@ -98,12 +55,6 @@ wmModal:bind({}, "h", nil, actions.focus_left)
 wmModal:bind({}, "l", nil, actions.focus_right)
 -- wmModal:bind({}, "k", nil, actions.focus_up)
 -- wmModal:bind({}, "j", nil, actions.focus_down)
-
--- 交换窗口位置 (Shift + h/j/k/l)
-wmModal:bind({ "shift" }, "h", nil, actions.swap_left)
-wmModal:bind({ "shift" }, "l", nil, actions.swap_right)
--- wmModal:bind({ "shift" }, "k", nil, actions.swap_up)
--- wmModal:bind({ "shift" }, "j", nil, actions.swap_down)
 
 -- 调整窗口大小
 wmModal:bind({}, "r", nil, actions.cycle_width) -- 循环预设宽度
