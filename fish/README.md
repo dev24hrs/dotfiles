@@ -16,49 +16,77 @@ echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 ```
 
+ ## 文件结构
+
+`~/.config/fish/`
+
+├── completions
+│   ├── brew-clean-taps.fish
+│   ├── proxy.fish
+│   └── tool.fish
+├── conf.d
+│   ├── apiKey.fish				api key相关
+│   ├── envPath.fish				env path相关
+│   └── lastPwd.fish				上一次目录
+├── functions
+│   ├── brew-clean-taps.fish		清理未使用的home brew taps
+│   ├── proxy.fish				开启/关闭/查看git代理
+│   └── tool.fish				自定义工具
+├── README.md
+├── abbrs.fish					abbrs相关
+├── config.fish					主配置文件
+├── fish_variables
+└── git.fish					自定义 gs & gb & gl
+
+在 Fish Shell 中，**completions & conf.d & functions & config.fish** 共同构成了一个高效、模块化且支持“延迟加载”的配置系统。
+
+以上配置文件结构尽可能遵循 `模块化`和``延迟加载``
+
+1.   completions
+
+     专门负责**命令补全提示**的逻辑
+
+     -   当你输入自定义命令按下 `Tab` 键时，Fish 会到这里寻找对应命令的补全定义
+     -   文件名必须与命令名一致。例如 `proxy` 的补全定义放在 `completions/proxy.fish`
+
+2.   conf.d
+
+     存放**环境变量**和**启动脚本**
+
+     -   Fish 在启动时，会**自动遍历并执行**该目录下所有的 `.fish` 文件
+     -   **在执行 `config.fish` 之前加载**
+
+3.   functions
+
+     存放**自定义命令（函数）**
+
+     -   实现**延迟加载（Autoloading）**。只有当你真正输入命令并按下回车时，Fish 才会去这个目录下寻找同名的 `.fish` 文件并加载
+     -   文件名必须与函数名完全一致。例如，函数名为 `proxy`，文件名必须是 `proxy.fish`
+
+4.   config.fish
+
+     **主配置文件**
+
+     -   存放基础设置 , 如隐藏启动欢迎语 `set -g fish_greeting ""`
+     -   abbr & aliases
+         -   `abbr`相关的代码被单独抽离成文件`abbrs.fish` , 然后在config.fish中 source 引用, 防止后期过多的abbr
+     -   配置, 如 Starship & homebrew & zoxide  & fzf 等初始化
+     -   不单独归类的设置, 如git.fish. 
+         -   因为如果把git.fish存放在functions目录下, 对应的N个相关函数需要新建N个文件
+
 ## 设置
 
-add to config.fish & source ~/.config/fish/config.fish
-
-### 基础设置
+### config.fish
 
 ```bash
 set -g fish_greeting ""
 set -gx TERM xterm-256color
 set -gx EDITOR nvim
 
-# init homebrew
+# homebrew
 eval (/opt/homebrew/bin/brew shellenv)
 
-# set XDG_CONFIG_HOME
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-```
-
-### 环境变量
-
-```bash
-# 导出开发环境变量 (使用 set -gx)
-set -gx GOPATH $HOME/Documents/Tools/GoPath
-set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
-set -gx MAVEN_HOME $HOME/Documents/Tools/maven/maven-3.9.9
-set -gx GRADLE_HOME $HOME/Documents/Tools/gradle/gradle-8.12
-set -gx GRADLE_USER_HOME $HOME/Documents/Tools/gradle/gradle-repository
-
-#  路径管理
-# $GOPATH/bin: go install xxx 的存放路径
-# /opt/homebrew/opt/go: 是 Homebrew 指向当前 Go 版本的软链
-# 可用于多个 Go 版本时指定某一个版本
-
-fish_add_path $GOPATH/bin
-fish_add_path /opt/homebrew/opt/go/bin
-fish_add_path $JAVA_HOME/bin
-fish_add_path $MAVEN_HOME/bin
-fish_add_path $GRADLE_HOME/bin
-```
-
-### 别名
-
-```bash
+# aliases
 alias lg='lazygit'
 alias mu='musicfox'
 alias bt='btop'
@@ -66,53 +94,61 @@ alias bt='btop'
 alias ls='lsd'
 alias la='lsd -la -A -X'
 alias lt='lsd --tree'
-```
 
-### 加载自定义函数文件
-
-```bash
-if test -f $HOME/.config/fish/tools.fish
-    source $HOME/.config/fish/tools.fish
-end
-
+# source
 if test -f $HOME/.config/fish/abbrs.fish
     source $HOME/.config/fish/abbrs.fish
 end
-```
+if test -f $HOME/.config/fish/git.fish
+    source $HOME/.config/fish/git.fish
+end
 
-### 配置fzf
-
-```bash
+# fzf
 fzf --fish | source
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-# --preview-window 60% 表示预览窗口占宽度中的比例
 set -gx FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window 'right,60%,border-left'"
 set -gx FZF_CTRL_R_OPTS "--preview-window hidden"
-```
 
-### 配置starship
-
-```bash
-# 自定义 starship 配置文件的路径
-set -gx STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
-
-# 文件末尾
+# starship
 starship init fish | source
-```
-
-### 配置zoxide
-
-```bash
-# 文件末尾
+# zoxide
 zoxide init fish | source
 ```
 
-## 自定义function
+### completions
 
-`fish/functions` 目录下可以存放自定义的一些功能, fish 会自动懒加载相关function,如 `brew-clean-taps.fish` -> `function brew-clean-taps -d "清理未使用的 Homebrew Taps" `
+补全效果:
 
-与上面的`source $HOME/.config/fish/abbrs.fish`相比:
+```bash
+➜ tool ds
+ch  (查询 cheat.sh 备忘录)  ds  (清除当前目录下的 .DS_Store 文件)  nh  (使用 nohup 后台运行命令)
+```
 
-- `functions` 目录下的会懒加载
-- `source` 方式加载的函数会被fish 初始化, 当过多时会影响启动效率
+### functions
+
+自定义命令:
+
+```bash
+➜ proxy on
+off  (关闭 Git 全局代理配置)  on  (开启 Git 代理)  show  (显示 Git 代理信息)
+```
+
+### conf.d
+
+-   envPath.fish
+
+```bash
+# 自定义 XDG_CONFIG_HOME
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+
+# 自定义 STARSHIP_CONFIG
+set -gx STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
+```
+
+
+
+
+
+
+
