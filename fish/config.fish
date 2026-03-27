@@ -11,9 +11,9 @@ alias lg='lazygit'
 alias mu='musicfox'
 alias bt='btop'
 
-alias ls='lsd -a --group-dirs first'
-alias la='lsd -la --group-dirs first'
-alias lt='lsd --tree --group-dirs first'
+alias ls='eza -a --icons --group-directories-first'
+alias la='eza -la --icons --group-directories-first'
+alias lt='eza -aT --icons --group-directories-first --git-ignore'
 
 # fzf
 fzf --fish | source
