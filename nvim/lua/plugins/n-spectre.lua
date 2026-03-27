@@ -58,7 +58,7 @@ return {
                         desc = '[Spectre]: replace current line',
                     },
                     ['run_replace'] = {
-                        map = '<cr>',
+                        map = '<S-cr>',
                         cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
                         desc = '[Spectre]: replace all',
                     },

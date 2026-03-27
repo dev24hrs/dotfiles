@@ -21,7 +21,7 @@ vim.opt.relativenumber = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3 -- 全局状态栏，避免多窗口时状态栏重复
 vim.opt.showmode = false -- 既然有状态栏，就没必要在左下角显示 -- INSERT -- 了
-vim.opt.conceallevel = 2 -- Markdown 等文件中有更好的预览效果
+vim.opt.conceallevel = 2
 vim.opt.winborder = 'single' -- On neovim 0.11+, you may use the vim.o.winborder option to set the default border for all floating windows.
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -33,7 +33,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true -- default
 vim.opt.incsearch = true -- default
-vim.opt.scrolloff = 8 -- 增加到 8，让光标始终离上下边缘有一定距离
+vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 5
 
 -- 4. 缩进与排版
