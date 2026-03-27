@@ -1,5 +1,14 @@
 # Fish Shell
 
+<!--toc:start-->
+
+- [Fish Shell](#fish-shell)
+  - [安装](#安装)
+  - [fish 作为默认shell](#fish-作为默认shell)
+  - [文件结构](#文件结构)
+  - [设置](#设置) - [config.fish](#configfish) - [completions](#completions) - [functions](#functions) - [conf.d](#confd)
+  <!--toc:end-->
+
 ## 安装
 
 ```bash
@@ -16,63 +25,60 @@ echo $(which fish) | sudo tee -a /etc/shells
 chsh -s $(which fish)
 ```
 
- ## 文件结构
+## 文件结构
 
 `~/.config/fish/`
 
+```bash
 ├── completions
-│   ├── brew-clean-taps.fish
+│   ├── brew-clean.fish
 │   ├── proxy.fish
 │   └── tool.fish
 ├── conf.d
-│   ├── apiKey.fish				api key相关
-│   ├── envPath.fish				env path相关
-│   └── lastPwd.fish				上一次目录
+│   ├── envPath.fish            env path相关
+│   └── lastPwd.fish            上一次目录
 ├── functions
-│   ├── brew-clean-taps.fish		清理未使用的home brew taps
-│   ├── proxy.fish				开启/关闭/查看git代理
-│   └── tool.fish				自定义工具
+│   ├── brew-clean.fish         清理未使用的home brew taps
+│   ├── proxy.fish              开启/关闭/查看git代理
+│   └── tool.fish               自定义工具
 ├── README.md
-├── abbrs.fish					abbrs相关
-├── config.fish					主配置文件
+├── abbrs.fish                  abbrs相关
+├── config.fish                 主配置文件
 ├── fish_variables
-└── git.fish					自定义 gs & gb & gl
+└── git.fish                    自定义 gs & gb & gl
+```
 
 在 Fish Shell 中，**completions & conf.d & functions & config.fish** 共同构成了一个高效、模块化且支持“延迟加载”的配置系统。
 
-以上配置文件结构尽可能遵循 `模块化`和``延迟加载``
+以上配置文件结构尽可能遵循 `模块化`和`延迟加载`
 
-1.   completions
+1.  completions
 
-     专门负责**命令补全提示**的逻辑
+    专门负责**命令补全提示**的逻辑
+    - 当你输入自定义命令按下 `Tab` 键时，Fish 会到这里寻找对应命令的补全定义
+    - 文件名必须与命令名一致。例如 `proxy` 的补全定义放在 `completions/proxy.fish`
 
-     -   当你输入自定义命令按下 `Tab` 键时，Fish 会到这里寻找对应命令的补全定义
-     -   文件名必须与命令名一致。例如 `proxy` 的补全定义放在 `completions/proxy.fish`
+2.  conf.d
 
-2.   conf.d
+    存放**环境变量**和**启动脚本**
+    - Fish 在启动时，会**自动遍历并执行**该目录下所有的 `.fish` 文件
+    - **在执行 `config.fish` 之前加载**
 
-     存放**环境变量**和**启动脚本**
+3.  functions
 
-     -   Fish 在启动时，会**自动遍历并执行**该目录下所有的 `.fish` 文件
-     -   **在执行 `config.fish` 之前加载**
+    存放**自定义命令（函数）**
+    - 实现**延迟加载（Autoloading）**。只有当你真正输入命令并按下回车时，Fish 才会去这个目录下寻找同名的 `.fish` 文件并加载
+    - 文件名必须与函数名完全一致。例如，函数名为 `proxy`，文件名必须是 `proxy.fish`
 
-3.   functions
+4.  config.fish
 
-     存放**自定义命令（函数）**
-
-     -   实现**延迟加载（Autoloading）**。只有当你真正输入命令并按下回车时，Fish 才会去这个目录下寻找同名的 `.fish` 文件并加载
-     -   文件名必须与函数名完全一致。例如，函数名为 `proxy`，文件名必须是 `proxy.fish`
-
-4.   config.fish
-
-     **主配置文件**
-
-     -   存放基础设置 , 如隐藏启动欢迎语 `set -g fish_greeting ""`
-     -   abbr & aliases
-         -   `abbr`相关的代码被单独抽离成文件`abbrs.fish` , 然后在config.fish中 source 引用, 防止后期过多的abbr
-     -   配置, 如 Starship & homebrew & zoxide  & fzf 等初始化
-     -   不单独归类的设置, 如git.fish. 
-         -   因为如果把git.fish存放在functions目录下, 对应的N个相关函数需要新建N个文件
+    **主配置文件**
+    - 存放基础设置 , 如隐藏启动欢迎语 `set -g fish_greeting ""`
+    - abbr & aliases
+      - `abbr`相关的代码被单独抽离成文件`abbrs.fish` , 然后在config.fish中 source 引用, 防止后期过多的abbr
+    - 配置, 如 Starship & homebrew & zoxide & fzf 等初始化
+    - 不单独归类的设置, 如git.fish.
+      - 因为如果把git.fish存放在functions目录下, 对应的N个相关函数需要新建N个文件
 
 ## 设置
 
@@ -90,10 +96,10 @@ eval (/opt/homebrew/bin/brew shellenv)
 alias lg='lazygit'
 alias mu='musicfox'
 alias bt='btop'
-# lsd
-alias ls='lsd'
-alias la='lsd -la -A -X'
-alias lt='lsd --tree'
+
+alias ls='eza -a --icons --group-directories-first'
+alias la='eza -la --icons --group-directories-first'
+alias lt='eza -aT --icons --group-directories-first --git-ignore'
 
 # source
 if test -f $HOME/.config/fish/abbrs.fish
@@ -136,7 +142,7 @@ off  (关闭 Git 全局代理配置)  on  (开启 Git 代理)  show  (显示 Git
 
 ### conf.d
 
--   envPath.fish
+- envPath.fish
 
 ```bash
 # 自定义 XDG_CONFIG_HOME
@@ -145,10 +151,3 @@ set -gx XDG_CONFIG_HOME "$HOME/.config"
 # 自定义 STARSHIP_CONFIG
 set -gx STARSHIP_CONFIG "$HOME/.config/starship/starship.toml"
 ```
-
-
-
-
-
-
-
