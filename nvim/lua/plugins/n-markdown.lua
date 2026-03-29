@@ -13,11 +13,12 @@ return {
             sign = { enabled = false },
             code = {
                 sign = false,
+                language = false,
                 style = 'language',
             },
             heading = {
-                -- icons = { ' 󰬺 ', ' 󰬻 ', ' 󰬼 ', ' 󰬽 ', ' 󰬾 ', ' 󰬿 ' },
-                icons = { ' 󰲡 ', ' 󰲣 ', ' 󰲥 ', ' 󰲧 ', ' 󰲩 ', ' 󰲫 ' },
+                icons = { ' 󰬺 ', ' 󰬻 ', ' 󰬼 ', ' 󰬽 ', ' 󰬾 ', ' 󰬿 ' },
+                -- icons = { ' 󰲡 ', ' 󰲣 ', ' 󰲥 ', ' 󰲧 ', ' 󰲩 ', ' 󰲫 ' },
                 position = 'inline',
                 border = false,
                 render_modes = true, -- keep rendering while inserting

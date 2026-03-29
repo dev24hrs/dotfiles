@@ -26,19 +26,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     end,
 })
 
--- show cursor line only in active window
--- local cursorGrp = vim.api.nvim_create_augroup('CursorLine', { clear = true })
--- vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
---     pattern = '*',
---     command = 'set cursorline',
---     group = cursorGrp,
--- })
--- vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
---     pattern = '*',
---     command = 'set nocursorline',
---     group = cursorGrp,
--- })
-
 --- Go Mod Tidy 部分 ---
 local go_tidy_group = vim.api.nvim_create_augroup('GoModTidy', { clear = true })
 local last_tidy_time = 0
@@ -78,6 +65,16 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.opt_local.list = false -- 仅在 Go 文件中关闭 listchars 显示
     end,
 })
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'markdown',
+    callback = function()
+        vim.opt_local.wrap = false
+        vim.opt_local.list = false
+        vim.opt_local.conceallevel = 0
+    end,
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('close_with_q', { clear = true }),
