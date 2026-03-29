@@ -68,47 +68,7 @@ osascript -e 'id of app "Wezterm"'
 
 ## Git Config
 
-- refer to [new SSH key](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-  ```bash
-  git config --global user.email "xxx@foxmail.com"
-  git config --global user.name "xxx"
-
-  # ssh-key
-  brew install openssh
-  ssh-keygen -t ed25519 -C "your_email@example.com"
-
-  touch ~/.ssh/config
-
-  # add
-  Host github.com
-    AddKeysToAgent yes
-    IdentityFile ~/.ssh/id_ed25519
-
-  ssh-add ~/.ssh/id_ed25519
-
-  pbcopy < ~/.ssh/id_ed25519.pub
-  # then add to your github settings->ssh key
-
-  # set proxy
-  git config --global http.proxy 127.0.0.1:7890
-  git config --global https.proxy 127.0.0.1:7890
-
-  #unset
-  git config --global --unset http.proxy
-  git config --global --unset https.proxy
-
-  # pretty git log
-  # add to ~/.zshrc
-  alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit -n 20 --date=format:'%Y-%m-%d %H:%M %a'"
-  ```
-
-- gitignore global
-
-  ```bash
-  echo .DS_Store >> ~/.gitignore_global
-  git config --global core.excludesfile ~/.gitignore_global
-  ```
+refer to [git config](https://github.com/dev24hrs/Dotfiles/tree/main/git)
 
 ## Homebrew
 
@@ -177,27 +137,7 @@ brew update
 
 ## Fish Shell
 
-Config refer to [fish config](https://github.com/dev24hrs/dotfiles/blob/main/fish/config.fish)
-使用fish 作为默认shell. 以下可能使用到的cli 命令配置均基于fish shell.
-
-```bash
-# Homebrew安装
-brew install fish
-# Fish 路径写入信任列表
-echo $(which fish) | sudo tee -a /etc/shells
-# 切换默认 Shell
-chsh -s $(which fish)
-```
-
-```bash
-# add to config.fish
-# brew
-eval (/opt/homebrew/bin/brew shellenv)
-# add this to set XDG_CONFIG_HOME
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-
-source ~/.config/fish/config.fish
-```
+refer to [fish config](https://github.com/dev24hrs/Dotfiles/tree/main/fish)
 
 ## Cli Tools
 
@@ -214,10 +154,6 @@ brew install starship
 - with fish
 
 ```bash
-# add to config.fish
-function starship_transient_prompt_func
-    starship module character
-end
 starship init fish | source
 
 # config
@@ -302,24 +238,6 @@ zoxide init fish | source
 brew install git-delta
 ```
 
-- config
-
-```bash
-# add this to ~/.gitconfig
-[core]
-    pager = delta
-[interactive]
-    diffFilter = delta --color-only
-[delta]
-    syntax-theme = gruvbox-dark
-    # this config auto set line-numbers=true
-    side-by-side = true
-[merge]
-    conflictstyle = diff3
-# Using Delta with tmux add below to tmux.conf
-# set -ga terminal-overrides ",xterm-256color:Tc"-
-```
-
 ### Lsd
 
 - install [lsd](https://github.com/lsd-rs/lsd)
@@ -385,17 +303,6 @@ ch go chan
 brew install anhoder/go-musicfox/go-musicfox
 ```
 
-- config
-
-```bash
-# macos default config path is : $HOME/Library/Application Support/go-musicfox/config.toml
-# 软链到 ~/.config/go-musicfox
-# mkdir -p ~/.config/go-musicfox
-cd ~/.config/go-musicfox
-# ln -s $HOME/Library/Application Support/go-musicfox go-musicfox
-nvim config.toml
-```
-
 - with fish
 
 ```bash
@@ -453,42 +360,31 @@ brew install --cask wezterm@nightly
 
 config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/tmux)
 
-> [!NOTE]
-
-<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/blog/202405061729031.png" alt="tmux" />
-
 ## Neovim
 
 config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/nvim)
 
-> [!NOTE]
-
-<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151334838.png" alt="dashboard" />
-
-<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151335169.png" alt="telescope" />
-
-<img src="https://cdn.jsdelivr.net/gh/dev24hrs/blog-img/go/202404151337040.png" alt="outline" width="100%" />
-
 ## vimrc
 
-config vim
+<details>
+  <summary>vimrc config</summary>
 
 ```bash
-" basic
+  " basic
 " fzf"
 set rtp+=/opt/homebrew/opt/fzf
 
 if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+if (has("nvim"))
+"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+set termguicolors
+endif
 endif
 
 syntax on
@@ -533,9 +429,9 @@ set noswapfile
 
 set noerrorbells
 
-set wildmenu               " enhance command-line auto-completion
-set wildignore=*.o         " files matched will be ignored by wildmenu
-set wildmode=longest:list  " Completion mode
+set wildmenu " enhance command-line auto-completion
+set wildignore=\*.o " files matched will be ignored by wildmenu
+set wildmode=longest:list " Completion mode
 
 " encoding
 " set spell spelllang=en_us
@@ -567,7 +463,10 @@ nnoremap ^ <nop>
 " git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
 let g:gruvbox_italic=1
 colorscheme gruvbox
+
 ```
+
+</details>
 
 ## Golang
 
@@ -652,8 +551,6 @@ rustup update
 - [snipaster](https://www.snipaste.com/) -- screenshot
 
 - [vlc](https://www.videolan.org/vlc/) -- video player
-
-- [easydict](https://github.com/tisfeng/Easydict/) -- translator app
 
 - [Vimium](https://github.com/philc/vimium) -- Chrome & Arc extension for Vim
 
