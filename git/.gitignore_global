@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# 常见的依赖目录
+node_modules/
+.venv/
+venv/
+
+# IDE 相关
+.vscode/
+.idea/
+
+# Go 相关的临时文件
+*.test
+*.out
+
+# Python 相关的临时文件
+__pycache__
+
+# Java 相关的临时文件
+*.class
+
+# Web 相关的临时文件
+*.lock
+
+# React 相关的临时文件
+*.js.map
+
+# 其他敏感或环境隔离文件
+*.log
+.env.local
+.env.*.local
