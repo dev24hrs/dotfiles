@@ -8,43 +8,7 @@ tags:
 
 # [Mac] WorkFlow
 
-<!--toc:start-->
-
-- [[Mac] WorkFlow](#mac-workflow)
-  - [Enhance terminal](#enhance-terminal)
-  - [Git Config](#git-config)
-  - [Homebrew](#homebrew)
-  - [Font](#font)
-    - [brew 安装](#brew-安装)
-    - [手动安装 (推荐)](#手动安装-推荐)
-  - [Fish Shell](#fish-shell)
-  - [Cli Tools](#cli-tools)
-    - [Starship](#starship)
-    - [Bat](#bat)
-    - [Fzf](#fzf)
-    - [Zoxide](#zoxide)
-    - [Delta](#delta)
-    - [Lsd](#lsd)
-    - [Fd & RipGrep](#fd-ripgrep)
-    - [LazyGit](#lazygit)
-    - [Cheat.sh](#cheatsh)
-    - [Go-musicbox](#go-musicbox)
-    - [Btop](#btop)
-  - [System Keymap](#system-keymap)
-  - [WezTerm](#wezterm)
-  - [Tmux](#tmux)
-  - [Neovim](#neovim)
-  - [vimrc](#vimrc)
-  - [Golang](#golang)
-    - [Books](#books)
-  - [Rust](#rust)
-    - [Setup](#setup)
-    - [Awesome Rust](#awesome-rust)
-  - [Apps](#apps)
-  - [Rime 输入法](#rime-输入法)
-  <!--toc:end-->
-
-> This is a collection of configurations that includes all on my Mac.
+> [!NOTE] This is a collection of configurations that includes all on my Mac.
 >
 > keywords: [git, homebrew, nerdfonts, fish, starship, neovim, tmux, golang, rust]
 
@@ -53,14 +17,13 @@ tags:
 ## Enhance terminal
 
 ```bash
-#  终端下执行以下几个命令，然后重新登出当前账户并登入（或者重启）
 #  Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1  # 默认值 2，设置成 1 合适，设置成 0 就太快了
+  defaults write NSGlobalDomain KeyRepeat -int 1  # default 2，recommend 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-# mac 查应用标识id
+# mac app id
 osascript -e 'id of app "app name"'
 # e.g
 osascript -e 'id of app "Wezterm"'
@@ -94,9 +57,9 @@ brew update
 
 ## Font
 
-### brew 安装
+### brew install
 
-- 英文: recursive & fira
+- english: recursive & fira
 
   ```bash
   brew install --cask font-recursive-mono-nerd-font
@@ -109,29 +72,30 @@ brew update
   brew install --cask font-symbols-only-nerd-font
   ```
 
-- 中文: 思源黑体
+- chinese simple : source-han-sans
 
   ```bash
   brew install --cask font-source-han-sans-vf
   ```
 
-### 手动安装 (推荐)
+### manual install (Recommend)
 
 > [!NOTE]
 >
-> brew 方式会安装很多不必要的字体,比如思源黑体,brew方式会自动安装日语 & 韩语 & 繁体,但个人只需要简中
+> The brew method installs many unnecessary fonts. For example, when installing Source Han Sans,
+> brew will automatically install Japanese, Korean, and Traditional Chinese fonts, but I only need Simplified Chinese.
 
-- 英文
+- english
 
   ```bash
-  // recursive & fira
+  ## recursive & fira
   https://www.nerdfonts.com/font-downloads
   ```
 
-- 中文
+- chinese simple
 
   ```bash
-  // 简中otf
+  ## chinese simple otf
   https://github.com/adobe-fonts/source-han-sans/releases
   ```
 
@@ -159,13 +123,6 @@ starship init fish | source
 # config
 # use preset & restart terminal starship preset nerd-font-symbols -o ~/.config/starship.toml
 # or can refer to github dotfiles
-```
-
-- ~~with zshrc~~
-
-```bash
-vim ~/.zshrc
-eval "$(starship init zsh)"
 ```
 
 ### Bat
@@ -210,7 +167,6 @@ brew install fzf
 fzf --fish | source
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-# --preview-window 60% 表示预览窗口占宽度中的比例
 set -gx FZF_DEFAULT_OPTS "--height 40% --layout=reverse --border --preview 'bat --style=numbers --color=always --line-range :500 {}' --preview-window 'right,60%,border-left'"
 set -gx FZF_CTRL_R_OPTS "--preview-window hidden"
 ```
@@ -226,7 +182,6 @@ brew install zoxide
 - with fish
 
 ```bash
-enable_transience
 zoxide init fish | source
 ```
 
@@ -238,7 +193,23 @@ zoxide init fish | source
 brew install git-delta
 ```
 
-### Lsd
+###  Eza
+
+-   install [eza](https://github.com/eza-community/eza)
+
+    ```bash
+    brew install eza
+    ```
+
+-   with fish
+
+    ```bash
+    alias ls='eza -a --icons --group-directories-first'
+    alias la='eza -la --icons --group-directories-first'
+    alias lt='eza -aT --icons --group-directories-first --git-ignore'
+    ```
+
+~~### Lsd~~
 
 - install [lsd](https://github.com/lsd-rs/lsd)
 
@@ -333,17 +304,6 @@ brew install btop
 alias bt='btop'
 ```
 
-## System Keymap
-
-|     keymap      |      desc      |
-| :-------------: | :------------: |
-| shift + cmd + L |   打开控制台   |
-|  ctrl + space   |   切换输入法   |
-|   cmd + space   | 打开 Spotlight |
-|    ctrl + →     |  下一个space   |
-|    ctrl + ←     |  上一个space   |
-|   ctrl + 1-4    | 切换到1-4space |
-
 ## WezTerm
 
 refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm)
@@ -351,8 +311,6 @@ refer to [wezterm config](https://github.com/dev24hrs/dotfiles/tree/main/wezterm
 - install [wezterm](https://wezterm.org/install/macos.html#homebrew)
 
 ```bash
-brew install --cask wezterm
-# or
 brew install --cask wezterm@nightly
 ```
 
@@ -364,109 +322,9 @@ config refer to [tmux dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/t
 
 config refer to [nvim dotfiles](https://github.com/dev24hrs/dotfiles/tree/main/nvim)
 
-## vimrc
+## Vimrc
 
-<details>
-  <summary>vimrc config</summary>
-
-```bash
-  " basic
-" fzf"
-set rtp+=/opt/homebrew/opt/fzf
-
-if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
-if (has("nvim"))
-"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-if (has("termguicolors"))
-set termguicolors
-endif
-endif
-
-syntax on
-set t_Co=256
-set termguicolors
-set background=dark
-set nocompatible
-set number
-set nowrap
-set mouse=a
-set clipboard=unnamed
-
-" tab
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set expandtab
-set smarttab
-set smartindent
-set autoindent
-set backspace=eol,start,indent
-set noexpandtab
-
-" search
-set showmatch
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set regexpengine=0
-
-" menu
-set showcmd
-set showmode
-set wildmenu
-
-" other
-set nobackup
-set nowb
-set nowritebackup
-set noswapfile
-
-set noerrorbells
-
-set wildmenu " enhance command-line auto-completion
-set wildignore=\*.o " files matched will be ignored by wildmenu
-set wildmode=longest:list " Completion mode
-
-" encoding
-" set spell spelllang=en_us
-set encoding=utf-8
-set fileencoding=utf-8
-set termencoding=utf-8
-
-filetype indent on
-
-" auto tag
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-
-let g:indentLine_enabled = 1
-
-" move to beginning/end of line
-nnoremap H ^
-nnoremap L $
-
-" $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>
-
-" Gruvbox config
-" git clone https://github.com/morhetz/gruvbox.git ~/.vim/pack/default/start/gruvbox
-let g:gruvbox_italic=1
-colorscheme gruvbox
-
-```
-
-</details>
+Refer to [vimrc](https://github.com/dev24hrs/Dotfiles/blob/main/vimrc/vimrc)
 
 ## Golang
 
@@ -595,169 +453,7 @@ rustup update
 
   If use typora & picgo app, when u pasted images in typora,it will cached images in the path`$home/Library/Application\ Support/typora-user-images`,so u need clean it.
 
-## Rime 输入法
+## Rime
 
-- 官网下载 [Rime](https://github.com/rime/squirrel). 安装完成后需要到设置->键盘->输入法 中添加鼠须管输入法
-- Homebrew安装. 注销用户重新登录才能在系统设置的输入法处看到鼠须管输入法
+Refer to [rime 输入法](https://github.com/dev24hrs/Dotfiles/blob/main/Rime.md)
 
-  ```bash
-  brew install --cask squirrel
-  ```
-
-- 安装[雾凇拼音](https://dvel.me/posts/rime-ice/)
-  - 点击 mac右上角输入法squirrel图标,打开settings目录
-  - 下载仓库内容,解压后全部复制到 settings目录
-  - 再次点击squirrel图标,然后点击deploy 部署, 即可开始使用
-- 配置雾凇拼音
-  - 在settings目录下创建`default.custom.yaml`,添加内容
-
-  ```yaml
-   patch:
-    schema_list:
-     # 可以直接删除或注释不需要的方案，对应的 *.schema.yaml 方案文件也可以直接删除
-     # 除了 t9，它依赖于 rime_ice，用九宫格别删 rime_ice.schema.yaml
-      - schema: rime_ice               # 雾凇拼音（全拼）
-      - schema: double_pinyin          # 自然码双拼
-      - schema: double_pinyin_abc      # 智能 ABC 双拼
-      - schema: double_pinyin_sogou    # 搜狗双拼
-    # 菜单
-    menu:
-      page_size: 7  # 候选词个数
-  # 中西文切换
-  #
-  # good_old_caps_lock:
-  # true   切换大写
-  # false  切换中英
-  # macOS 偏好设置的优先级更高，如果勾选【使用大写锁定键切换“ABC”输入法】则始终会切换输入法。
-  # 切换中英：
-  # 不同的选项表示：打字打到一半时按下了 CapsLock、Shift、Control 后：
-  # commit_code  上屏原始的编码，然后切换到英文
-  # commit_text  上屏拼出的词句，然后切换到英文
-  # clear        清除未上屏内容，然后切换到英文
-  # inline_ascii 切换到临时英文模式，按回车上屏后回到中文状态
-  # noop         屏蔽快捷键，不切换中英，但不要屏蔽 CapsLock
-  ########## 关闭  macos 使用大写锁定键切换“ABC”输入法
-    ascii_composer:
-   good_old_caps_lock: true
-   switch_key:
-     Caps_Lock: commit_code
-     Shift_L: commit_code
-     Shift_R: noop
-     Control_L: clear
-     Control_R: noop
-    key_binder:
-      bindings:
-      - { when: always, accept: Release+Escape, toggle: ascii_mode }
-  ```
-
-  - 在settings目录下创建`squirrel.custom.yaml`, 添加内容
-
-  ```yaml
-  patch:
-    # options: last | default | _custom_
-    # last: the last used latin keyboard layout
-    # default: US (ABC) keyboard layout
-    # _custom_: keyboard layout of your choice, e.g. 'com.apple.keylayout.USExtended' or simply 'USExtended'
-    keyboard_layout: default
-    # for veteran chord-typist
-    chord_duration: 0.1 # seconds
-    # options: always | never | appropriate
-    show_notifications_when: appropriate
-
-    # 以下软件默认英文模式
-    # ascii_mode: false  默认输入法模式: false 中文 true 英文
-    # ascii_punct: true  是否设置为英文标点
-    # 使用 osascript -e 'id of app "kitty"' 命令获取对应的app 标识
-    app_options:
-      com.googlecode.iterm2:
-        ascii_mode: true
-        vim_mode: true
-        ascii_punct: true
-      com.jetbrains.goland:
-        ascii_mode: true
-        vim_mode: true
-        ascii_punct: true
-      com.jetbrains.intellij:
-        ascii_mode: true
-        vim_mode: true
-        ascii_punct: true
-      com.apple.Terminal:
-        ascii_mode: true
-        vim_mode: true
-        ascii_punct: true
-      com.github.wez.wezterm:
-        ascii_mode: true
-        vim_mode: true
-        ascii_punct: true
-      md.obsidian:
-        ascii_mode: false
-        vim_mode: true
-        ascii_punct: true
-
-    # 如果想要修改皮肤，直接更改 color_scheme 的值即可
-    style:
-      color_scheme: macos_dark
-      color_scheme_dark: macos_dark
-
-    preset_color_schemes:
-      macos_light:
-        font_face: "RecMonoCasualNF"
-        font_point: 15.0
-        label_font_face: "RecMonoCasualNF"
-        label_font_point: 15.0
-        comment_font_face: "RecMonoCasualNF"
-        comment_font_point: 15.0
-        candidate_list_layout: linear
-        text_orientation: horizontal
-        inline_preedit: true
-        translucency: true
-        color_space: display_p3
-        corner_radius: 10.0
-        hilited_corner_radius: 8.0
-        border_height: -3.0
-        border_width: -3.0
-        line_spacing: 8.0
-        base_offset: 6.0
-        shadow_size: 3.0
-        back_color: 0x4CDDDDDD
-        candidate_text_color: 0x333333
-        comment_text_color: 0x333333
-        label_color: 0x5B5B5B
-        hilited_candidate_back_color: 0x9A8150
-        hilited_candidate_text_color: 0xFFFDFE
-        hilited_comment_text_color: 0xFFFDFE
-        hilited_candidate_label_color: 0xFFFFFF
-        text_color: 0x333333
-        hilited_text_color: 0xF7F7F7
-
-      macos_dark:
-        font_face: "RecMonoCasualNF"
-        font_point: 15.0
-        label_font_face: "RecMonoCasualNF"
-        label_font_point: 15.0
-        comment_font_face: "RecMonoCasualNF"
-        comment_font_point: 15.0
-        candidate_list_layout: linear
-        text_orientation: horizontal
-        inline_preedit: true
-        translucency: true
-        corner_radius: 10.0
-        hilited_corner_radius: 8.0
-        border_height: -3.0
-        border_width: -3.0
-        line_spacing: 8.0
-        base_offset: 6.0
-        shadow_size: 3.0
-        back_color: 0x4CDDDDDD
-        candidate_text_color: 0x333333
-        comment_text_color: 0x333333
-        label_color: 0x5B5B5B
-        hilited_candidate_back_color: 0x9A8150
-        hilited_candidate_text_color: 0xFFFDFE
-        hilited_comment_text_color: 0xFFFDFE
-        hilited_candidate_label_color: 0xFFFFFF
-        text_color: 0x333333
-        hilited_text_color: 0xF7F7F7
-  ```
-
-  - 配置完成后点击deploy即可使用.

@@ -2,9 +2,8 @@
 
 refer to [git config](https://github.com/dev24hrs/Dotfiles/tree/main/git)
 
-refer to [new ssh key](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
-
-- git init
+1. git init
+   refer to [new ssh key](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ```bash
 # ssh-key
@@ -24,14 +23,14 @@ pbcopy < ~/.ssh/id_ed25519.pub
 # then add to your github settings->ssh key
 ```
 
-- git config
-  `~/.gitconfig` 或 `~/.config/git/config` (个人选择)
+2. git config
+   `~/.gitconfig` 或 `~/.config/git/config` (个人选择)
 
 <details>
   <summary>git config</summary>
 
 ```bash
-  [user]
+[user]
   name = xxx
   email = xxx@gmail.com
 [core]
@@ -118,10 +117,10 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 </details>
 
-- gitignore
+3. gitignore
 
 ```bash
-  # macOS
+# macOS
 .DS_Store
 
 # 常见的依赖目录
@@ -155,7 +154,7 @@ __pycache__
 .env.*.local
 ```
 
-- git abbr
+4. git abbr
 
 ```bash
 # gs gb gl rewrite by git.fish
@@ -186,5 +185,5 @@ abbr -a grh 'git reset --hard'
 abbr -a grs 'git reset --soft'
 ```
 
-- git.fish
-  refer to [git.fish](https://github.com/dev24hrs/Dotfiles/blob/main/fish/config.fish)
+5. git.fish
+   refer to [git.fish](https://github.com/dev24hrs/Dotfiles/blob/main/fish/config.fish)
