@@ -34,8 +34,8 @@ local opts = {
         "ruff", -- Python
         "shfmt", -- Shell
         "yamlfmt", -- YAML
-        "taplo", -- TOML
-        --
+        "taplo", -- Formatters & LSP
+
         -- -- Linters
         "golangci-lint", -- Go
         "selene", -- Lua
@@ -43,7 +43,6 @@ local opts = {
         "yamllint", -- YAML
         "jsonlint", -- JSON
         "sqlfluff", -- SQL
-        "eslint-lsp", -- JavaScript / TypeScript
         "eslint_d", -- JavaScript / TypeScript
         "markdownlint", -- Markdown
 

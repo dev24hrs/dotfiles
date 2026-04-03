@@ -27,13 +27,13 @@ The simplest and most effective way is to read the plugin's `readme.md`.
 | Rust                  | rust-analyzer | rustfmt             | clippy        |
 | Python                | pyright       | ruff_format + ruff  | ruff          |
 | Lua                   | lua_ls        | stylua              | selene        |
-| JavaScript/TypeScript | vtsls         | prettier            | eslint_d      |
+| JavaScript/TypeScript | vtsls         | prettierd           | eslint_d      |
 | YAML                  | yamlls        | yamlfmt             | yamllint      |
 | JSON                  | jsonls        | prettierd           | jsonlint      |
 | Bash                  | bashls        | shfmt               | shellcheck    |
 | Fish                  | fish-lsp      | fish_indent         | fish_indent   |
 | SQL                   | sqls          | sqlfmt              | sqlfluff      |
-| Markdown              | marksman      | prettier            | markdownlint  |
+| Markdown              | marksman      | prettierd           | markdownlint  |
 
 ## Plugin List
 
