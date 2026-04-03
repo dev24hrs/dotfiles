@@ -1,0 +1,5 @@
+require("config.lsp")
+require("config.lsptool")
+require("config.diagnostic")
+require("config.gopher")
+require("config.crates")

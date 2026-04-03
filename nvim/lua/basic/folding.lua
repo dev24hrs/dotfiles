@@ -1,34 +1,62 @@
--- 基础设置
-vim.o.foldcolumn = '0'
+vim.o.foldcolumn = "0"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = false
-vim.o.foldmethod = 'expr'
--- 优化 fillchars 渲染
-vim.o.fillchars = 'eob: ,fold: ,foldopen:,foldsep: ,foldclose:'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.o.foldmethod = "expr"
+vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:"
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
--- 优化后的虚拟文本处理函数
-local function get_custom_foldtext(lnum)
-    local line = vim.fn.getline(lnum):gsub('\t', string.rep(' ', vim.bo.tabstop))
-    -- 简单的截断，防止单行过长影响性能
-    if #line > 120 then
-        line = line:sub(1, 120) .. '...'
+local function fold_virt_text(result, start_text, lnum)
+    local text = ""
+    local hl
+    for i = 1, #start_text do
+        local char = start_text:sub(i, i)
+        local new_hl = "@text"
+
+        -- if semantic tokens unavailable, use treesitter hl
+        local sem_tokens = vim.lsp.semantic_tokens.get_at_pos(0, lnum, i)
+        if sem_tokens and #sem_tokens > 0 then
+            new_hl = "@" .. sem_tokens[1].type
+        else
+            local captures = vim.treesitter.get_captures_at_pos(0, lnum, i - 1)
+            if #captures > 0 then
+                local top = captures[1]
+                local top_priority = (top.metadata and tonumber(top.metadata.priority)) or 0
+                for _, cap in ipairs(captures) do
+                    local raw_prio = cap.metadata and cap.metadata.priority
+                    local prio = tonumber(raw_prio) or 0
+                    if prio > top_priority then
+                        top = cap
+                        top_priority = prio
+                    end
+                end
+                new_hl = "@" .. top.capture
+            end
+        end
+
+        if new_hl then
+            if new_hl ~= hl then
+                table.insert(result, { text, hl })
+                text = ""
+                hl = nil
+            end
+            text = text .. char
+            hl = new_hl
+        else
+            text = text .. char
+        end
     end
-
-    local result = {}
-    table.insert(result, { line, 'Normal' })
-
+    table.insert(result, { text, hl })
+end
+function _G.custom_foldtext()
+    local start_text = vim.fn.getline(vim.v.foldstart):gsub("\t", string.rep(" ", vim.o.tabstop))
     local nline = vim.v.foldend - vim.v.foldstart
-    table.insert(result, { '      ...... 󰁂  ' .. nline .. ' lines folded', 'Character' }) -- 使用更明显的 Hlgroups
+    local result = {}
+    fold_virt_text(result, start_text, vim.v.foldstart - 1)
+    table.insert(result, { "  ", nil })
 
+    table.insert(result, { "      ...... 󰁂  " .. nline .. " lines folded", "Character" })
     return result
 end
 
--- 全局折叠函数
-_G.custom_foldtext = function()
-    return get_custom_foldtext(vim.v.foldstart)
-end
-
--- 应用配置
-vim.o.foldtext = 'v:lua.custom_foldtext()'
+vim.opt.foldtext = "v:lua.custom_foldtext()"

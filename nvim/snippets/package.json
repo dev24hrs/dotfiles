@@ -23,10 +23,6 @@
         "path": "./lua/lua.json"
       },
       {
-        "language": "luadoc",
-        "path": "./lua/luadoc.json"
-      },
-      {
         "language": "dockerfile",
         "path": "./docker/docker_file.json"
       },
