@@ -1,16 +1,12 @@
----
-title: " Mac Dotfiles"
-author: dev24hrs
-tags:
-  - dotfiles
-  - config
----
-
 # [Mac] WorkFlow
 
 > [!NOTE] This is a collection of configurations that includes all on my Mac.
 >
 > keywords: [git, homebrew, nerdfonts, fish, starship, neovim, tmux, golang, rust]
+
+---
+
+![](https://github.com/dev24hrs/Dotfiles/blob/main/img/nvim_tmux.png?raw=true)
 
 ---
 
@@ -38,6 +34,10 @@ refer to [git config](https://github.com/dev24hrs/Dotfiles/tree/main/git)
 Use pkg to install [homebrew](https://github.com/Homebrew/brew/releases/), but need to config `~/.zshrc` or `config.fish`
 
 ```bash
+# add to config.fish
+# homebrew
+eval (/opt/homebrew/bin/brew shellenv)
+
 # add to ~/.zshrc
 eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 
@@ -193,21 +193,21 @@ zoxide init fish | source
 brew install git-delta
 ```
 
-###  Eza
+### Eza
 
--   install [eza](https://github.com/eza-community/eza)
+- install [eza](https://github.com/eza-community/eza)
 
-    ```bash
-    brew install eza
-    ```
+  ```bash
+  brew install eza
+  ```
 
--   with fish
+- with fish
 
-    ```bash
-    alias ls='eza -a --icons --group-directories-first'
-    alias la='eza -la --icons --group-directories-first'
-    alias lt='eza -aT --icons --group-directories-first --git-ignore'
-    ```
+  ```bash
+  alias ls='eza -a --icons --group-directories-first'
+  alias la='eza -la --icons --group-directories-first'
+  alias lt='eza -aT --icons --group-directories-first --git-ignore'
+  ```
 
 ~~### Lsd~~
 
@@ -456,4 +456,3 @@ rustup update
 ## Rime
 
 Refer to [rime 输入法](https://github.com/dev24hrs/Dotfiles/blob/main/Rime.md)
-
