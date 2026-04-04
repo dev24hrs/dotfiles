@@ -9,8 +9,7 @@
   ```bash
   brew install --cask squirrel
   ## brew install squirrel-app
-```
-
+  ```
 ## 安装[雾凇拼音](https://dvel.me/posts/rime-ice/)
 
 - 点击 mac右上角输入法squirrel图标,打开settings目录
@@ -79,28 +78,12 @@ patch:
   # ascii_punct: true  是否设置为英文标点
   # 使用 osascript -e 'id of app "kitty"' 命令获取对应的app 标识
   app_options:
-    com.googlecode.iterm2:
-      ascii_mode: true
-      vim_mode: true
-      ascii_punct: true
     com.jetbrains.goland:
       ascii_mode: true
       vim_mode: true
       ascii_punct: true
     com.jetbrains.intellij:
       ascii_mode: true
-      vim_mode: true
-      ascii_punct: true
-    com.apple.Terminal:
-      ascii_mode: true
-      vim_mode: true
-      ascii_punct: true
-    com.github.wez.wezterm:
-      ascii_mode: true
-      vim_mode: true
-      ascii_punct: true
-    md.obsidian:
-      ascii_mode: false
       vim_mode: true
       ascii_punct: true
 
@@ -111,12 +94,12 @@ patch:
 
   preset_color_schemes:
     macos_light:
-      font_face: "RecMonoCasualNF"
-      font_point: 15.0
-      label_font_face: "RecMonoCasualNF"
-      label_font_point: 15.0
-      comment_font_face: "RecMonoCasualNF"
-      comment_font_point: 15.0
+      font_face: "RecMonoCasual Nerd Font Mono"
+      font_point: 16.0
+      label_font_face: "RecMonoCasual Nerd Font Mono"
+      label_font_point: 16.0
+      comment_font_face: "RecMonoCasual Nerd Font Mono"
+      comment_font_point: 16.0
       candidate_list_layout: linear
       text_orientation: horizontal
       inline_preedit: true
@@ -141,12 +124,12 @@ patch:
       hilited_text_color: 0xF7F7F7
 
     macos_dark:
-      font_face: "RecMonoCasualNF"
-      font_point: 15.0
-      label_font_face: "RecMonoCasualNF"
-      label_font_point: 15.0
-      comment_font_face: "RecMonoCasualNF"
-      comment_font_point: 15.0
+      font_face: "RecMonoCasual Nerd Font Mono"
+      font_point: 16.0
+      label_font_face: "RecMonoCasual Nerd Font Mono"
+      label_font_point: 16.0
+      comment_font_face: "RecMonoCasual Nerd Font Mono"
+      comment_font_point: 16.0
       candidate_list_layout: linear
       text_orientation: horizontal
       inline_preedit: true
