@@ -25,7 +25,7 @@ end
 
 -- 3. 自定义基础参数
 PaperWM.window_gap = { top = 0, bottom = 0, left = 5, right = 5 }
-PaperWM.window_ratios = { 0.9, 0.75, 0.5 } -- 循环切换的宽度比例
+PaperWM.window_ratios = { 0.6, 0.75, 0.9 } -- 循环切换的宽度比例
 PaperWM.default_width = 0.9
 PaperWM.infinite_loop_window = true
 
@@ -33,59 +33,38 @@ PaperWM.infinite_loop_window = true
 -- 设置快捷键为 Cmd + Enter 进入该模式
 local wmModal = hs.hotkey.modal.new({ "cmd" }, "return")
 
-local paperwmRunning = false
-
-function wmModal:entered()
-	if not paperwmRunning then
-		PaperWM:start()
-		paperwmRunning = true
-	end
-	hs.alert.show("进入 PaperWM 模式", 0.5)
-end
-
---- [快捷键配置] ---
+-- --- [快捷键配置] ---
 
 wmModal:bind({}, "h", nil, actions.focus_left)
 wmModal:bind({}, "l", nil, actions.focus_right)
+
+wmModal:bind({}, "n", nil, actions.swap_left)
+wmModal:bind({}, "p", nil, actions.swap_right)
 
 -- 调整窗口大小
 wmModal:bind({}, "r", nil, actions.cycle_width) -- 循环预设宽度
 wmModal:bind({}, "c", nil, actions.center_window) -- 居中窗口
 wmModal:bind({}, "f", nil, actions.full_width) -- 全屏宽度
 
+
+function wmModal:entered()
+	hs.alert.show("modal start", 0.5)
+end
+
 --  只退出 Modal 模式
 wmModal:bind({}, "escape", function()
+	hs.alert.show("modal stop", 0.5)
 	wmModal:exit()
 end)
 wmModal:bind({ "cmd" }, "return", function()
+	hs.alert.show("modal stop", 0.5)
 	wmModal:exit()
 end)
---
--- 在 PaperWM 接管之前保存所有窗口的原始位置和大小
-local originalFrames = {}
-for _, win in ipairs(hs.window.filter.new():getWindows()) do
-	if win:isStandard() then
-		originalFrames[win:id()] = win:frame()
-	end
-end
--- 退出 & 恢复原本布局
-wmModal:bind({}, "w", "恢复Macos默认布局", function()
+
+-- 退出 modal（exited() 会自动调用 PaperWM:stop() 并恢复窗口）
+wmModal:bind({}, "w", function()
 	PaperWM:stop()
-	paperwmRunning = false
-	local windows = hs.window.filter.new():getWindows()
-	for _, win in ipairs(windows) do
-		if win:isStandard() then
-			local saved = originalFrames[win:id()]
-			if saved then
-				win:setFrame(saved)
-			else
-				win:centerOnScreen(nil, true)
-			end
-		end
-	end
 	wmModal:exit()
-	hs.alert.show("退出 PaperWM 模式; 窗口已恢复原始位置", 0.5)
 end)
 
 PaperWM:start()
-paperwmRunning = true
