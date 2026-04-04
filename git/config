@@ -1,6 +1,6 @@
 [user]
     name = dev24hrs
-    email = asang24dev@foxmail.com
+    email = asang24dev@gmail.com
 [core]
     editor = nvim
     pager = delta
