@@ -13,7 +13,7 @@
     # 忽略全局的各种系统生成文件 (需自行创建该文件)
     excludesfile = ~/.config/git/gitignore_global
     # 确保分页器使用系统自带的 less，并支持颜色显示
-    pager = less -RFX
+    # pager = less -RFX
 
 [init]
     # 默认初始分支名为 main
@@ -22,6 +22,17 @@
 [branch]
     # 分支排序：按最近提交时间排序，最常修改的分支排在前面
     sort = -committerdate
+
+[delta]
+    navigate = true
+    true-color = always
+    light = false
+    side-by-side = false
+    line-numbers = true
+    syntax-theme = gruvbox-dark
+
+[interactive]
+    diffFilter = delta --color-only
 
 [color]
     ui = auto
@@ -80,3 +91,7 @@
     autoStash = true
     # 自动将 fixup! 和 squash! 的提交在 rebase -i 时合并
     autoSquash = true
+[http]
+	proxy = 127.0.0.1:12334
+[https]
+	proxy = 127.0.0.1:12334
