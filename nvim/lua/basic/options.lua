@@ -57,3 +57,19 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.splitright = true
 vim.g.bigfile_size = 1024 * 1024 * 1.5
 vim.g.markdown_folding = 1
+
+-- 文件类型映射
+vim.filetype.add({
+    extension = {
+        mdx = "markdown",
+    },
+    filename = {
+        ["docker-compose.yaml"] = "yaml",
+        ["docker-compose.yml"] = "yaml",
+        ["go.work"] = "gowork",
+    },
+    pattern = {
+        ["docker%-compose%..*%.ya?ml"] = "yaml",
+        [".*%.gotmpl"] = "gotmpl",
+    },
+})

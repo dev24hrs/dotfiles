@@ -23,9 +23,9 @@ keymap({ "n", "v" }, "E", "$", "[Basic]: move cursor to line end")
 keymap("n", "wh", "<C-w>h", "[Basic]: move to left split")
 keymap("n", "wl", "<C-w>l", "[Basic]: move to right split")
 
-keymap("n", "<S-l>", "<cmd>bnext<CR>", "[Basic]: buffer next")
-keymap("n", "<S-h>", "<cmd>bprevious<CR>", "[Basic]: buffer previous")
-keymap("n", "bd", "<cmd>bdelete!<CR>", "[Basic]: buffer close")
+-- keymap("n", "<S-l>", "<cmd>bnext<CR>", "[Basic]: buffer next")
+-- keymap("n", "<S-h>", "<cmd>bprevious<CR>", "[Basic]: buffer previous")
+-- keymap("n", "bd", "<cmd>bdelete!<CR>", "[Basic]: buffer close")
 
 -- 普通模式：注释 / 取消注释当前行
 -- vim.keymap.set("n", "<C-;>", "gcc", { remap = true, desc = "Toggle comment line" })
