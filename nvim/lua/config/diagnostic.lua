@@ -9,6 +9,7 @@ vim.diagnostic.config({
             return string.format("%s [%s] ", diagnostic.message, diagnostic.source)
         end,
         spacing = 4,
+        source = "if_many",
     },
     signs = {
         text = {

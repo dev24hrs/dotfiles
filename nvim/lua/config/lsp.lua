@@ -6,7 +6,7 @@ vim.lsp.enable({
     "yamlls",
     "jsonls",
     "bashls",
-    "fish-lsp",
+    "fish_lsp",
     "sqls",
     "vtsls",
     "marksman",
