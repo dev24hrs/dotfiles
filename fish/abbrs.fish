@@ -12,7 +12,6 @@ abbr -a gsc 'git switch -c'
 
 abbr -a gd 'git diff'
 abbr -a gf 'git fetch'
-abbr -a gl 'git pull'
 abbr -a gp 'git push'
 abbr -a gpf 'git push --force-with-lease' # 比 --force 更安全
 
