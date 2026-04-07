@@ -12,8 +12,12 @@ local opts = {
     },
     ensure_installed = {
         -- LSP servers (matching your vim.lsp.enable() config)
-        "lua-language-server", -- Lua LSP lua_ls
-        "gopls", -- Go LSP
+
+        --[[
+            use brew install gopls & lua-language-server
+            "lua-language-server", -- Lua LSP lua_ls
+            "gopls", -- Go LSP
+        ]]
         "rust-analyzer", -- Rust LSP
         "yaml-language-server", -- YAML LSP yamlls
         "json-lsp", -- JSON LSP  jsonls
