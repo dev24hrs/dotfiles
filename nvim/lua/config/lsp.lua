@@ -22,6 +22,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
         end
 
+        keymap("[d", "", "[Basic]: cancel [d default")
+        keymap("]d", "", "[Basic]: cancel ]d default")
+
+        keymap("<leader>r", vim.lsp.buf.rename, "[Lsp]: Rename Symbols")
         keymap("<leader>,", "<CMD>Lspsaga code_action<CR>", "[Lsp]: Code Action")
         keymap("K", "<CMD>Lspsaga hover_doc<CR>", "[Lsp]: Hover Documentation")
         keymap("gd", "<CMD>Lspsaga goto_definition<CR>", "[Lsp]: Goto Definition")
@@ -32,10 +36,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap("<leader>lf", "<CMD>Lspsaga finder tyd+ref+imp+def<CR>", "[Lsp]: Lsp Finder")
         keymap("<leader>li", "<CMD>Lspsaga incoming_calls<CR>", "[Lsp]: Incoming Calls")
         keymap("<leader>lo", "<CMD>Lspsaga outgoing_calls<CR>", "[Lsp]: Outgoing Calls")
+
+        -- diagnostic keymaps
         keymap("<leader>ld", "<CMD>Lspsaga show_buf_diagnostics ++float<CR>", "[Lsp]: Show Buffer Diagnostics")
         keymap("<leader>lw", "<CMD>Lspsaga show_workspace_diagnostics ++float<CR>", "[Lsp]: Show Workspace Diagnostics")
-
-        keymap("<leader>r", vim.lsp.buf.rename, "[Lsp]: Rename Symbols")
+        keymap("[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "[Lsp]: Previous Diagnostic")
+        keymap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "[Lsp]: Next Diagnostic")
+        keymap("[e", function()
+            require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end, "[Lsp]: Previous Error")
+        keymap("]e", function()
+            require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end, "[Lsp]: Next Error")
+        keymap("[w", function()
+            require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.WARN })
+        end, "[Lsp]: Previous WARN")
+        keymap("]w", function()
+            require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.WARN })
+        end, "[Lsp]: Next WARN")
         -----------------------------------------------------------------------------------------------------
         -- keymap("K", vim.lsp.buf.hover, "[Lsp]: Hover Documentation")
         -- keymap("gd", vim.lsp.buf.definition, "[Lsp]: Goto Definition")
