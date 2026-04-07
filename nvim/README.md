@@ -21,6 +21,22 @@ The simplest and most effective way is to read the plugin's `readme.md`.
 
 ## Supported Languages
 
+use brew install `gopls` & `lua-language-server` & `typescript-language-server`, not `mason` install.
+
+```bash
+# gopls
+brew install gopls
+
+# lua-language-server
+brew install lua luarocks
+brew install lua-language-server
+
+# typescript-language-server
+brew install node
+brew install typescript typescript-language-server
+
+```
+
 | Language              | LSP           | Formatter           | Linter        |
 | --------------------- | ------------- | ------------------- | ------------- |
 | Go                    | gopls         | goimports + gofumpt | golangci-lint |
