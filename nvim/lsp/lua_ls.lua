@@ -24,6 +24,7 @@ return {
             codeLens = { enable = true },
             completion = { callSnippet = "Replace" },
             hint = { enable = true, semicolon = "Disable" },
+            telemetry = { enable = false },
         },
     },
 }
