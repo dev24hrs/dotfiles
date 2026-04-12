@@ -1,3 +1,8 @@
+vim.pack.add({
+    { src = "https://github.com/nvim-tree/nvim-tree.lua" },
+    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
+})
+
 local tree_group = vim.api.nvim_create_augroup("User_NvimTreeInit", { clear = true })
 
 local function open_nvim_tree_smart()
@@ -25,11 +30,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     group = tree_group,
     once = true,
     callback = function()
-        vim.pack.add({
-            { src = "https://github.com/nvim-tree/nvim-tree.lua" },
-            { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-        })
-
         local status, nvim_tree = pcall(require, "nvim-tree")
         if not status then
             return

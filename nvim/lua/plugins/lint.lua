@@ -1,13 +1,13 @@
+vim.pack.add({
+    { src = "https://github.com/mfussenegger/nvim-lint" },
+})
+
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
     group = vim.api.nvim_create_augroup("User_LintInit", { clear = true }),
     callback = function()
         if package.loaded["lint"] then
             return
         end
-
-        vim.pack.add({
-            { src = "https://github.com/mfussenegger/nvim-lint" },
-        })
 
         local lint = require("lint")
         lint.linters_by_ft = {
