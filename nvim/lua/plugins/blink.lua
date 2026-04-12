@@ -1,47 +1,26 @@
 vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
-    { src = "https://github.com/L3MON4D3/LuaSnip", version = vim.version.range("2.*"), build = "make install_jsregexp" },
+    -- { src = "https://github.com/L3MON4D3/LuaSnip", version = vim.version.range("2.*"), build = "make install_jsregexp" },
+    { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/Exafunction/windsurf.nvim" },
 })
 
-vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter", "LspAttach" }, {
     pattern = "*",
     group = vim.api.nvim_create_augroup("User_BlinkCmpInit", { clear = true }),
     once = true,
     callback = function()
-        require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
+        -- require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
         local blink = require("blink.cmp")
         blink.setup({
-            snippets = { preset = "luasnip" },
+            -- snippets = { preset = "luasnip" },
             appearance = { nerd_font_variant = "normal" },
             keymap = {
                 preset = "none",
                 ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
                 ["<CR>"] = { "accept", "fallback" },
-                ["<Tab>"] = {
-                    function(cmp)
-                        if cmp.is_visible() then
-                            return cmp.select_next()
-                        elseif cmp.snippet_active() then
-                            return cmp.snippet_forward()
-                        else
-                            return
-                        end
-                    end,
-                    "fallback",
-                },
-                ["<S-Tab>"] = {
-                    function(cmp)
-                        if cmp.is_visible() then
-                            return cmp.select_prev()
-                        elseif cmp.snippet_active() then
-                            return cmp.snippet_backward()
-                        else
-                            return
-                        end
-                    end,
-                    "fallback",
-                },
+                ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+                ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
                 ["<Up>"] = { "select_prev", "fallback" },
                 ["<Down>"] = { "select_next", "fallback" },
                 ["<C-j>"] = { "select_next", "fallback" },
