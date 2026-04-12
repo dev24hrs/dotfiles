@@ -182,3 +182,7 @@ brew install typescript typescript-language-server
 | `:LspInfo`    | Show LSP status               |
 | `:LspRestart` | Restart LSP servers           |
 | `:LspStatus`  | Show detailed LSP status      |
+
+# LICENSE
+
+This project is licensed under the MIT License.
