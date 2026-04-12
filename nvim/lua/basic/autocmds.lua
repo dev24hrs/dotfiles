@@ -26,12 +26,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "go",
-    callback = function()
-        vim.opt_local.list = false
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "go",
+--     callback = function()
+--         vim.opt_local.list = false
+--     end,
+-- })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
@@ -53,16 +53,16 @@ vim.api.nvim_create_user_command("PackClean", function()
     end
 
     if #unused_plugins == 0 then
-        return print("No unused plugins found.")
+        return vim.notify("No unused plugins found.", vim.log.levels.INFO)
     end
 
-    print("Detected unused plugins: " .. table.concat(unused_plugins, ", "))
+    vim.notity("Detected unused plugins: " .. table.concat(unused_plugins, ", "), vim.log.levels.INFO)
 
     if vim.fn.confirm("Delete these plugins from disk?", "&Yes\n&No", 2) == 1 then
         vim.pack.del(unused_plugins)
-        print("Cleaned successfully.")
+        vim.notify("Cleaned successfully.", vim.log.levels.INFO)
     else
-        print("Cleaned canceled.")
+        vim.notify("Cleaned canceled.", vim.log.levels.INFO)
     end
 end, {})
 
@@ -77,19 +77,12 @@ vim.api.nvim_create_user_command("PackUpdate", function()
     end
 
     if #plugins_to_update == 0 then
-        return print("No active plugins to update.")
+        return vim.notify("No active plugins to update...", vim.log.levels.INFO)
     end
 
+    vim.notify("Checking updates for all plugins...", vim.log.levels.INFO)
     vim.pack.update(plugins_to_update)
 end, {})
-
-vim.api.nvim_create_autocmd("PackChanged", {
-    callback = function(ev)
-        if ev.data.spec.name == "nvim-treesitter" then
-            vim.system({ "make" }, { cwd = ev.data.path })
-        end
-    end,
-})
 
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
@@ -103,54 +96,12 @@ vim.api.nvim_create_autocmd("FileType", {
         "notify",
         "checkhealth",
         "spectre_panel",
-        "confirm",
+        "nvim-pack",
+        "toggleterm",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-    end,
-})
-
--- 大文件优化：禁用重负载功能
--- BufReadPre: 文件读取前检查大小，立即关闭 syntax/fold/swap/undo
-vim.api.nvim_create_autocmd("BufReadPre", {
-    desc = "Disable heavy features for large files",
-    group = vim.api.nvim_create_augroup("User_BigFile", { clear = true }),
-    callback = function(ev)
-        local size = vim.fn.getfsize(vim.api.nvim_buf_get_name(ev.buf))
-        if size > vim.g.bigfile_size then
-            vim.b[ev.buf].large_file = true
-            vim.opt_local.syntax = "off"
-            vim.opt_local.foldmethod = "manual"
-            vim.opt_local.swapfile = false
-            vim.opt_local.undofile = false
-            vim.opt_local.list = false
-            vim.notify("Large file detected, heavy features disabled", vim.log.levels.WARN)
-        end
-    end,
-})
-
--- LspAttach: 拦截 LSP 挂载事件，大文件直接 detach
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "Detach LSP from large files",
-    group = vim.api.nvim_create_augroup("User_BigFileLsp", { clear = true }),
-    callback = function(ev)
-        if vim.b[ev.buf].large_file then
-            vim.schedule(function()
-                vim.lsp.buf_detach_client(ev.buf, ev.data.client_id)
-            end)
-        end
-    end,
-})
-
--- BufReadPost: treesitter 加载后停掉它
-vim.api.nvim_create_autocmd("BufReadPost", {
-    desc = "Stop treesitter for large files",
-    group = vim.api.nvim_create_augroup("User_BigFileTs", { clear = true }),
-    callback = function(ev)
-        if vim.b[ev.buf].large_file then
-            pcall(vim.treesitter.stop, ev.buf)
-        end
     end,
 })
 
