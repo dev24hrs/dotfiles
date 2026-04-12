@@ -32,8 +32,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
         keymap("gi", "<CMD>Lspsaga finder imp<CR>", "[Lsp]: Goto Implementation")
         keymap("gr", "<CMD>Lspsaga finder ref<CR>", "[Lsp]: Goto References")
         keymap("gt", "<CMD>Lspsaga goto_type_definition<CR>", "[Lsp]: Goto Type Definition")
+        keymap("gf", "<CMD>Lspsaga finder tyd+ref+imp+def<CR>", "[Lsp]: Lsp Finder")
 
-        keymap("<leader>lf", "<CMD>Lspsaga finder tyd+ref+imp+def<CR>", "[Lsp]: Lsp Finder")
         keymap("<leader>li", "<CMD>Lspsaga incoming_calls<CR>", "[Lsp]: Incoming Calls")
         keymap("<leader>lo", "<CMD>Lspsaga outgoing_calls<CR>", "[Lsp]: Outgoing Calls")
 
