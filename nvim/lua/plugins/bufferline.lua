@@ -61,5 +61,5 @@ require("bufferline").setup({
 
 vim.keymap.set("n", "bl", ":BufferLineCycleNext<CR>", { noremap = true, silent = true, desc = "[Bufferline]: Next Buffer" })
 vim.keymap.set("n", "bh", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true, desc = "[Bufferline]: Previous Buffer" })
-vim.keymap.set("n", "bc", ":BufferLineClose<CR>", { noremap = true, silent = true, desc = "[Bufferline]: Close Buffer" })
+vim.keymap.set("n", "bc", ":bdelete<CR>", { noremap = true, silent = true, desc = "[Bufferline]: Close Buffer" })
 vim.keymap.set("n", "bd", ":BufferLineCloseOthers<CR>", { noremap = true, silent = true, desc = "[Bufferline]: Close Other Buffer" })
