@@ -8,7 +8,7 @@ vim.lsp.enable({
     "bashls",
     "fish_lsp",
     "sqls",
-    "vtsls",
+    "ts_ls",
     "marksman",
     "taplo",
 })

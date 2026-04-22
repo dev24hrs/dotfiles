@@ -26,7 +26,7 @@ local opts = {
         "sqls", -- SQL LSP
         "marksman", -- Markdown LSP
         "pyright", -- Python LSP
-        "vtsls", -- Typescript & Javascript LSP
+        "ts_ls", -- Typescript  LSP
 
         -- Formatters (for conform.nvim and general use)
         "stylua", -- Lua
