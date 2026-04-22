@@ -64,6 +64,7 @@ vim.filetype.add({
         mdx = "markdown",
     },
     filename = {
+        ["LICENSE"] = "license",
         ["docker-compose.yaml"] = "yaml",
         ["docker-compose.yml"] = "yaml",
         ["go.work"] = "gowork",
