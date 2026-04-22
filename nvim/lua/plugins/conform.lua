@@ -18,7 +18,7 @@ conform.setup({
         sh = { "shfmt" },
         bash = { "shfmt" },
         toml = { "taplo" },
-        rust = { "rustfmt" }, -- comes with Rust installation
+        -- rust = { "rustfmt" }, -- comes with Rust installation
         fish = { "fish_indent" }, -- comes with Fish installation
     },
     default_format_opts = {

@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
     callback = function()
         require("nvim-treesitter").setup({})
         require("nvim-treesitter").install({
-            -- default: lua vim vim doc markdown markdown_inline in 0.12 version
+            -- default: lua vim & vimdoc & markdown & markdown_inline in 0.12 version
             "bash",
             "fish",
             "go",
@@ -23,17 +23,16 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
             "gosum",
             "gowork",
             "gotmpl",
-            "json",
+            "rust",
             "sql",
-            "yaml",
             "python",
             "typescript",
             "javascript",
-            "regex",
-            "rust",
+            "tsx",
+            "json",
             "toml",
             "html",
-            "typescript",
+            "yaml",
             "dockerfile",
         })
 

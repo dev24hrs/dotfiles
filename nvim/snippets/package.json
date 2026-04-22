@@ -11,12 +11,12 @@
         "path": "./rust/rust.json"
       },
       {
-        "language": "rustdoc",
-        "path": "./rust/rustdoc.json"
-      },
-      {
         "language": "markdown",
         "path": "./markdown/markdown.json"
+      },
+      {
+        "language": ["typescript", "typescriptreact", "javascriptreact", "javascript"],
+        "path": "./typescript/typescript.json"
       },
       {
         "language": "lua",
