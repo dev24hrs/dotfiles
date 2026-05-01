@@ -14,8 +14,9 @@ local opts = {
         -- LSP servers (matching your vim.lsp.enable() config)
 
         --[[
-            use brew install gopls & lua-language-server
+            use brew install
             "lua-language-server", -- Lua LSP lua_ls
+            "typescript-language-server", -- Typescript  LSP
             "gopls", -- Go LSP
         ]]
         "rust-analyzer", -- Rust LSP
@@ -26,7 +27,6 @@ local opts = {
         "sqls", -- SQL LSP
         "marksman", -- Markdown LSP
         "pyright", -- Python LSP
-        "ts_ls", -- Typescript  LSP
 
         -- Formatters (for conform.nvim and general use)
         "stylua", -- Lua
