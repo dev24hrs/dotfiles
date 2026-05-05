@@ -26,13 +26,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = "go",
---     callback = function()
---         vim.opt_local.list = false
---     end,
--- })
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
@@ -56,7 +49,7 @@ vim.api.nvim_create_user_command("PackClean", function()
         return vim.notify("No unused plugins found.", vim.log.levels.INFO)
     end
 
-    vim.notity("Detected unused plugins: " .. table.concat(unused_plugins, ", "), vim.log.levels.INFO)
+    vim.notify("Detected unused plugins: " .. table.concat(unused_plugins, ", "), vim.log.levels.INFO)
 
     if vim.fn.confirm("Delete these plugins from disk?", "&Yes\n&No", 2) == 1 then
         vim.pack.del(unused_plugins)

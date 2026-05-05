@@ -1,19 +1,15 @@
 vim.pack.add({
     { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
-    -- { src = "https://github.com/L3MON4D3/LuaSnip", version = vim.version.range("2.*"), build = "make install_jsregexp" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/Exafunction/windsurf.nvim" },
 })
-
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter", "LspAttach" }, {
     pattern = "*",
     group = vim.api.nvim_create_augroup("User_BlinkCmpInit", { clear = true }),
     once = true,
     callback = function()
-        -- require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets" })
         local blink = require("blink.cmp")
         blink.setup({
-            -- snippets = { preset = "luasnip" },
             appearance = { nerd_font_variant = "normal" },
             keymap = {
                 preset = "none",
