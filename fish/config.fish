@@ -2,6 +2,8 @@
 set -g fish_greeting ""
 set -gx TERM xterm-256color
 set -gx EDITOR nvim
+# 禁用less历史记录
+set -gx LESSHISTFILE -
 
 # homebrew
 eval (/opt/homebrew/bin/brew shellenv)
@@ -9,7 +11,6 @@ eval (/opt/homebrew/bin/brew shellenv)
 # alias
 alias lg='lazygit'
 alias mu='musicfox'
-alias bt='btop'
 
 alias ls='eza -a --icons --group-directories-first'
 alias la='eza -la --icons --group-directories-first'
@@ -39,3 +40,7 @@ zoxide init fish | source
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH $HOME/.lmstudio/bin
+# End of LM Studio CLI section
