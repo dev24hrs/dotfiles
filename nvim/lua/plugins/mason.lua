@@ -18,8 +18,8 @@ local opts = {
             "lua-language-server", -- Lua LSP lua_ls
             "typescript-language-server", -- Typescript  LSP
             "gopls", -- Go LSP
+            "rust-analyzer", -- Rust LSP
         ]]
-        "rust-analyzer", -- Rust LSP
         "yaml-language-server", -- YAML LSP yamlls
         "json-lsp", -- JSON LSP  jsonls
         "bash-language-server", -- Bash LSP bashls
